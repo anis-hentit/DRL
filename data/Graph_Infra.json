@@ -1,0 +1,54 @@
+{
+  "hosts": {
+    "nb": 9,
+    "configuration": [
+      {"CPU": 100, "BW": 100},
+      {"CPU": 10, "BW": 5},
+      {"CPU": 15, "BW": 10},
+      {"CPU": 5, "BW": 3},
+      {"CPU": 1, "BW": 1},
+      {"CPU": 10, "BW": 5},
+      {"CPU": 5, "BW": 3},
+      {"CPU": 25, "BW": 25},
+      {"CPU": 1, "BW": 1}
+    ]
+  },
+  "network": {
+    "topology": [
+      {"source": 0, "destination": 0, "latency": -1},
+      {"source": 0, "destination": 1, "latency": 150, "bandwidth": 15},
+      {"source": 1, "destination": 0, "latency": 150, "bandwidth": 15},
+      {"source": 0, "destination": 2, "latency": 100, "bandwidth": 20},
+      {"source": 2, "destination": 0, "latency": 100, "bandwidth": 20},
+      {"source": 0, "destination": 5, "latency": 150, "bandwidth": 15},
+      {"source": 5, "destination": 0, "latency": 150, "bandwidth": 15},
+      {"source": 0, "destination": 7, "latency": 100, "bandwidth": 50},
+      {"source": 7, "destination": 0, "latency": 100, "bandwidth": 50},
+      {"source": 1, "destination": 1, "latency": -1},
+      {"source": 1, "destination": 3, "latency": 100, "bandwidth": 10},
+      {"source": 3, "destination": 1, "latency": 100, "bandwidth": 10},
+      {"source": 1, "destination": 6, "latency": 150, "bandwidth": 10},
+      {"source": 6, "destination": 1, "latency": 150, "bandwidth": 10},
+      {"source": 2, "destination": 2, "latency": -1},
+      {"source": 2, "destination": 3, "latency": 100, "bandwidth": 10},
+      {"source": 3, "destination": 2, "latency": 100, "bandwidth": 10},
+      {"source": 2, "destination": 5, "latency": 100, "bandwidth": 10},
+      {"source": 5, "destination": 2, "latency": 100, "bandwidth": 10},
+      {"source": 3, "destination": 3, "latency": -1},
+      {"source": 3, "destination": 7, "latency": 100, "bandwidth": 10},
+      {"source": 7, "destination": 3, "latency": 100, "bandwidth": 10},
+      {"source": 4, "destination": 4, "latency": -1},
+      {"source": 4, "destination": 6, "latency": 100, "bandwidth": 5},
+      {"source": 6, "destination": 4, "latency": 100, "bandwidth": 5},
+      {"source": 5, "destination": 5, "latency": -1},
+      {"source": 5, "destination": 6, "latency": 150, "bandwidth": 10},
+      {"source": 6, "destination": 5, "latency": 150, "bandwidth": 10},
+      {"source": 6, "destination": 6, "latency": -1},
+      {"source": 8, "destination": 8, "latency": -1},
+      {"source": 8, "destination": 3, "latency": 100, "bandwidth": 5},
+      {"source": 3, "destination": 8, "latency": 100, "bandwidth": 5},
+      {"source": 8, "destination": 6, "latency": 100, "bandwidth": 7},
+      {"source": 6, "destination": 8, "latency": 100, "bandwidth": 7}
+    ]
+  }
+}
