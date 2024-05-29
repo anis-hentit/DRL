@@ -4,7 +4,7 @@ from utils import load_json_config
 
 class FogEnvironment:
     def __init__(self):
-        # Load configurations using the new JSON loader
+        # Load configurations using the JSON loader
         self.app_config, self.infra_config = load_json_config('data/Application.json', 'data/Graph_Infra.json')
         self.state = self.initialize_state()
 

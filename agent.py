@@ -26,11 +26,11 @@ class Agent:
         state = np.reshape(state, [1, self.state_size])
         probabilities = self.model.predict(state)[0]
         action = np.random.choice(self.action_size, p=probabilities)
-        return self.decode_action(action)  # Implement a method to convert actions to your specific format
+        return self.decode_action(action)  # TO be Implemented
 
     def decode_action(self, action_index):
         # Translate an action index back into the (component_id, host_id, path_ids) format
-        # This part needs your specific logic based on how you've structured actions
+        # This part needs a specific logic based on how we structured actions
         return (component_id, host_id, path_ids)
 
 
