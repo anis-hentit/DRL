@@ -9,19 +9,24 @@ class FogEnvironment(gym.Env):
 
     def __init__(self):
         super(FogEnvironment, self).__init__()
+        # Load configuration files
         self.app_config, self.infra_config = load_json_config('data/Application.json', 'data/Graph_Infra.json')
+        # Initialize state
         self.state = self.initialize_state()
+        # Define action and observation spaces
         self.action_space = self.define_action_space()
         self.observation_space = self.define_observation_space()
         self.current_step = 0
         self.max_steps_per_episode = 100
 
     def define_action_space(self):
+        # Define action space as a tuple of discrete spaces (component, host)
         num_components = len(self.state['components'])
         num_hosts = len(self.state['hosts'])
         return spaces.Tuple((spaces.Discrete(num_components), spaces.Discrete(num_hosts)))
 
     def define_observation_space(self):
+        # Define observation space as a dictionary of Box spaces for hosts and components
         num_components = len(self.state['components'])
         num_hosts = len(self.state['hosts'])
         return spaces.Dict({
@@ -30,6 +35,7 @@ class FogEnvironment(gym.Env):
         })
 
     def initialize_state(self):
+        # Initialize the state with hosts and components
         state = {
             'hosts': {i: {'CPU': host['CPU'], 'RAM': host['BW']} for i, host in enumerate(self.infra_config['hosts']['configuration'])},
             'components': {i: {'CPU': comp['CPU'], 'RAM': comp['RAM'], 'deployed': False} for i, comp in enumerate(self.app_config['application']['requirements'])},
@@ -37,6 +43,7 @@ class FogEnvironment(gym.Env):
             'links': {i: link for i, link in enumerate(self.app_config['application']['links'])},
             'paths': {i: [] for i in range(len(self.app_config['application']['links']))}
         }
+        # Deploy components with fixed positions
         for comp_id, host_id in state['fixed_positions'].items():
             if comp_id in state['components']:
                 comp = state['components'][comp_id]
@@ -52,6 +59,7 @@ class FogEnvironment(gym.Env):
         return state
 
     def step(self, action):
+        # Execute an action and update the environment state
         self.current_step += 1
         component_id, host_id, path_ids = action
 
@@ -66,6 +74,7 @@ class FogEnvironment(gym.Env):
         print(f"Component requirements: CPU={component['CPU']}, RAM={component['RAM']}")
         print(f"Host available resources: CPU={host['CPU']}, RAM={host['RAM']}")
 
+        # Validate paths
         valid_paths = all(self.validate_path(path, latency_req, bandwidth_req) 
                           for path_id, (path, latency_req, bandwidth_req) in path_ids.items())
 
@@ -100,6 +109,7 @@ class FogEnvironment(gym.Env):
         return {}
 
     def validate_path(self, path, latency_req, bandwidth_req):
+        # Validate a path based on latency and bandwidth requirements
         total_latency = 0
         min_bandwidth = float('inf')
 
@@ -121,10 +131,12 @@ class FogEnvironment(gym.Env):
         return is_valid
 
     def calculate_state_size(self, state):
+        # Calculate the size of the flattened state
         flattened_state = flatten_state(state)
         return len(flattened_state)
 
     def update_state(self, component_id, host_id, path_ids):
+        # Update the state after deploying a component
         component = self.state['components'][component_id]
         host = self.state['hosts'][host_id]
         if component['CPU'] <= host['CPU'] and component['RAM'] <= host['RAM']:
@@ -141,9 +153,11 @@ class FogEnvironment(gym.Env):
             return False
 
     def check_all_deployed(self):
+        # Check if all components have been deployed
         return all(comp['deployed'] for comp in self.state['components'].values())
 
     def calculate_reward(self, action, path_ids):
+        # Calculate the reward based on energy consumption and penalties
         energy = 0
         active_hosts = set(comp['host'] for comp in self.state['components'].values() if comp['deployed'])
         for host_id in active_hosts:
@@ -159,6 +173,7 @@ class FogEnvironment(gym.Env):
         return total_reward
 
     def calculate_latency_penalty(self, path_ids):
+        # Calculate latency penalties for the paths
         penalty = 0
         for path_id, (path, latency_req, _) in path_ids.items():
             total_latency = sum(next(link_data['latency'] for link_data in self.infra_config['network']['topology']
@@ -169,6 +184,7 @@ class FogEnvironment(gym.Env):
         return penalty
 
     def calculate_bandwidth_penalty(self, path_ids):
+        # Calculate bandwidth penalties for the paths
         penalty = 0
         for path_id, (path, _, bandwidth_req) in path_ids.items():
             min_bandwidth = min(next(link_data['bandwidth'] for link_data in self.infra_config['network']['topology']
@@ -179,6 +195,7 @@ class FogEnvironment(gym.Env):
         return penalty
 
     def reset(self):
+        # Reset the environment to the initial state
         self.state = self.initialize_state()
         self.current_step = 0
         flattened_state = flatten_state(self.state)
@@ -188,8 +205,10 @@ class FogEnvironment(gym.Env):
         return self.state
 
     def render(self, mode='console'):
+        # Render the current state of the environment
         if mode == 'console':
             print("Current state:", self.state)
 
     def close(self):
+        # Close the environment
         pass

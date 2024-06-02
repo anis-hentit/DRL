@@ -4,22 +4,23 @@ import numpy as np
 import heapq
 
 def flatten_state(state):
+    # Function to flatten the state dictionary into a single array
     hosts = state['hosts']
     components = state['components']
     
-    # Flatten hosts
+    # Flatten host values
     host_values = np.concatenate([list(host.values()) for host in hosts.values()])
     
-    # Flatten components excluding 'deployed' attribute
+    # Flatten component values excluding 'deployed' attribute
     component_values = np.concatenate([list(component.values())[:2] for component in components.values()])
     
-    # make sure 'deployed' attribute is always 0 or 1
+    # Ensure 'deployed' attribute is represented as 0 or 1
     deployed_status = np.array([1.0 if component['deployed'] else 0.0 for component in components.values()], dtype=np.float32)
     
-    # concatenate all parts
+    # Concatenate all parts into a single array
     flattened_state = np.concatenate([host_values, component_values, deployed_status])
     
-    # Debug: Print detailed information
+    # Debug: Print detailed information about the flattened state
     print(f"host_values: {host_values} (size: {host_values.size})")
     print(f"component_values: {component_values} (size: {component_values.size})")
     print(f"deployed_status: {deployed_status} (size: {deployed_status.size})")
@@ -28,6 +29,7 @@ def flatten_state(state):
 
 class Agent:
     def __init__(self, state_size, num_components, num_hosts, infra_config, learning_rate=0.001):
+        # Initialize the agent with given parameters
         self.state_size = state_size
         self.num_components = num_components
         self.num_hosts = num_hosts
@@ -41,6 +43,7 @@ class Agent:
         self.model = self.build_model()
 
     def build_model(self):
+        # Build the neural network model for the agent
         inputs = layers.Input(shape=(self.state_size,))
         layer1 = layers.Dense(24, activation='relu')(inputs)
         layer2 = layers.Dense(24, activation='relu')(layer1)
@@ -53,6 +56,7 @@ class Agent:
         return model
 
     def choose_action(self, state):
+        # Choose an action based on the current state
         flattened_state = flatten_state(state)
         flattened_state = np.reshape(flattened_state, [1, self.state_size])
         
@@ -64,12 +68,14 @@ class Agent:
                         valid_actions.append((component_id, host_id))
         
         if np.random.rand() <= self.epsilon:
+            # Explore: choose a random valid action
             if valid_actions:
                 component_id, host_id = valid_actions[np.random.choice(len(valid_actions))]
                 action = component_id * self.num_hosts + host_id
             else:
-                action = np.random.choice(self.action_size)  # If no valid actions, choose randomly to avoid crash
+                action = np.random.choice(self.action_size)  # If no valid actions, choose randomly
         else:
+            # Exploit: choose the best action based on the model's prediction
             probabilities = self.model.predict(flattened_state)[0]
             sorted_actions = np.argsort(probabilities)[::-1]
             for action in sorted_actions:
@@ -81,16 +87,19 @@ class Agent:
         return self.decode_action(action, state)
 
     def decode_action(self, action_index, state):
+        # Decode the action index into component_id, host_id, and path_ids
         component_id = action_index // self.num_hosts
         host_id = action_index % self.num_hosts
         path_ids = self.generate_paths(component_id, host_id, state)
         return (component_id, host_id, path_ids)
 
     def encode_action(self, action):
+        # Encode the action into a single index
         component_id, host_id, _ = action
         return component_id * self.num_hosts + host_id
 
     def generate_paths(self, component_id, host_id, state):
+        # Generate paths for the given component_id and host_id based on the current state
         paths = {}
         link_id_counter = 0
         deployed_components = {comp_id: comp['host'] for comp_id, comp in state['components'].items() if comp['deployed']}
@@ -111,6 +120,7 @@ class Agent:
         return paths
 
     def learn(self, states, actions, rewards):
+        # Update the model based on the experiences (states, actions, rewards)
         flattened_states = np.vstack([flatten_state(state) for state in states])
         
         print(f"learn - states shape: {flattened_states.shape}")
@@ -118,8 +128,10 @@ class Agent:
         actions = np.array([self.encode_action(action) for action in actions])
         rewards = np.array(rewards)
 
+        # Normalize rewards
         rewards = (rewards - np.mean(rewards)) / (np.std(rewards) + 1e-7)
 
+        # Perform gradient descent
         with tf.GradientTape() as tape:
             predictions = self.model(flattened_states)
             action_masks = tf.one_hot(actions, self.action_size)
@@ -129,10 +141,12 @@ class Agent:
         gradients = tape.gradient(loss, self.model.trainable_variables)
         self.model.optimizer.apply_gradients(zip(gradients, self.model.trainable_variables))
 
+        # Decay epsilon for exploration-exploitation trade-off
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
 
     def dijkstra(self, source, target, latency_req, bandwidth_req):
+        # Implement Dijkstra's algorithm to find the shortest path with given constraints
         graph = {i: [] for i in range(len(self.infra_config['network']['topology']))}
         for link in self.infra_config['network']['topology']:
             if link['bandwidth'] >= bandwidth_req:
