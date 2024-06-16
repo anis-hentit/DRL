@@ -86,6 +86,4 @@ The script runs for a specified number of episodes. In each episode, the agent i
 3. **Advanced GNN Models**: Experiment with different GNN architectures and hyperparameters to enhance the agent's performance.
 4. **Real-Time Deployment**: Explore the integration of the trained agent in real-time fog computing scenarios.
 
-### Summary
 
-This project represents a significant step towards optimizing application deployment in fog computing environments using advanced RL techniques. The incorporation of GNNs allows for a sophisticated understanding of the environment's state, enabling more efficient and effective deployment strategies.
