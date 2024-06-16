@@ -5,3 +5,4 @@ def load_json_config(app_path='data/Application', infra_path='data/Graph_Infra')
         app_config = json.load(app_file)
         infra_config = json.load(infra_file)
     return app_config, infra_config
+

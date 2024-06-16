@@ -1,39 +1,38 @@
+import tensorflow as tf
 from environment import FogEnvironment
 from agent import Agent
 from agent import flatten_state
 import numpy as np
 
-def calculate_state_size(state):
-    flattened_state = flatten_state(state)
-    return len(flattened_state)
+print("TensorFlow version:", tf.__version__)
+print("Keras version:", tf.keras.__version__)
 
 def test_initialization():
     env = FogEnvironment()
     state = env.reset()
-    print(f"Initial state: {state}")
-    state_size = calculate_state_size(state)
-    num_components = len(state['components'])
-    num_hosts = len(state['hosts'])
-    agent = Agent(state_size, num_components, num_hosts, env.infra_config)
+    input_dim = 3  # CPU, RAM, deployed for components; CPU, RAM for hosts
+    hidden_dim = 24
+    output_dim = len(state['components']) * len(state['hosts'])
+    agent = Agent(input_dim, hidden_dim, output_dim)
 
-    episodes = 10
+    episodes = 3
     for e in range(episodes):
         state = env.reset()
         print(f"Reset state: {state}")
-        print(f"Reset state flattened size: {flatten_state(state).shape}")
         done = False
         total_reward = 0
         
         while not done:
-            print(f"iteration number: {e}")
             action = agent.choose_action(state)
-            print(f"Action chosen: {action}")
+            if action is None:
+                print("No valid actions available. Ending episode.")
+                done = True
+                continue
+
             next_state, reward, done, _ = env.step(action)
-            print(f"Next state after action: {next_state}")
             agent.learn([state], [action], [reward])
             state = next_state
             total_reward += reward
-            print(f"Total reward: {total_reward}")
 
         print(f"Episode {e+1}/{episodes}, Total Reward: {total_reward}")
 

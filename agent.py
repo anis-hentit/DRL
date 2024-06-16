@@ -1,171 +1,250 @@
 import tensorflow as tf
-from tensorflow.keras import layers
+import tensorflow_gnn as tfgnn
+from tensorflow_gnn.models import mt_albis
 import numpy as np
-import heapq
 
 def flatten_state(state):
-    # Function to flatten the state dictionary into a single array
+    """
+    Flatten the state dictionary into a single numpy array.
+    This array combines host resources, component requirements and deployment status,
+    logical links, and infrastructure links to form a comprehensive state representation.
+    """
     hosts = state['hosts']
     components = state['components']
-    
-    # Flatten host values
+    links = state['links']
+    infra_links = state['infra_links']
+
+    # Flatten host values: CPU and RAM for each host
     host_values = np.concatenate([list(host.values()) for host in hosts.values()])
     
-    # Flatten component values excluding 'deployed' attribute
+    # Flatten component values: CPU and RAM for each component, ignoring deployment status
     component_values = np.concatenate([list(component.values())[:2] for component in components.values()])
     
-    # Ensure 'deployed' attribute is represented as 0 or 1
+    # Create an array for the deployment status of each component (1 if deployed, else 0)
     deployed_status = np.array([1.0 if component['deployed'] else 0.0 for component in components.values()], dtype=np.float32)
     
-    # Concatenate all parts into a single array
-    flattened_state = np.concatenate([host_values, component_values, deployed_status])
+    # Flatten link values: logical link attributes (source, destination, latency, bandwidth)
+    link_values = np.concatenate([list(link.values()) for link in links.values()])
     
-    # Debug: Print detailed information about the flattened state
-    print(f"host_values: {host_values} (size: {host_values.size})")
-    print(f"component_values: {component_values} (size: {component_values.size})")
-    print(f"deployed_status: {deployed_status} (size: {deployed_status.size})")
-    
+    # Flatten infrastructure link values: physical link attributes
+    infra_link_values = np.concatenate([list(link.values()) for link in infra_links.values()])
+
+    # Combine all flattened parts into a single array
+    flattened_state = np.concatenate([host_values, component_values, deployed_status, link_values, infra_link_values])
     return flattened_state
 
-class Agent:
-    def __init__(self, state_size, num_components, num_hosts, infra_config, learning_rate=0.001):
-        # Initialize the agent with given parameters
-        self.state_size = state_size
-        self.num_components = num_components
-        self.num_hosts = num_hosts
-        self.infra_config = infra_config
-        self.action_size = num_components * num_hosts
-        self.learning_rate = learning_rate
-        self.gamma = 0.99
-        self.epsilon = 1.0
-        self.epsilon_decay = 0.995
-        self.epsilon_min = 0.01
-        self.model = self.build_model()
+def generate_graph_data(state):
+    """
+    Generate a GraphTensor from the state dictionary.
+    The GraphTensor represents the physical and logical structure of the system
+    including hosts and components as nodes, and links as edges.
+    """
+    hosts = state['hosts']
+    components = state['components']
+    links = state['links']
+    infra_links = state['infra_links']
 
-    def build_model(self):
-        # Build the neural network model for the agent
-        inputs = layers.Input(shape=(self.state_size,))
-        layer1 = layers.Dense(24, activation='relu')(inputs)
-        layer2 = layers.Dense(24, activation='relu')(layer1)
-        outputs = layers.Dense(self.action_size, activation='softmax')(layer2)
+    node_features = []
+    node_indices = {}
+    idx = 0
+
+    # Add host nodes to the graph, each with its CPU and RAM as features
+    for host_id, host in hosts.items():
+        node_features.append([host['CPU'], host['RAM'], 0.0])  # Third attribute is padding with 0.0
+        node_indices[('host', host_id)] = idx
+        idx += 1
+
+    # Add component nodes to the graph, each with its CPU, RAM, and deployment status as features
+    for comp_id, comp in components.items():
+        node_features.append([comp['CPU'], comp['RAM'], 1.0 if comp['deployed'] else 0.0])
+        node_indices[('component', comp_id)] = idx
+        idx += 1
+
+    edge_list = []
+    edge_features = []
+
+    # Add physical links (infrastructure links) to the graph
+    for link in infra_links.values():
+        if link['source'] != link['destination']:  # Ignore self-links
+            latency = link.get('latency', 0)  # Default to 0 if missing
+            bandwidth = link.get('bandwidth', 0)  # Default to 0 if missing
+            # Add directed edge from source to destination
+            edge_list.append([node_indices[('host', link['source'])], node_indices[('host', link['destination'])]])
+            edge_features.append([latency, bandwidth])
+            # Add reverse directed edge for bidirectional connectivity
+            edge_list.append([node_indices[('host', link['destination'])], node_indices[('host', link['source'])]])
+            edge_features.append([latency, bandwidth])
+
+    # Add logical links (application links) to the graph
+    for link in links.values():
+        latency = link.get('latency', 0)  # Default to 0 if missing
+        bandwidth = link.get('bandwidth', 0)  # Default to 0 if missing
+        # Add directed edge from source component to destination component
+        edge_list.append([node_indices[('component', link['source'])], node_indices[('component', link['destination'])]])
+        edge_features.append([latency, bandwidth])
+        # Add reverse directed edge for bidirectional connectivity
+        edge_list.append([node_indices[('component', link['destination'])], node_indices[('component', link['source'])]])
+        edge_features.append([latency, bandwidth])
+
+    # Convert node features to a NumPy array
+    node_features = np.array(node_features, dtype=np.float32)
+
+    # Convert edge list and edge features to NumPy arrays and transpose edge list for adjacency
+    edge_list = np.array(edge_list, dtype=np.int32).T
+    edge_features = np.array(edge_features, dtype=np.float32)
+
+    # Create a GraphTensor from the node and edge data
+    graph = tfgnn.GraphTensor.from_pieces(
+        node_sets={'nodes': tfgnn.NodeSet.from_fields(
+            sizes=[len(node_features)],
+            features={'hidden_state': tf.constant(node_features)}  # Node features are named 'hidden_state'
+        )},
+        edge_sets={'edges': tfgnn.EdgeSet.from_fields(
+            sizes=[len(edge_features)],
+            adjacency=tfgnn.Adjacency.from_indices(
+                source=('nodes', tf.constant(edge_list[0])),
+                target=('nodes', tf.constant(edge_list[1]))
+            ),
+            features={'features': tf.constant(edge_features)}
+        )}
+    )
+
+    return graph
+
+def compute_action_mask(state):
+    """
+    Compute a mask for valid actions based on the current state.
+    Each action corresponds to deploying a component to a host,
+    and the mask indicates if an action is valid (1) or invalid (0).
+    """
+    num_components = len(state['components'])
+    num_hosts = len(state['hosts'])
+    mask = np.ones((num_components, num_hosts))
+
+    for comp_id, comp in state['components'].items():
+        if comp['deployed']:
+            mask[comp_id, :] = 0  # If component is already deployed, mark all actions for this component as invalid
+        else:
+            for host_id, host in state['hosts'].items():
+                if comp['CPU'] > host['CPU'] or comp['RAM'] > host['RAM']:
+                    mask[comp_id, host_id] = 0  # Mark as invalid if host resources are insufficient
+
+    return mask.flatten()
+
+class GNNAgent(tf.keras.Model):
+    """
+    A Graph Neural Network (GNN) based agent model for learning deployment strategies.
+    """
+    def __init__(self, hidden_dim, output_dim):
+        super(GNNAgent, self).__init__()
+        self.hidden_dim = hidden_dim
+        self.output_dim = output_dim
+
+        # Layer to project node features to the hidden dimension
+        self.projection_layer = tf.keras.layers.Dense(hidden_dim)
+
+        # GNN update mechanism using the MT-Albis architecture
+        self.graph_update = mt_albis.MtAlbisGraphUpdate(
+            units=hidden_dim,
+            message_dim=hidden_dim,
+            attention_type="none",  # No attention mechanism
+            simple_conv_reduce_type="mean",  # Mean reduction for convolution
+            normalization_type="layer",  # Layer normalization
+            next_state_type="residual",  # Residual connections
+            state_dropout_rate=0.2,  # Dropout rate
+            l2_regularization=1e-5,  # L2 regularization
+            receiver_tag=tfgnn.TARGET
+        )
+        # Final dense layer to output action probabilities
+        self.dense = tf.keras.layers.Dense(output_dim, activation='softmax')
+
+    def call(self, graph):
+        """
+        Forward pass through the GNN.
+        Project node features, apply graph update, and compute action probabilities.
+        """
+        # Project node features to hidden dimension
+        node_features = graph.node_sets['nodes']['hidden_state']
+        projected_features = self.projection_layer(node_features)
+        graph = graph.replace_features(node_sets={'nodes': {'hidden_state': projected_features}})
+
+        # Apply the graph update to integrate node and edge information
+        graph = self.graph_update(graph)
+        updated_features = graph.node_sets['nodes']['hidden_state']
         
-        model = tf.keras.models.Model(inputs=inputs, outputs=outputs)
-        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=self.learning_rate),
-                      loss='categorical_crossentropy')
+        # Aggregate node features by averaging
+        aggregated_features = tf.reduce_mean(updated_features, axis=0)
         
-        return model
+        # Expand dimensions to match the expected input shape for the dense layer
+        aggregated_features = tf.expand_dims(aggregated_features, axis=0)
+
+        # Return the probabilities for each action
+        return self.dense(aggregated_features)
+
+class Agent:
+    """
+    Agent class for managing the training and action selection process using GNN.
+    """
+    def __init__(self, input_dim, hidden_dim, output_dim, learning_rate=0.001):
+        self.model = GNNAgent(hidden_dim, output_dim)  # Initialize the GNN model
+        self.optimizer = tf.keras.optimizers.Adam(learning_rate)  # Adam optimizer for training
+        self.loss_fn = tf.keras.losses.CategoricalCrossentropy()  # Loss function for training
+        self.gamma = 0.99  # Discount factor for future rewards
+        self.epsilon = 1.0  # Initial exploration rate
+        self.epsilon_decay = 0.995  # Decay rate for epsilon
+        self.epsilon_min = 0.01  # Minimum value for epsilon
 
     def choose_action(self, state):
-        # Choose an action based on the current state
-        flattened_state = flatten_state(state)
-        flattened_state = np.reshape(flattened_state, [1, self.state_size])
-        
-        valid_actions = []
-        for component_id in range(self.num_components):
-            if not state['components'][component_id]['deployed']:
-                for host_id in range(self.num_hosts):
-                    if state['components'][component_id]['CPU'] <= state['hosts'][host_id]['CPU'] and state['components'][component_id]['RAM'] <= state['hosts'][host_id]['RAM']:
-                        valid_actions.append((component_id, host_id))
-        
+        """
+        Choose an action based on the current state.
+        This function uses an epsilon-greedy strategy for exploration and exploitation.
+        """
+        graph = generate_graph_data(state)  # Generate the graph data from the state
+        logits = self.model(graph).numpy().flatten()  # Get action probabilities from the GNN
+
+        # Compute the action mask for valid actions
+        mask = compute_action_mask(state)
+
+        # Apply the mask to the logits, invalid actions are set to -inf
+        masked_logits = np.where(mask, logits, -np.inf)
+
         if np.random.rand() <= self.epsilon:
             # Explore: choose a random valid action
-            if valid_actions:
-                component_id, host_id = valid_actions[np.random.choice(len(valid_actions))]
-                action = component_id * self.num_hosts + host_id
-            else:
-                action = np.random.choice(self.action_size)  # If no valid actions, choose randomly
+            valid_indices = np.where(mask)[0]  # Indices of valid actions
+            action_index = np.random.choice(valid_indices)
         else:
             # Exploit: choose the best action based on the model's prediction
-            probabilities = self.model.predict(flattened_state)[0]
-            sorted_actions = np.argsort(probabilities)[::-1]
-            for action in sorted_actions:
-                component_id = action // self.num_hosts
-                host_id = action % self.num_hosts
-                if (component_id, host_id) in valid_actions:
-                    break
-        
-        return self.decode_action(action, state)
+            action_index = np.argmax(masked_logits)
 
-    def decode_action(self, action_index, state):
-        # Decode the action index into component_id, host_id, and path_ids
-        component_id = action_index // self.num_hosts
-        host_id = action_index % self.num_hosts
-        path_ids = self.generate_paths(component_id, host_id, state)
-        return (component_id, host_id, path_ids)
+        component_id, host_id = divmod(action_index, len(state['hosts']))
 
-    def encode_action(self, action):
-        # Encode the action into a single index
-        component_id, host_id, _ = action
-        return component_id * self.num_hosts + host_id
+        # Additional safeguard to ensure the chosen action is valid
+        if component_id == -1 or host_id == -1 or mask[action_index] == 0:
+            print(f"Invalid action: Trying to deploy component {component_id} to host {host_id} with insufficient resources.")
+            return -1, -1
 
-    def generate_paths(self, component_id, host_id, state):
-        # Generate paths for the given component_id and host_id based on the current state
-        paths = {}
-        link_id_counter = 0
-        deployed_components = {comp_id: comp['host'] for comp_id, comp in state['components'].items() if comp['deployed']}
-        
-        for link in state['links'].values():
-            source_comp = link['source']
-            destination_comp = link['destination']
-            if source_comp in deployed_components and destination_comp in deployed_components:
-                source_host = deployed_components[source_comp]
-                destination_host = deployed_components[destination_comp]
-                if source_host != destination_host:  # Only generate paths if components are on different hosts
-                    path, latency = self.dijkstra(source_host, destination_host, link['latency'], link['bandwidth'])
-                    if path:
-                        paths[link_id_counter] = (path, latency, link['bandwidth'])
-                        link_id_counter += 1
-                
-        print(f"Generated paths: {paths}")
-        return paths
+        return component_id, host_id
 
     def learn(self, states, actions, rewards):
-        # Update the model based on the experiences (states, actions, rewards)
-        flattened_states = np.vstack([flatten_state(state) for state in states])
-        
-        print(f"learn - states shape: {flattened_states.shape}")
-        
-        actions = np.array([self.encode_action(action) for action in actions])
-        rewards = np.array(rewards)
+        """
+        Update the model based on the experiences (states, actions, rewards).
+        """
+        total_loss = 0
 
-        # Normalize rewards
-        rewards = (rewards - np.mean(rewards)) / (np.std(rewards) + 1e-7)
+        for state, action, reward in zip(states, actions, rewards):
+            with tf.GradientTape() as tape:
+                graph = generate_graph_data(state)  # Generate the graph from the state
+                logits = self.model(graph)  # Get action probabilities from the model
+                action_index = action[0] * len(state['hosts']) + action[1]  # Encode the action into a single index
+                if action_index >= 0:  # Only update if the action is valid
+                    # Calculate the loss for the action
+                    loss = self.loss_fn(tf.one_hot([action_index], depth=len(logits[0])), logits)
+                    grads = tape.gradient(loss, self.model.trainable_weights)  # Compute gradients
+                    self.optimizer.apply_gradients(zip(grads, self.model.trainable_weights))  # Apply gradients
+                    total_loss += loss
 
-        # Perform gradient descent
-        with tf.GradientTape() as tape:
-            predictions = self.model(flattened_states)
-            action_masks = tf.one_hot(actions, self.action_size)
-            log_probs = tf.reduce_sum(action_masks * tf.math.log(predictions), axis=1)
-            loss = -tf.reduce_sum(log_probs * rewards)
-
-        gradients = tape.gradient(loss, self.model.trainable_variables)
-        self.model.optimizer.apply_gradients(zip(gradients, self.model.trainable_variables))
-
-        # Decay epsilon for exploration-exploitation trade-off
         if self.epsilon > self.epsilon_min:
-            self.epsilon *= self.epsilon_decay
+            self.epsilon *= self.epsilon_decay  # Decay epsilon for exploration-exploitation trade-off
 
-    def dijkstra(self, source, target, latency_req, bandwidth_req):
-        # Implement Dijkstra's algorithm to find the shortest path with given constraints
-        graph = {i: [] for i in range(len(self.infra_config['network']['topology']))}
-        for link in self.infra_config['network']['topology']:
-            if link['bandwidth'] >= bandwidth_req:
-                graph[link['source']].append((link['destination'], link['latency'], link['bandwidth']))
-
-        queue = [(0, source, [])]
-        seen = set()
-        while queue:
-            (cost, node, path) = heapq.heappop(queue)
-            if node in seen:
-                continue
-            new_path = path + [node]
-            seen.add(node)
-            if node == target:
-                complete_path = [(new_path[i], new_path[i + 1]) for i in range(len(new_path) - 1)]
-                return complete_path, cost
-            for next_node, latency, bandwidth in graph.get(node, []):
-                if next_node not in seen and cost + latency <= latency_req:
-                    heapq.heappush(queue, (cost + latency, next_node, new_path))
-
-        print(f"No valid path found from {source} to {target} with latency requirement {latency_req} and bandwidth requirement {bandwidth_req}")
-        return None, float('inf')
+        # Return the average loss
+        return total_loss / len(states) if len(states) > 0 else 0
