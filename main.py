@@ -24,7 +24,7 @@ def test_initialization():
     output_dim = len(state['components']) * len(state['hosts'])  # Total number of possible actions (component-host pairs)
 
     # Initialize the Agent with specified dimensions and learning rate
-    agent = Agent(input_dim, hidden_dim, output_dim, learning_rate=0.0001)
+    agent = Agent(input_dim, hidden_dim, output_dim, learning_rate=0.001)
 
     # Number of episodes to train the agent
     episodes = 1000

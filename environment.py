@@ -288,13 +288,13 @@ class FogEnvironment(gym.Env):
         total_reward = -energy - latency_penalty - bandwidth_penalty
 
         # Additional reward for successful deployments
-        total_reward += 10 * len(active_hosts)
+        total_reward += 15 * len(active_hosts)
 
         # Count the number of valid paths
         valid_paths = sum(1 for path in self.state['paths'].values() if path is not None and (path != [] or not self.check_if_inter_host(path)))
 
         # Reward for each valid link mapping (successful path mapping)
-        total_reward += 5 * valid_paths  # Adjust the multiplier as needed for your specific reward scale
+        total_reward += 10 * valid_paths  
 
         # Additional penalty for each failed path mapping (paths set to None or empty list not for intra-host communication)
         failed_paths = sum(1 for path in self.state['paths'].values() if path is None or (path == [] and self.check_if_inter_host(path)))

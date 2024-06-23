@@ -156,7 +156,7 @@ class GNNAgent(tf.keras.Model):
             receiver_tag=tfgnn.TARGET         # Tag indicating message receiver
         )
         # Final dense layer to output action probabilities
-        self.dense = tf.keras.layers.Dense(output_dim, activation='softmax')
+        self.dense = tf.keras.layers.Dense(output_dim, activation='softmax') # Softmax activation so that action probabilities sum to 1
 
     def call(self, graph):
         """
@@ -211,9 +211,11 @@ class Agent:
             # Explore: choose a random valid action
             valid_indices = np.where(mask)[0]  # Indices of valid actions
             action_index = np.random.choice(valid_indices)
+            print(f"Exploring: Chose random action index {action_index} with epsilon {self.epsilon}")
         else:
             # Exploit: choose the best action based on the model's prediction
             action_index = np.argmax(masked_logits)
+            print(f"Exploiting: Chose best action index {action_index} with epsilon {self.epsilon}")
 
         component_id, host_id = divmod(action_index, len(state['hosts']))
 
