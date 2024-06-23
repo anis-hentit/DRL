@@ -50,14 +50,14 @@ def generate_graph_data(state):
 
     # Add host nodes to the graph, each with its CPU and RAM as features
     for host_id, host in hosts.items():
-        node_features.append([host['CPU'], host['RAM'], 0.0])  # Third attribute is padding with 0.0
-        node_indices[('host', host_id)] = idx
+        node_features.append([host['CPU'], host['RAM'], 0.0])  # Third attribute is padding with 0.0 for future extensibility
+        node_indices[('host', host_id)] = idx  # Map host_id to the current index
         idx += 1
 
     # Add component nodes to the graph, each with its CPU, RAM, and deployment status as features
     for comp_id, comp in components.items():
         node_features.append([comp['CPU'], comp['RAM'], 1.0 if comp['deployed'] else 0.0])
-        node_indices[('component', comp_id)] = idx
+        node_indices[('component', comp_id)] = idx  # Map component_id to the current index
         idx += 1
 
     edge_list = []
@@ -65,9 +65,9 @@ def generate_graph_data(state):
 
     # Add physical links (infrastructure links) to the graph
     for link in infra_links.values():
-        if link['source'] != link['destination']:  # Ignore self-links
-            latency = link.get('latency', 0)  # Default to 0 if missing
-            bandwidth = link.get('bandwidth', 0)  # Default to 0 if missing
+        if link['source'] != link['destination']:  # Ignore self-links to avoid loops
+            latency = link.get('latency', 0)  # Default latency to 0 if not provided
+            bandwidth = link.get('bandwidth', 0)  # Default bandwidth to 0 if not provided
             # Add directed edge from source to destination
             edge_list.append([node_indices[('host', link['source'])], node_indices[('host', link['destination'])]])
             edge_features.append([latency, bandwidth])
@@ -77,8 +77,8 @@ def generate_graph_data(state):
 
     # Add logical links (application links) to the graph
     for link in links.values():
-        latency = link.get('latency', 0)  # Default to 0 if missing
-        bandwidth = link.get('bandwidth', 0)  # Default to 0 if missing
+        latency = link.get('latency', 0)  # Default latency to 0 if not provided
+        bandwidth = link.get('bandwidth', 0)  # Default bandwidth to 0 if not provided
         # Add directed edge from source component to destination component
         edge_list.append([node_indices[('component', link['source'])], node_indices[('component', link['destination'])]])
         edge_features.append([latency, bandwidth])
@@ -96,16 +96,16 @@ def generate_graph_data(state):
     # Create a GraphTensor from the node and edge data
     graph = tfgnn.GraphTensor.from_pieces(
         node_sets={'nodes': tfgnn.NodeSet.from_fields(
-            sizes=[len(node_features)],
+            sizes=[len(node_features)],  # Number of nodes
             features={'hidden_state': tf.constant(node_features)}  # Node features are named 'hidden_state'
         )},
         edge_sets={'edges': tfgnn.EdgeSet.from_fields(
-            sizes=[len(edge_features)],
+            sizes=[len(edge_features)],  # Number of edges
             adjacency=tfgnn.Adjacency.from_indices(
-                source=('nodes', tf.constant(edge_list[0])),
-                target=('nodes', tf.constant(edge_list[1]))
+                source=('nodes', tf.constant(edge_list[0])),  # Source nodes for edges
+                target=('nodes', tf.constant(edge_list[1]))   # Target nodes for edges
             ),
-            features={'features': tf.constant(edge_features)}
+            features={'features': tf.constant(edge_features)}  # Edge features
         )}
     )
 
@@ -145,15 +145,15 @@ class GNNAgent(tf.keras.Model):
 
         # GNN update mechanism using the MT-Albis architecture
         self.graph_update = mt_albis.MtAlbisGraphUpdate(
-            units=hidden_dim,
-            message_dim=hidden_dim,
-            attention_type="none",  # No attention mechanism
-            simple_conv_reduce_type="mean",  # Mean reduction for convolution
-            normalization_type="layer",  # Layer normalization
-            next_state_type="residual",  # Residual connections
-            state_dropout_rate=0.2,  # Dropout rate
-            l2_regularization=1e-5,  # L2 regularization
-            receiver_tag=tfgnn.TARGET
+            units=hidden_dim,                 # Number of units in each layer
+            message_dim=hidden_dim,           # Dimension of the message passing
+            attention_type="none",            # No attention mechanism
+            simple_conv_reduce_type="mean",   # Mean reduction for convolution
+            normalization_type="layer",       # Layer normalization
+            next_state_type="residual",       # Residual connections
+            state_dropout_rate=0.2,           # Dropout rate
+            l2_regularization=1e-5,           # L2 regularization
+            receiver_tag=tfgnn.TARGET         # Tag indicating message receiver
         )
         # Final dense layer to output action probabilities
         self.dense = tf.keras.layers.Dense(output_dim, activation='softmax')
@@ -188,10 +188,9 @@ class Agent:
     def __init__(self, input_dim, hidden_dim, output_dim, learning_rate=0.001):
         self.model = GNNAgent(hidden_dim, output_dim)  # Initialize the GNN model
         self.optimizer = tf.keras.optimizers.Adam(learning_rate)  # Adam optimizer for training
-        self.loss_fn = tf.keras.losses.CategoricalCrossentropy()  # Loss function for training
-        self.gamma = 0.99  # Discount factor for future rewards
+        self.gamma = 0.98  # Discount factor for future rewards
         self.epsilon = 1.0  # Initial exploration rate
-        self.epsilon_decay = 0.995  # Decay rate for epsilon
+        self.epsilon_decay = 0.98  # Decay rate for epsilon
         self.epsilon_min = 0.01  # Minimum value for epsilon
 
     def choose_action(self, state):
@@ -228,17 +227,22 @@ class Agent:
     def learn(self, states, actions, rewards):
         """
         Update the model based on the experiences (states, actions, rewards).
+        Uses policy gradient method to update the policy based on the cumulative rewards.
         """
+        discounted_rewards = self.discount_rewards(rewards)
         total_loss = 0
 
-        for state, action, reward in zip(states, actions, rewards):
+        for state, action, reward in zip(states, actions, discounted_rewards):
             with tf.GradientTape() as tape:
                 graph = generate_graph_data(state)  # Generate the graph from the state
                 logits = self.model(graph)  # Get action probabilities from the model
                 action_index = action[0] * len(state['hosts']) + action[1]  # Encode the action into a single index
                 if action_index >= 0:  # Only update if the action is valid
-                    # Calculate the loss for the action
-                    loss = self.loss_fn(tf.one_hot([action_index], depth=len(logits[0])), logits)
+                    action_prob = tf.nn.softmax(logits)[0, action_index]  # Get the probability of the taken action
+                    log_prob = tf.math.log(action_prob + 1e-8)  # Add small value to prevent log(0)
+                    
+                    # Policy gradient loss (negative log probability scaled by reward)
+                    loss = -log_prob * reward  
                     grads = tape.gradient(loss, self.model.trainable_weights)  # Compute gradients
                     self.optimizer.apply_gradients(zip(grads, self.model.trainable_weights))  # Apply gradients
                     total_loss += loss
@@ -248,3 +252,16 @@ class Agent:
 
         # Return the average loss
         return total_loss / len(states) if len(states) > 0 else 0
+
+    def discount_rewards(self, rewards):
+        """
+        Compute discounted rewards.
+        Apply discount factor to rewards to emphasize immediate rewards over distant future rewards.
+        """
+        discounted = np.zeros_like(rewards, dtype=np.float32)
+        running_sum = 0.0
+        for t in reversed(range(len(rewards))):
+            running_sum = running_sum * self.gamma + rewards[t]
+            discounted[t] = running_sum
+        # Normalize rewards to improve training stability
+        return discounted - np.mean(discounted)

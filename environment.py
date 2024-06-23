@@ -20,7 +20,9 @@ class FogEnvironment(gym.Env):
         Initialize the FogEnvironment with application and infrastructure configurations.
         """
         super(FogEnvironment, self).__init__()
+        # Load application and infrastructure configurations from JSON files
         self.app_config, self.infra_config = load_json_config("DRL/data/Application.json", "DRL/data/Graph_Infra.json")
+        # Initialize the environment state
         self.state = self.initialize_state()
         self.num_logical_links = len(self.state['links'])
         self.action_space = self.define_action_space()
@@ -57,7 +59,7 @@ class FogEnvironment(gym.Env):
             'components': {i: {'CPU': comp['CPU'], 'RAM': comp['RAM'], 'deployed': False} for i, comp in enumerate(self.app_config['application']['requirements'])},
             'fixed_positions': {comp['component_id']: comp['host_id'] for comp in self.app_config['application'].get('DZ', [])},
             'links': {i: link for i, link in enumerate(self.app_config['application']['links'])},
-            'infra_links': {i: link for i, link in enumerate(self.infra_config['network']['topology'])},
+            'infra_links': {i: dict(link) for i, link in enumerate(self.infra_config['network']['topology'])},
             'paths': {i: None for i in range(len(self.app_config['application']['links']))}  # Initialize paths as None
         }
         
@@ -85,6 +87,11 @@ class FogEnvironment(gym.Env):
 
         # Log the action attempt
         print(f"\nStep {self.current_step}: Trying to deploy component {component_id} to host {host_id}")
+
+        # Log the bandwidths before taking the action
+        print("\nBandwidths before action:")
+        for link_id, link in self.state['infra_links'].items():
+            print(f"  Link {link_id}: Source={link['source']}, Destination={link['destination']}, Bandwidth={link['bandwidth']}")
 
         # Check for invalid actions
         if component_id == -1 or host_id == -1:
@@ -118,8 +125,19 @@ class FogEnvironment(gym.Env):
 
         done = self.check_all_deployed()  # Check if all components are deployed
         reward = self.calculate_reward(action)  # Calculate reward for the action
+        if done:
+            self.save_deployment_strategy(reward)  # Save deployment strategy to file
         done = done or self.current_step >= self.max_steps_per_episode  # Check if the episode should end
         next_state = self.state
+
+        # Log the bandwidths after taking the action
+        print("\nBandwidths after action:")
+        for link_id, link in self.state['infra_links'].items():
+            print(f"  Link {link_id}: Source={link['source']}, Destination={link['destination']}, Bandwidth={link['bandwidth']}")
+
+        # Log final state for this step
+        print("\n--- Final State After Step ---")
+        self.print_state()
 
         return next_state, reward, done, {}
 
@@ -133,7 +151,7 @@ class FogEnvironment(gym.Env):
         host['RAM'] -= component['RAM']
         self.state['components'][component_id]['deployed'] = True
         self.state['components'][component_id]['host'] = host_id
-        self.print_state()
+        print(f"Component {component_id} deployed to Host {host_id}")
 
     def find_path(self, link_id):
         """
@@ -158,6 +176,8 @@ class FogEnvironment(gym.Env):
         Implement a constrained Dijkstra's algorithm to find a path with latency and bandwidth constraints.
         """
         print(f"Running constrained Dijkstra from {source} to {target} with max latency {max_latency} and min bandwidth {min_bandwidth}")
+        
+        # Construct the graph from the infrastructure links
         graph = {i: [] for i in range(len(self.state['hosts']))}
         for link in self.infra_config['network']['topology']:
             if link['source'] == link['destination']:
@@ -166,7 +186,9 @@ class FogEnvironment(gym.Env):
                 print(f"Link missing required keys: {link}")
                 continue
             graph[link['source']].append((link['destination'], link['latency'], link['bandwidth']))
+        print(f"Constructed graph: {graph}")
 
+        # Priority queue for Dijkstra's algorithm
         queue = [(0, source, [])]
         seen = set()
         while queue:
@@ -183,6 +205,7 @@ class FogEnvironment(gym.Env):
                     return valid_path
             for next_node, latency, bandwidth in graph.get(node, []):
                 if next_node not in seen and bandwidth >= min_bandwidth:
+                    print(f"Evaluating path to {next_node}: current latency {cost + latency}, bandwidth {bandwidth}")
                     heapq.heappush(queue, (cost + latency, next_node, new_path))
 
         print(f"No valid path found from {source} to {target} meeting constraints.")
@@ -200,6 +223,7 @@ class FogEnvironment(gym.Env):
                 print(f"No link data found for segment from {path[i]} to {path[i+1]}")
                 return False
             total_latency += link_data['latency']
+            print(f"Checking link from {path[i]} to {path[i+1]}: latency={link_data['latency']}, total latency so far={total_latency}, bandwidth={link_data['bandwidth']}")
             if link_data['bandwidth'] < min_bandwidth:
                 print(f"Link from {path[i]} to {path[i+1]} fails bandwidth requirement: {link_data['bandwidth']} < {min_bandwidth}")
                 return False
@@ -210,10 +234,12 @@ class FogEnvironment(gym.Env):
         """
         Reduce the available bandwidth along the given path.
         """
+        if path is None or not path:  # Skip if path is None or empty
+            return
         for link in path:
-            link_data = next((item for item in self.infra_config['network']['topology']
+            link_data = next((item for item in self.state['infra_links'].values()
                               if item['source'] == link[0] and item['destination'] == link[1]), None)
-            if link_data and 'bandwidth' in link_data:
+            if link_data and 'bandwidth' in link_data and link_data['bandwidth'] > 0:  # Ensure bandwidth is positive
                 print(f"Before reducing: Link {link} has bandwidth {link_data['bandwidth']}")
                 link_data['bandwidth'] -= required_bandwidth
                 print(f"After reducing: Link {link} now has bandwidth {link_data['bandwidth']}")
@@ -232,7 +258,7 @@ class FogEnvironment(gym.Env):
         total_latency = 0
         min_bandwidth = float('inf')
         for link in path:
-            link_data = next((item for item in self.infra_config['network']['topology']
+            link_data = next((item for item in self.state['infra_links'].values()
                               if item['source'] == link[0] and item['destination'] == link[1]), None)
             if not link_data or link_data['source'] == link_data['destination']:
                 continue
@@ -253,7 +279,7 @@ class FogEnvironment(gym.Env):
         active_hosts = set(comp['host'] for comp in self.state['components'].values() if comp['deployed'])
         for host_id in active_hosts:
             host = self.state['hosts'][host_id]
-            energy += host['CPU'] * 0.1 + host['RAM'] * 0.05
+            energy += host['CPU'] * 0.02 + host['RAM'] * 0.01
 
         latency_penalty = self.calculate_latency_penalty()
         bandwidth_penalty = self.calculate_bandwidth_penalty()
@@ -264,6 +290,12 @@ class FogEnvironment(gym.Env):
         # Additional reward for successful deployments
         total_reward += 10 * len(active_hosts)
 
+        # Count the number of valid paths
+        valid_paths = sum(1 for path in self.state['paths'].values() if path is not None and (path != [] or not self.check_if_inter_host(path)))
+
+        # Reward for each valid link mapping (successful path mapping)
+        total_reward += 5 * valid_paths  # Adjust the multiplier as needed for your specific reward scale
+
         # Additional penalty for each failed path mapping (paths set to None or empty list not for intra-host communication)
         failed_paths = sum(1 for path in self.state['paths'].values() if path is None or (path == [] and self.check_if_inter_host(path)))
         total_reward -= 20 * failed_paths
@@ -273,6 +305,7 @@ class FogEnvironment(gym.Env):
             total_reward -= 50
 
         print(f"Energy cost: {-energy}, Latency penalty: {-latency_penalty}, Bandwidth penalty: {-bandwidth_penalty}, Failed paths: {failed_paths}")
+        print(f"Valid paths: {valid_paths}, Components deployed: {len(active_hosts)}")
         print(f"Total calculated reward: {total_reward}")
         return total_reward
 
@@ -318,6 +351,12 @@ class FogEnvironment(gym.Env):
         print(f"Reset state: {self.state}")
         print(f"Reset state flattened size: {flattened_state.shape}")
         assert flattened_state.shape[0] == calculate_state_size(self.state), "State size mismatch on reset!"
+
+        # Log initial bandwidths for verification
+        print("\nInitial bandwidths after reset:")
+        for link_id, link in self.state['infra_links'].items():
+            print(f"  Link {link_id}: Source={link['source']}, Destination={link['destination']}, Bandwidth={link['bandwidth']}")
+
         return self.state
 
     def check_all_deployed(self):
@@ -336,6 +375,25 @@ class FogEnvironment(gym.Env):
         dest_host = path[-1][1] if path else None
         return source_host is not None and dest_host is not None and source_host != dest_host
 
+    def save_deployment_strategy(self, reward):
+        """
+        Save the current deployment strategy to a text file.
+        """
+        with open('deployment_strategy.txt', 'a') as f:  # Append to the file instead of overwriting
+            f.write("\n--- Deployment Strategy ---\n")
+            f.write(f"Step {self.current_step}:\n")
+            f.write("Components:\n")
+            for comp_id, comp in self.state['components'].items():
+                host_id = comp.get('host', None)
+                status = "Deployed" if comp['deployed'] else "Not Deployed"
+                f.write(f"  Component {comp_id}: CPU={comp['CPU']}, RAM={comp['RAM']}, Status={status}, Host={host_id}\n")
+
+            f.write("Paths:\n")
+            for link_id, path in self.state['paths'].items():
+                f.write(f"  Link {link_id}: Path={path}\n")
+
+            f.write(f"Total reward: {reward}\n")
+
     def render(self, mode='console'):
         """
         Render the current state of the environment.
@@ -353,12 +411,21 @@ class FogEnvironment(gym.Env):
             host_id = comp.get('host', None)
             status = "Deployed" if comp['deployed'] else "Not Deployed"
             print(f"  Component {comp_id}: CPU={comp['CPU']}, RAM={comp['RAM']}, Status={status}, Host={host_id}")
+        
         print("Hosts:")
         for host_id, host in self.state['hosts'].items():
             print(f"  Host {host_id}: CPU={host['CPU']}, RAM={host['RAM']}")
+        
         print("Paths:")
         for link_id, path in self.state['paths'].items():
             print(f"  Link {link_id}: Path={path}")
+        
+        print("Infra Links:")
+        for link_id, link in self.state['infra_links'].items():
+            latency = link.get('latency', 'N/A')  # Safely get latency, defaulting to 'N/A' if not present
+            bandwidth = link['bandwidth']
+            print(f"  Link {link_id}: Source={link['source']}, Destination={link['destination']}, Bandwidth={bandwidth}, Latency={latency}")
+        
         print("----------------------")
 
     def close(self):
