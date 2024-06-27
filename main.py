@@ -20,18 +20,18 @@ def test_initialization():
 
     # Define the dimensions for the agent
     input_dim = 3  # Number of features per node: CPU, RAM, deployed status for components; CPU, RAM for hosts
-    hidden_dim = 12  # Number of hidden units in the GNN layers
+    hidden_dim = 32  # Number of hidden units in the GNN layers
     output_dim = len(state['components']) * len(state['hosts'])  # Total number of possible actions (component-host pairs)
 
     # Initialize the Agent with specified dimensions and learning rate
-    agent = Agent(input_dim, hidden_dim, output_dim, learning_rate=0.001)
+    agent = Agent(input_dim, hidden_dim, output_dim, learning_rate=0.002)
 
     # Number of episodes to train the agent
     episodes = 1000
     for e in range(episodes):
         # Reset the environment at the start of each episode
         state = env.reset()
-        print(f"Reset state: {state}")  # Print the reset state for debugging
+        #print(f"Reset state: {state}")  # Print the reset state for debugging
 
         done = False  # Flag to indicate if the episode has ended
         total_reward = 0  # Initialize total reward for the episode

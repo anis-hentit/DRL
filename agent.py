@@ -54,6 +54,8 @@ def generate_graph_data(state):
         node_indices[('host', host_id)] = idx  # Map host_id to the current index
         idx += 1
 
+    
+
     # Add component nodes to the graph, each with its CPU, RAM, and deployment status as features
     for comp_id, comp in components.items():
         node_features.append([comp['CPU'], comp['RAM'], 1.0 if comp['deployed'] else 0.0])
@@ -65,7 +67,8 @@ def generate_graph_data(state):
 
     # Add physical links (infrastructure links) to the graph
     for link in infra_links.values():
-        if link['source'] != link['destination']:  # Ignore self-links to avoid loops
+        # Ensure both source and destination hosts exist in node_indices
+        if link['source'] in hosts and link['destination'] in hosts:
             latency = link.get('latency', 0)  # Default latency to 0 if not provided
             bandwidth = link.get('bandwidth', 0)  # Default bandwidth to 0 if not provided
             # Add directed edge from source to destination
@@ -74,17 +77,25 @@ def generate_graph_data(state):
             # Add reverse directed edge for bidirectional connectivity
             edge_list.append([node_indices[('host', link['destination'])], node_indices[('host', link['source'])]])
             edge_features.append([latency, bandwidth])
+        else:
+            print(f"Skipping invalid link with source {link['source']} and destination {link['destination']}")
+
+   
 
     # Add logical links (application links) to the graph
     for link in links.values():
-        latency = link.get('latency', 0)  # Default latency to 0 if not provided
-        bandwidth = link.get('bandwidth', 0)  # Default bandwidth to 0 if not provided
-        # Add directed edge from source component to destination component
-        edge_list.append([node_indices[('component', link['source'])], node_indices[('component', link['destination'])]])
-        edge_features.append([latency, bandwidth])
-        # Add reverse directed edge for bidirectional connectivity
-        edge_list.append([node_indices[('component', link['destination'])], node_indices[('component', link['source'])]])
-        edge_features.append([latency, bandwidth])
+        # Ensure both source and destination components exist in node_indices
+        if link['source'] in components and link['destination'] in components:
+            latency = link.get('latency', 0)  # Default latency to 0 if not provided
+            bandwidth = link.get('bandwidth', 0)  # Default bandwidth to 0 if not provided
+            # Add directed edge from source component to destination component
+            edge_list.append([node_indices[('component', link['source'])], node_indices[('component', link['destination'])]])
+            edge_features.append([latency, bandwidth])
+            # Add reverse directed edge for bidirectional connectivity
+            edge_list.append([node_indices[('component', link['destination'])], node_indices[('component', link['source'])]])
+            edge_features.append([latency, bandwidth])
+        else:
+            print(f"Skipping invalid link with source {link['source']} and destination {link['destination']}")
 
     # Convert node features to a NumPy array
     node_features = np.array(node_features, dtype=np.float32)
@@ -156,7 +167,7 @@ class GNNAgent(tf.keras.Model):
             receiver_tag=tfgnn.TARGET         # Tag indicating message receiver
         )
         # Final dense layer to output action probabilities
-        self.dense = tf.keras.layers.Dense(output_dim, activation='softmax') # Softmax activation so that action probabilities sum to 1
+        self.dense = tf.keras.layers.Dense(output_dim, activation='softmax')
 
     def call(self, graph):
         """
@@ -188,7 +199,7 @@ class Agent:
     def __init__(self, input_dim, hidden_dim, output_dim, learning_rate=0.001):
         self.model = GNNAgent(hidden_dim, output_dim)  # Initialize the GNN model
         self.optimizer = tf.keras.optimizers.Adam(learning_rate)  # Adam optimizer for training
-        self.gamma = 0.98  # Discount factor for future rewards
+        self.gamma = 0.97  # Discount factor for future rewards
         self.epsilon = 1.0  # Initial exploration rate
         self.epsilon_decay = 0.98  # Decay rate for epsilon
         self.epsilon_min = 0.01  # Minimum value for epsilon
