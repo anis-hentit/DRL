@@ -1,24 +1,200 @@
 {
-  "application": {
-    "nb": 1,
-    "components": 6,
-    "requirements": [
-      {"CPU": 1, "RAM": 1},
-      {"CPU": 2, "RAM": 1},
-      {"CPU": 20, "RAM": 15},
-      {"CPU": 12, "RAM": 4},
-      {"CPU": 1, "RAM": 2},
-      {"CPU": 1, "RAM": 10}
-    ],
-    "links": [
-      {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
-      {"id": 1, "source": 1, "destination": 2, "bandwidth": 50, "latency": 15},
-      {"id": 2, "source": 1, "destination": 3, "bandwidth": 60, "latency": 20},
-      {"id": 3, "source": 2, "destination": 4, "bandwidth": 50, "latency": 10},
-      {"id": 4, "source": 3, "destination": 5, "bandwidth": 50, "latency": 30}
-    ],
-    "DZ": [
-      {"component_id": 0, "host_id": 8}
-    ]
-  }
+  "applications": [
+    {
+      "nb": 1,
+      "components": 4,
+      "requirements": [
+        {"CPU": 1, "RAM": 2},
+        {"CPU": 4, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 6, "RAM": 5}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
+      ],
+      "DZ": [
+        {"component_id": 1, "host_id": 30}
+      ]
+    },
+    {
+      "nb": 2,
+      "components": 6,
+      "requirements": [
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 2, "RAM": 1},
+        {"CPU": 20, "RAM": 15},
+        {"CPU": 12, "RAM": 4},
+        {"CPU": 1, "RAM": 2},
+        {"CPU": 1, "RAM": 3}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 50, "latency": 15},
+        {"id": 2, "source": 1, "destination": 3, "bandwidth": 60, "latency": 20},
+        {"id": 3, "source": 2, "destination": 4, "bandwidth": 50, "latency": 10},
+        {"id": 4, "source": 3, "destination": 5, "bandwidth": 50, "latency": 30}
+      ],
+      "DZ": [
+        
+      ]
+    },
+    {
+      "nb": 3,
+      "components": 5,
+      "requirements": [
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 3, "RAM": 1},
+        {"CPU": 5, "RAM": 4},
+        {"CPU": 1, "RAM": 2},
+        {"CPU": 4, "RAM": 3}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25}
+      ],
+      "DZ": [
+        
+      ]
+    },
+    {
+      "nb": 4,
+      "components": 4,
+      "requirements": [
+        {"CPU": 1, "RAM": 2},
+        {"CPU": 4, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 3, "RAM": 2}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
+      ],
+      "DZ": [
+        
+      ]
+    },
+    {
+      "nb": 5,
+      "components": 6,
+      "requirements": [
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 4, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 6, "RAM": 5},
+        {"CPU": 3, "RAM": 2},
+        {"CPU": 5, "RAM": 4}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25},
+        {"id": 4, "source": 4, "destination": 5, "bandwidth": 40, "latency": 30}
+      ],
+      "DZ": [
+        
+      ]
+    },
+    {
+      "nb": 6,
+      "components": 3,
+      "requirements": [
+        {"CPU": 3, "RAM": 2},
+        {"CPU": 5, "RAM": 4},
+        {"CPU": 1, "RAM": 1}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15}
+      ],
+      "DZ": [
+        
+      ]
+    },
+    {
+      "nb": 7,
+      "components": 5,
+      "requirements": [
+        {"CPU": 2, "RAM": 3},
+        {"CPU": 4, "RAM": 2},
+        {"CPU": 1, "RAM": 2},
+        {"CPU": 3, "RAM": 3},
+        {"CPU": 5, "RAM": 1}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 25, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 35, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 40, "latency": 25}
+      ],
+      "DZ": [
+        {"component_id": 4, "host_id": 38}
+      ]
+    },
+    {
+      "nb": 8,
+      "components": 4,
+      "requirements": [
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 3, "RAM": 3},
+        {"CPU": 4, "RAM": 4}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
+      ],
+      "DZ": [
+        
+      ]
+    },
+    {
+      "nb": 9,
+      "components": 6,
+      "requirements": [
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 4, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 6, "RAM": 5},
+        {"CPU": 3, "RAM": 2},
+        {"CPU": 5, "RAM": 4}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25},
+        {"id": 4, "source": 4, "destination": 5, "bandwidth": 40, "latency": 30}
+      ],
+      "DZ": [
+        {"component_id": 2, "host_id": 25}
+      ]
+    },
+    {
+      "nb": 10,
+      "components": 5,
+      "requirements": [
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 3, "RAM": 3},
+        {"CPU": 4, "RAM": 4},
+        {"CPU": 5, "RAM": 5}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 30, "latency": 25}
+      ],
+      "DZ": [
+        {"component_id": 1, "host_id": 35}
+      ]
+    }
+  ]
 }

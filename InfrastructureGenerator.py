@@ -1,72 +1,69 @@
 import json
 import random
+import os
 
-
-'''
-IoT devices are indexed from 0 to 29.
-Edge servers are indexed from 30 to 44.
-Cloud servers are indexed from 45 to 49.
-'''
-
-def generate_hosts():
+def generate_hosts(num_hosts):
     hosts_config = []
     # IoT Devices (0-29)
-    for i in range(30):
+    for i in range(min(30, num_hosts)):
         hosts_config.append({"CPU": random.randint(1, 5), "BW": random.randint(1, 3)})
 
     # Edge Servers (30-44)
-    for i in range(15):
+    for i in range(min(15, max(0, num_hosts - 30))):
         hosts_config.append({"CPU": random.randint(40, 60), "BW": random.randint(20, 40)})
 
     # Cloud Servers (45-49)
-    for i in range(5):
+    for i in range(min(5, max(0, num_hosts - 45))):
         hosts_config.append({"CPU": random.randint(200, 300), "BW": random.randint(80, 120)})
 
     return hosts_config
 
-def generate_links():
+def generate_links(num_hosts, density_factor):
     network_topology = []
 
+    def should_create_link(probability):
+        return random.random() < probability
+
     # IoT to IoT Links
-    for i in range(30):
-        for j in range(i + 1, 30):
-            if random.random() < 0.2:  # 20% chance to create a link
+    for i in range(min(30, num_hosts)):
+        for j in range(i + 1, min(30, num_hosts)):
+            if should_create_link(0.2 * density_factor):  # Adjust probability by density factor
                 bandwidth = random.randint(30, 50)
                 latency = random.randint(1, 10)
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})
                 network_topology.append({"source": j, "destination": i, "bandwidth": bandwidth, "latency": latency})
 
     # IoT to Edge Links
-    for i in range(30):
-        for j in range(30, 45):
-            if random.random() < 0.9:  # 90% chance to create a link
+    for i in range(min(30, num_hosts)):
+        for j in range(30, min(45, num_hosts)):
+            if should_create_link(0.95 * density_factor):
                 bandwidth = random.randint(50, 70)
                 latency = random.randint(5, 15)
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})
                 network_topology.append({"source": j, "destination": i, "bandwidth": bandwidth, "latency": latency})
 
     # Edge to Edge Links
-    for i in range(30, 45):
-        for j in range(i + 1, 45):
-            if random.random() < 0.6:  # 60% chance to create a link
+    for i in range(30, min(45, num_hosts)):
+        for j in range(i + 1, min(45, num_hosts)):
+            if should_create_link(0.8 * density_factor):
                 bandwidth = random.randint(80, 100)
                 latency = random.randint(16, 25)
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})
                 network_topology.append({"source": j, "destination": i, "bandwidth": bandwidth, "latency": latency})
 
     # Edge to Cloud Links
-    for i in range(30, 45):
-        for j in range(45, 50):
-            if random.random() < 0.8:  # 80% chance to create a link
+    for i in range(30, min(45, num_hosts)):
+        for j in range(45, min(50, num_hosts)):
+            if should_create_link(0.8 * density_factor):
                 bandwidth = random.randint(150, 200)
                 latency = random.randint(30, 60)
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})
                 network_topology.append({"source": j, "destination": i, "bandwidth": bandwidth, "latency": latency})
 
     # Cloud to Cloud Links
-    for i in range(45, 50):
-        for j in range(i + 1, 50):
-            if random.random() < 0.7:  # 70% chance to create a link
+    for i in range(45, min(50, num_hosts)):
+        for j in range(i + 1, min(50, num_hosts)):
+            if should_create_link(0.90 * density_factor):
                 bandwidth = random.randint(200, 300)
                 latency = random.randint(61, 90)
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})
@@ -74,13 +71,13 @@ def generate_links():
 
     return network_topology
 
-def main():
-    hosts_config = generate_hosts()
-    network_topology = generate_links()
+def main(num_hosts, density_factor):
+    hosts_config = generate_hosts(num_hosts)
+    network_topology = generate_links(num_hosts, density_factor)
 
     config = {
         "hosts": {
-            "nb": 50,
+            "nb": num_hosts,
             "configuration": hosts_config
         },
         "network": {
@@ -88,8 +85,14 @@ def main():
         }
     }
 
-    with open('scaled_infrastructure.json', 'w') as f:
+    # Define the path to save the file in the /data directory
+    output_dir = 'DRL/data'
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, 'scaled_infrastructure.json')
+
+    with open(output_path, 'w') as f:
         json.dump(config, f, indent=4)
+    print(f"Configuration saved to {output_path}")
 
 if __name__ == "__main__":
-    main()
+    main(50, 1.0)  # Example usage: 50 nodes, normal density
