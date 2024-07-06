@@ -1,10 +1,20 @@
 import tensorflow as tf
+import numpy as np
+import time
 from environment import FogEnvironment
 from agent import Agent, flatten_state
-import numpy as np
 
 print("TensorFlow version:", tf.__version__)
 print("Keras version:", tf.keras.__version__)
+
+def has_converged(rewards, threshold=0.01, window=30):
+    if len(rewards) < 2 * window:
+        return False
+    recent_rewards = rewards[-window:]
+    previous_rewards = rewards[-2*window:-window]
+    improvement = np.mean(recent_rewards) - np.mean(previous_rewards)
+    variance = np.var(recent_rewards)
+    return improvement < threshold and variance < threshold
 
 def test_initialization():
     env = FogEnvironment()
@@ -15,8 +25,15 @@ def test_initialization():
     num_hosts = env.num_hosts
     output_dim = max_components * num_hosts
     agent = Agent(input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.001)
-    episodes = 1000
-    for e in range(episodes):
+
+    rewards = []
+    start_time = time.time()
+    max_training_time = 4800  # 1 hour in seconds
+    window = 30
+    convergence_threshold = 0.1
+
+    e = 0
+    while True:
         state = env.reset()
         done = False
         total_reward = 0
@@ -44,7 +61,16 @@ def test_initialization():
                     break
 
         agent.learn(episode_states, episode_actions, episode_rewards, episode_app_indices)
-        print(f"Episode {e+1}/{episodes}, Total Reward: {total_reward}")
+        rewards.append(total_reward)
+        e += 1
+        elapsed_time = time.time() - start_time
+
+        print(f"Episode {e}, Total Reward: {total_reward}")
+
+        if has_converged(rewards, convergence_threshold, window) or elapsed_time >= max_training_time:
+            break
+
+    print(f"Training completed in {e} episodes and {elapsed_time:.2f} seconds.")
 
 if __name__ == "__main__":
     test_initialization()

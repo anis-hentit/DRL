@@ -191,10 +191,10 @@ class Agent:
     def __init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.001):
         self.model = GNNAgent(hidden_dim, output_dim)  # Initialize the GNN model
         self.optimizer = tf.keras.optimizers.Adam(learning_rate)  # Adam optimizer for training
-        self.gamma = 0.99  # Discount factor for future rewards
+        self.gamma = 0.98  # Discount factor for future rewards
         self.epsilon = 1.0  # Initial exploration rate
-        self.epsilon_decay = 0.986  # Decay rate for epsilon
-        self.epsilon_min = 0.02  # Minimum value for epsilon
+        self.epsilon_decay = 0.998  # Decay rate for epsilon
+        self.epsilon_min = 0.01  # Minimum value for epsilon
         self.max_components = max_components  # Maximum number of components
         self.num_hosts = num_hosts  # Number of hosts
 
@@ -208,8 +208,7 @@ class Agent:
 
         # Compute the action mask for valid actions
         mask = compute_action_mask(state, app_index, self.max_components)
-        print(f"Action Mask for app {app_index}: {mask}")  # Debug log for action mask
-
+        
         # Apply the mask to the logits, invalid actions are set to -inf
         masked_logits = np.where(mask, logits, -np.inf)
         action_probs = np.exp(masked_logits) / np.sum(np.exp(masked_logits))  # Compute probabilities using softmax
