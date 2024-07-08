@@ -150,7 +150,8 @@ class GNNAgent(tf.keras.Model):
         self.graph_update = mt_albis.MtAlbisGraphUpdate(
             units=hidden_dim,                 # Number of units in each layer
             message_dim=hidden_dim,           # Dimension of the message passing
-            attention_type="none",            # No attention mechanism
+            attention_type="multi_head",
+            attention_num_heads=8,         
             simple_conv_reduce_type="mean",   # Mean reduction for convolution
             normalization_type="layer",       # Layer normalization
             next_state_type="residual",       # Residual connections
@@ -194,7 +195,7 @@ class Agent:
         self.gamma = 0.98  # Discount factor for future rewards
         self.epsilon = 1.0  # Initial exploration rate
         self.epsilon_decay = 0.998  # Decay rate for epsilon
-        self.epsilon_min = 0.01  # Minimum value for epsilon
+        self.epsilon_min = 0.001  # Minimum value for epsilon
         self.max_components = max_components  # Maximum number of components
         self.num_hosts = num_hosts  # Number of hosts
 
@@ -258,8 +259,10 @@ class Agent:
                     log_prob = tf.math.log(action_prob + 1e-8)  # Add small value to prevent log(0)
                     
                     # Policy gradient loss (negative log probability scaled by reward)
+                    rewards = (rewards - np.mean(rewards)) / (np.std(rewards) + 1e-8)#normalizes rewards for more stable training
                     loss = -log_prob * reward  
                     grads = tape.gradient(loss, self.model.trainable_weights)  # Compute gradients
+                    grads, _ = tf.clip_by_global_norm(grads, 1.0)
                     self.optimizer.apply_gradients(zip(grads, self.model.trainable_weights))  # Apply gradients
                     total_loss += loss
 

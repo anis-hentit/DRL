@@ -15,7 +15,7 @@
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
       ],
       "DZ": [
-        {"component_id": 1, "host_id": 30}
+        {"component_id": 1, "host_id": 45}
       ]
     },
     {
@@ -133,7 +133,7 @@
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 40, "latency": 25}
       ],
       "DZ": [
-        {"component_id": 4, "host_id": 38}
+        {"component_id": 4, "host_id": 42}
       ]
     },
     {
@@ -193,7 +193,7 @@
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 30, "latency": 25}
       ],
       "DZ": [
-        {"component_id": 1, "host_id": 35}
+        {"component_id": 1, "host_id": 51}
       ]
     }
   ]

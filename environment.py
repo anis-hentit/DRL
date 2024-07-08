@@ -186,44 +186,43 @@ class FogEnvironment(gym.Env):
         """
         Implement a modified Dijkstra's algorithm to find the optimal path with latency and bandwidth constraints.
         """
-        with open('pathfinding_log.txt', 'a') as f:
-            f.write(f"Running constrained Dijkstra from {source} to {target} with max latency {max_latency} and min bandwidth {min_bandwidth}\n")
+        
             
-            graph = {i: [] for i in range(len(self.state['hosts']))}
-            for link in self.state['infra_links'].values():
-                if link['source'] == link['destination']:
-                    continue
-                if 'latency' not in link or 'bandwidth' not in link:
-                    continue
+        graph = {i: [] for i in range(len(self.state['hosts']))}
+        for link in self.state['infra_links'].values():
+            if link['source'] == link['destination']:
+                continue
+            if 'latency' not in link or 'bandwidth' not in link:
+                continue
                 
-                graph[link['source']].append((link['destination'], link['latency'], link['bandwidth']))
-                graph[link['destination']].append((link['source'], link['latency'], link['bandwidth']))
+            graph[link['source']].append((link['destination'], link['latency'], link['bandwidth']))
+            graph[link['destination']].append((link['source'], link['latency'], link['bandwidth']))
 
-            queue = [(0, source, [])]
-            seen = set()
-            all_valid_paths = []
-            while queue:
-                (cost, node, path) = heapq.heappop(queue)
-                if node in seen:
-                    continue
-                new_path = path + [node]
-                seen.add(node)
-                if node == target:
-                    if self.validate_path_with_constraints(new_path, max_latency, min_bandwidth):
-                        valid_path = [(new_path[i], new_path[i + 1]) for i in range(len(new_path) - 1)]
-                        all_valid_paths.append((cost, valid_path))
-                        f.write(f"Valid path found: {valid_path} with cost {cost}\n")
-                for next_node, latency, bandwidth in graph.get(node, []):
-                    if next_node not in seen and bandwidth >= min_bandwidth:
-                        heapq.heappush(queue, (cost + latency, next_node, new_path))
-                        f.write(f"Queueing path: {new_path} -> {next_node} with added cost {cost + latency}\n")
+        queue = [(0, source, [])]
+        seen = set()
+        all_valid_paths = []
+        while queue:
+            (cost, node, path) = heapq.heappop(queue)
+            if node in seen:
+                continue
+            new_path = path + [node]
+            seen.add(node)
+            if node == target:
+                if self.validate_path_with_constraints(new_path, max_latency, min_bandwidth):
+                    valid_path = [(new_path[i], new_path[i + 1]) for i in range(len(new_path) - 1)]
+                    all_valid_paths.append((cost, valid_path))
+                    
+            for next_node, latency, bandwidth in graph.get(node, []):
+                if next_node not in seen and bandwidth >= min_bandwidth:
+                    heapq.heappush(queue, (cost + latency, next_node, new_path))
+                    
 
-            if all_valid_paths:
-                best_path = min(all_valid_paths, key=lambda x: x[0])[1]
-                f.write(f"Best path found: {best_path}\n")
-                return best_path
+        if all_valid_paths:
+            best_path = min(all_valid_paths, key=lambda x: x[0])[1]
+            
+            return best_path
 
-            f.write(f"No valid path found from {source} to {target} with the given constraints.\n")
+           
             return None
 
     def validate_path_with_constraints(self, path, max_latency, min_bandwidth):
@@ -261,11 +260,8 @@ class FogEnvironment(gym.Env):
         """
         Calculate the reward for the current state and action.
         """
-        # Only calculate the reward if all components of the current application are deployed
         app_state = self.state['applications'][app_index]
-        if not all(comp['deployed'] for comp in app_state['components'].values()):
-            return 0
-        
+
         energy = 0
         active_hosts = set(comp['host'] for comp in app_state['components'].values() if comp['deployed'])
         for host_id in active_hosts:
@@ -274,32 +270,37 @@ class FogEnvironment(gym.Env):
 
         latency_penalty = self.calculate_latency_penalty(app_index)
         total_reward = -energy - latency_penalty
-        
-        total_reward += 5 * len(active_hosts)
+    
+        total_reward += 2 * len(active_hosts)
         num_links = len(app_state['links'])
         if num_links > 0:
             valid_paths = sum(1 for path in app_state['paths'].values() if path is not None and (path != [] or not self.check_if_inter_host(path)))
             failed_paths = sum(1 for path in app_state['paths'].values() if path is None or (path == [] and not self.check_if_inter_host(path)))
-        
+    
             valid_paths_percentage = valid_paths / num_links
             failed_paths_percentage = failed_paths / num_links
 
             total_reward += 10 * valid_paths_percentage
-            total_reward -=  25* failed_paths_percentage
+            total_reward -= 10 * failed_paths_percentage
+
+        # Additional reward for deploying components even if not all are deployed yet
+        if not all(comp['deployed'] for comp in app_state['components'].values()):
+            total_reward += 5  # Positive reward for each component deployment action
 
         if action == (-1, -1):
             total_reward -= 50
 
-         # Detailed debug statements for reward components
+        # Detailed debug statements for reward components
         print(f"App {app_index} Reward Calculation Debug:")
         print(f"  Energy cost: {-energy}")
         print(f"  Latency penalty: {-latency_penalty}")
-        print(f"  Active hosts bonus: {5 * len(active_hosts)}")
-        print(f"  Valid paths bonus: {15 * valid_paths_percentage }")
-        print(f"  Failed paths penalty: {-20 * failed_paths_percentage }")
+        print(f"  Active hosts bonus: {1 * len(active_hosts)}")
+        print(f"  Valid paths bonus: {10 * valid_paths_percentage }")
+        print(f"  Failed paths penalty: {-15 * failed_paths_percentage }")
         print(f"  Total calculated reward: {total_reward}")
 
         return total_reward
+
 
     def calculate_latency_penalty(self, app_index):
         """

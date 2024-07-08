@@ -24,11 +24,11 @@ def test_initialization():
     max_components = env.max_components
     num_hosts = env.num_hosts
     output_dim = max_components * num_hosts
-    agent = Agent(input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.001)
+    agent = Agent(input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.002)
 
     rewards = []
     start_time = time.time()
-    max_training_time = 4800  # 1 hour in seconds
+    max_training_time = 1200000000000  # 3 hour in seconds
     window = 30
     convergence_threshold = 0.1
 
