@@ -1,177 +1,129 @@
+## DRL - Deep Reinforcement Learning for Fog Computing
 
+This project involves deploying multiple application components in a fog computing environment using a reinforcement learning (RL) agent enhanced with a Graph Neural Network (GNN). The RL agent learns optimal deployment strategies to maximize resource utilization and minimize latency, bandwidth, and energy consumption penalties. The project supports multiple applications and dynamic infrastructure generation, enhancing its versatility and scalability.
 
-## DRL
+### File Structure
 
-This project involves deploying components in a fog computing environment using a reinforcement learning (RL) agent. The RL agent learns optimal deployment strategies to maximize resource utilization and minimize latency and bandwidth penalties. The project consists of three main modules: the agent, the environment, and the main execution script.
+- `agent.py`: Contains the implementation of the RL agent using GNN, including the decision-making process and the learning mechanism.
+- `environment.py`: Defines the fog computing environment where the agent operates, including state initialization and reward calculation.
+- `main.py`: The main script to initialize the environment, train the agent, and evaluate the deployment strategies.
+- `utils.py`: Utility functions for loading configuration files and supporting functions.
+- `InfrastructureGenerator.py`: Script for generating scalable and dynamic infrastructure configurations.
+- `benchmark.py`: Script to benchmark the execution time of different configurations.
 
-## File Structure
+### Agent
 
-- `agent.py`: Contains the implementation of the RL agent.
-- `environment.py`: Defines the fog computing environment where the agent operates.
-- `main.py`: The main script to initialize the environment, train the agent, and test the deployment strategies.
+#### Overview
 
-## Agent
+The agent is implemented using TensorFlow and TensorFlow GNN. It employs a Graph Neural Network to predict the best actions based on the current state of the environment. The agent's decision-making is guided by a policy learned through interaction with the environment, using policy gradient methods.
 
-### Overview
-
-The agent is implemented using TensorFlow and Keras. It employs a neural network to predict the best actions based on the current state of the environment.
-
-### Hyperparameters
+#### Hyperparameters
 
 | Hyperparameter   | Description                                               | Value  |
 |------------------|-----------------------------------------------------------|--------|
 | `learning_rate`  | Learning rate for the neural network optimizer            | 0.001  |
-| `gamma`          | Discount factor for future rewards                        | 0.99   |
+| `gamma`          | Discount factor for future rewards                        | 0.95   |
 | `epsilon`        | Initial exploration rate for the epsilon-greedy policy    | 1.0    |
 | `epsilon_decay`  | Decay rate for epsilon after each episode                 | 0.995  |
 | `epsilon_min`    | Minimum value for epsilon to ensure exploration           | 0.01   |
 
-### Methods
+#### Methods
 
-- `__init__(self, state_size, num_components, num_hosts, infra_config, learning_rate=0.001)`: Initializes the agent with the given parameters.
-- `build_model(self)`: Constructs the neural network model.
-- `choose_action(self, state)`: Chooses an action based on the current state using an epsilon-greedy policy.
-- `decode_action(self, action_index, state)`: Decodes the action index into a specific component-host deployment.
-- `encode_action(self, action)`: Encodes the action for learning.
-- `generate_paths(self, component_id, host_id, state)`: Generates valid paths between components.
-- `learn(self, states, actions, rewards)`: Updates the neural network based on the experience.
-- `dijkstra(self, source, target, latency_req, bandwidth_req)`: Finds the shortest path between hosts considering latency and bandwidth requirements using Dijkstra's algorithm.
+- **`__init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.001)`**: Initializes the agent with the given parameters.
+- **`choose_action(self, state, app_index)`**: Chooses an action based on the current state using an epsilon-greedy policy.
+- **`store_experience(self, state, action, reward, next_state, done, app_index, explore)`**: Stores the experience in the replay buffer.
+- **`learn(self, batch_size=32)`**: Updates the neural network based on the experiences.
+- **`GNNAgent`**: Defines the Graph Neural Network architecture used by the agent.
+- **`discount_rewards(self, rewards)`**: Computes discounted rewards to provide feedback on actions over time.
+- **`sample_experiences(self, batch_size)`**: Samples experiences from both model and random replay buffers, adjusting the ratio based on the current epsilon value.
 
-### State Representation
+#### Replay Buffer
 
-The state is represented as a combination of host resources and component requirements, including deployment status:
+The agent uses two types of replay buffers:
 
-- **Hosts**: Represented as a dictionary with CPU and RAM resources.
-- **Components**: Represented as a dictionary with CPU, RAM requirements, and deployment status.
-- **Fixed Positions**: Components that are fixed to specific hosts.
-- **Links**: Logical links between components with bandwidth and latency requirements.
-- **Paths**: Physical paths between hosts for each logical link.
+- **Model Replay Buffer**: Stores experiences where actions were chosen by the model.
+- **Random Replay Buffer**: Stores experiences where actions were chosen randomly (exploration).
 
-#### Flattening the State
+As training progresses, the sampling ratio adjusts to favor experiences from the model replay buffer more, while still maintaining a minimum level of exploration.
 
-The `flatten_state` function converts the state dictionary into a flat numpy array for input into the neural network. It concatenates host values, component values (excluding deployment status), and deployment statuses into a single array.
+#### State Representation
 
-## Environment
+The state is represented as a combination of host resources, multiple application requirements, deployment status, logical links, and infrastructure links:
 
-### Overview
+- **Hosts**: Represented with their CPU and RAM resources.
+- **Applications**: Each application consists of:
+  - **Components**: Represented with their CPU, RAM requirements, deployment status, and application ID.
+  - **components_start_idx**: Starting index of the components for the application.
+  - **Links**: Logical links between components with bandwidth and latency requirements.
+  - **Paths**: Paths initialized as `None`, will store the physical paths for each logical link.
+  - **Fixed Positions**: Deployment zones (DZ) indicating fixed positions for components.
 
-The `FogEnvironment` class represents the fog computing environment where components are deployed to hosts. It simulates the interaction between the agent and the environment, providing rewards based on the deployment's efficiency.
+The state is converted into a graph data structure for input into the neural network using the `generate_graph_data` function.
 
-### Methods
+### Environment
 
-- `__init__(self)`: Initializes the environment with application and infrastructure configurations.
-- `define_action_space(self)`: Defines the action space as a combination of components and hosts.
-- `define_observation_space(self)`: Defines the observation space representing the state.
-- `initialize_state(self)`: Initializes the environment state, deploying fixed components.
-- `step(self, action)`: Executes an action and updates the state.
-- `validate_path(self, path, latency_req, bandwidth_req)`: Validates a path based on latency and bandwidth requirements.
-- `calculate_state_size(self, state)`: Calculates the size of the flattened state.
-- `update_state(self, component_id, host_id, path_ids)`: Updates the state after deploying a component.
-- `check_all_deployed(self)`: Checks if all components have been deployed.
-- `calculate_reward(self, action, path_ids)`: Calculates the reward based on energy consumption and penalties.
-- `calculate_latency_penalty(self, path_ids)`: Calculates latency penalties for the paths.
-- `calculate_bandwidth_penalty(self, path_ids)`: Calculates bandwidth penalties for the paths.
-- `reset(self)`: Resets the environment to the initial state.
-- `render(self, mode='console')`: Renders the current state of the environment.
-- `close(self)`: Closes the environment.
+#### Overview
 
-### State Initialization
+The `FogEnvironment` class represents the fog computing environment where components are deployed to hosts. It simulates the interaction between the agent and the environment, providing rewards based on the deployment's efficiency and the satisfaction of constraints like latency and bandwidth.
 
-The `initialize_state` method sets up the initial state by:
+#### Methods
 
-1. **Hosts**: Setting up each host with its CPU and RAM resources.
-2. **Components**: Setting up each component with its CPU and RAM requirements and marking them as not deployed.
-3. **Fixed Positions**: Deploying components fixed to specific hosts.
-4. **Links**: Setting up logical links between components.
-5. **Paths**: Initializing paths for each logical link as empty.
+- **`__init__(self)`**: Initializes the environment with application and infrastructure configurations.
+- **`define_action_space(self)`**: Defines the action space as a combination of components and hosts.
+- **`define_observation_space(self)`**: Defines the observation space representing the state.
+- **`initialize_state(self)`**: Initializes the environment state, deploying fixed components.
+- **`step(self, action, app_index)`**: Executes an action and updates the state.
+- **`deploy_component(self, app_state, component_id, host_id)`**: Deploys a component to a specified host.
+- **`find_path(self, link_id, link, app_index)`**: Finds a path for a logical link between two deployed components.
+- **`constrained_dijkstra(self, source, target, max_latency, min_bandwidth)`**: Finds a path with latency and bandwidth constraints using a constrained Dijkstra's algorithm.
+- **`validate_path_with_constraints(self, path, max_latency, min_bandwidth)`**: Validates a path based on latency and bandwidth requirements.
+- **`calculate_reward(self, action, app_index)`**: Calculates the reward for the current state and action.
+- **`reset(self)`**: Resets the environment to the initial state.
+- **`save_deployment_strategy(self, reward)`**: Saves the current deployment strategy to a text file.
+- **`render(self, mode='console')`**: Renders the current state of the environment.
 
-## Main Script
+### Infrastructure Generator
 
-### Overview
+#### Overview
 
-The `main.py` script initializes the environment and agent, and runs training episodes to test the deployment strategies.
+The `InfrastructureGenerator.py` script dynamically generates scalable infrastructure configurations, including hosts and links. This allows the system to adapt to different sizes and densities of fog computing environments.
 
-### Functions
+#### Methods
 
-- `calculate_state_size(state)`: Calculates the size of the flattened state.
-- `test_initialization()`: Initializes the environment, creates the agent, and runs training episodes.
+- **`generate_hosts(num_hosts)`**: Generates a list of hosts with specified resources.
+- **`generate_links(num_hosts, density_factor)`**: Generates network topology with specified density.
+- **`main(num_hosts, density_factor)`**: Main function to generate and save the infrastructure configuration.
 
-### Execution
+### Benchmark
 
-The script runs for a specified number of episodes. In each episode, the agent interacts with the environment, choosing actions and learning from the rewards received. The total reward for each episode is printed to monitor the agent's performance.
+#### Overview
 
-## State Representation and Interaction
+The `benchmark.py` script measures the execution time of different configurations to evaluate the performance of the deployment strategies. It runs the environment for a specified number of episodes and records the average time per episode.
 
-1. **State Representation**: 
-   - Hosts and components are represented using dictionaries to store their respective CPU, RAM, and deployment status.
-   - The `flatten_state` function converts this dictionary format into a flat array for neural network input.
+#### Methods
 
-2. **Agent-Environment Interaction**:
-   - The agent observes the current state, selects an action (deploying a component to a host), and receives a reward.
-   - The environment updates the state based on the agent's action, calculates rewards, and provides feedback to the agent.
-   - The agent learns from this interaction to improve future decisions.
+- **`measure_execution_time(num_hosts, density_factor, num_applications)`**: Measures the execution time for given parameters.
+- **`main()`**: Main function to run the benchmark with different configurations.
 
-### Summary of Interactions
+### Main Script
 
-1. **Initialization**:
-   - The environment is initialized with hosts and components.
-   - Fixed components are deployed to their respective hosts.
+#### Overview
 
-2. **Action Selection**:
-   - The agent selects a component and host pair for deployment.
-   - The agent uses a neural network to predict the best action based on the current state.
+The `main.py` script initializes the environment and agent, and runs training episodes to test and evaluate the deployment strategies. The agent interacts with the environment, making deployment decisions and learning from the outcomes to improve its policy over time.
 
-3. **State Update and Reward Calculation**:
-   - The environment updates the state based on the selected action.
-   - The environment calculates rewards based on resource utilization, latency, and bandwidth constraints.
+#### Functions
 
-4. **Learning**:
-   - The agent updates its neural network based on the rewards received, improving its future action selections.
+- **`calculate_state_size(state)`**: Calculates the size of the flattened state.
+- **`test_initialization()`**: Initializes the environment, creates the agent, and runs training episodes to evaluate the deployment strategies.
 
-## Deep Learning Model
+#### Execution
 
-### Overview
+The script runs for a specified number of episodes (default is 1000). In each episode, the agent interacts with the environment, choosing actions and learning from the rewards received. The total reward for each episode is printed to monitor the agent's performance.
 
-The deep learning model used in this project is a neural network implemented using TensorFlow and Keras. The model takes the flattened state as input and outputs probabilities for each possible action.
+### Dependencies
 
-### Model Architecture
-
-1. **Input Layer**: 
-   - The input layer receives the flattened state representation.
-   
-2. **Hidden Layers**: 
-   - Two hidden layers with 24 neurons each and ReLU activation functions.
-   
-3. **Output Layer**: 
-   - The output layer has `action_size` neurons with softmax activation to output probabilities for each action.
-
-### Input
-
-The input to the model is a flattened state array that includes:
-
-- Host resources (CPU, RAM) for each host.
-- Component requirements (CPU, RAM) for each component.
-- Deployment status of each component.
-
-### Output
-
-The output of the model is a probability distribution over all possible actions (component-host pairs).
-
-### Loss Function
-
-The loss function used is categorical cross-entropy, which is appropriate for multi-class classification problems. The agent uses this loss to update its neural network based on the rewards received from the environment.
-
-### Interaction with the Reward System
-
-The learning process in reinforcement learning involves updating the neural network to maximize the cumulative reward. Here's how the model interacts with the reward system:
-
-1. **Action Selection**: 
-   - The agent selects an action based on the probabilities output by the model.
-
-2. **Reward Calculation**: 
-   - The environment calculates the reward based on the selected action's impact on resource utilization, latency, and bandwidth constraints.
-
-3. **Learning**:
-   - The agent updates the model using the rewards received. The loss function (categorical cross-entropy) is minimized, guiding the neural network to predict actions that lead to higher rewards.
-   - The rewards are used to adjust the probabilities output by the model, encouraging actions that result in higher rewards and discouraging actions that result in lower rewards.
-
+- TensorFlow version: 2.12.0
+- Keras version: 2.12.0
+- TensorFlow GNN
+- Gym
+- NumPy
