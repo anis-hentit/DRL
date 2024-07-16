@@ -116,6 +116,7 @@ class FogEnvironment(gym.Env):
         # Deploy the component if not already deployed
         if not app_state['components'][component_id]['deployed']:
             component = app_state['components'][component_id]
+<<<<<<< HEAD
             host = self.state['hosts'][host_id]
             if component['CPU'] <= host['CPU'] and component['RAM'] <= host['RAM']:
                 self.deploy_component(app_state, component_id, host_id)
@@ -302,15 +303,223 @@ class FogEnvironment(gym.Env):
         # Additional reward for deploying components even if not all are deployed yet
         if not all(comp['deployed'] for comp in app_state['components'].values()):
             total_reward += 5 / num_components  # Positive reward for each component deployment action
+=======
+            host = self.state['hosts'][host_id]
+            if component['CPU'] <= host['CPU'] and component['RAM'] <= host['RAM']:
+                self.deploy_component(app_state, component_id, host_id)
+                print(f"Deployed component {component_id} to host {host_id}")
+            else:
+                print(f"Failed to deploy component {component_id} to host {host_id} due to insufficient resources.")
+                return self.state, -20, self.current_step >= self.max_steps_per_episode, {}
+
+        # Find and validate paths for each logical link if both endpoints are deployed
+        for link_id, link in app_state['links'].items():
+            if app_state['components'][link['source']]['deployed'] and app_state['components'][link['destination']]['deployed']:
+                if app_state['paths'][link_id] is None:
+                    path = self.find_path(link_id, link, app_index)
+                    if path is not None:
+                        app_state['paths'][link_id] = path
+                        if path:
+                            self.reduce_bandwidth(path, link['bandwidth'])
+                    else:
+                        app_state['paths'][link_id] = None
+
+        done = self.check_all_deployed()  # Check if all components are deployed
+        reward = self.calculate_reward(action, app_index)  # Calculate reward for the action
+        done = done or self.current_step >= self.max_steps_per_episode  # Check if the episode should end
+        next_state = self.state
+
+        if done:
+            final_reward = self.calculate_final_reward()
+            self.save_deployment_strategy(final_reward)  # Save the deployment strategy at the end of the episode
+
+        # Log final state for this step
+        print("\n--- Final State After Step ---")
+        self.print_state()
+        if done:
+            print(f"Final episode reward: {final_reward}")
+
+        return next_state, reward, done, {}
+
+    def deploy_component(self, app_state, component_id, host_id):
+        """
+        Deploy a component to a specified host.
+        """
+        component = app_state['components'][component_id]
+        host = self.state['hosts'][host_id]
+        host['CPU'] -= component['CPU']
+        host['RAM'] -= component['RAM']
+        app_state['components'][component_id]['deployed'] = True
+        app_state['components'][component_id]['host'] = host_id
+
+    def find_path(self, link_id, link, app_index):
+        """
+        Find a path for a logical link between two deployed components.
+        """
+        source_comp = link['source']
+        destination_comp = link['destination']
+        source_host = self.get_component_host(source_comp, app_index)
+        destination_host = self.get_component_host(destination_comp, app_index)
+        if source_host == destination_host:
+            return []
+        path = self.constrained_dijkstra(source_host, destination_host, link['latency'], link['bandwidth'])
+        return path
+
+    def get_component_host(self, component_id, app_index):
+        """
+        Get the host to which a component is deployed.
+        """
+        app_state = self.state['applications'][app_index]
+        if component_id in app_state['components']:
+            component = app_state['components'][component_id]
+            if 'host' in component:
+                return component['host']
+        return None
+
+    def constrained_dijkstra(self, source, target, max_latency, min_bandwidth):
+        """
+        Implement a modified Dijkstra's algorithm to find the optimal path with latency and bandwidth constraints.
+        """
+        
+            
+        graph = {i: [] for i in range(len(self.state['hosts']))}
+        for link in self.state['infra_links'].values():
+            if link['source'] == link['destination']:
+                continue
+            if 'latency' not in link or 'bandwidth' not in link:
+                continue
+                
+            graph[link['source']].append((link['destination'], link['latency'], link['bandwidth']))
+            graph[link['destination']].append((link['source'], link['latency'], link['bandwidth']))
+
+        queue = [(0, source, [])]
+        seen = set()
+        all_valid_paths = []
+        while queue:
+            (cost, node, path) = heapq.heappop(queue)
+            if node in seen:
+                continue
+            new_path = path + [node]
+            seen.add(node)
+            if node == target:
+                if self.validate_path_with_constraints(new_path, max_latency, min_bandwidth):
+                    valid_path = [(new_path[i], new_path[i + 1]) for i in range(len(new_path) - 1)]
+                    all_valid_paths.append((cost, valid_path))
+                    
+            for next_node, latency, bandwidth in graph.get(node, []):
+                if next_node not in seen and bandwidth >= min_bandwidth:
+                    heapq.heappush(queue, (cost + latency, next_node, new_path))
+                    
+
+        if all_valid_paths:
+            best_path = min(all_valid_paths, key=lambda x: x[0])[1]
+            
+            return best_path
+
+           
+            return None
+
+    def validate_path_with_constraints(self, path, max_latency, min_bandwidth):
+        """
+        Validate a path to ensure it meets latency and bandwidth constraints.
+        """
+        if not path:
+            return True
+        total_latency = 0
+        for i in range(len(path) - 1):
+            link_data = next((item for item in self.state['infra_links'].values()
+                              if item['source'] == path[i] and item['destination'] == path[i+1]), None)
+            if not link_data:
+                return False
+            total_latency += link_data['latency']
+            if link_data['bandwidth'] < min_bandwidth:
+                return False
+        if total_latency > max_latency:
+            return False
+        return True
+
+    def reduce_bandwidth(self, path, required_bandwidth):
+        """
+        Reduce the available bandwidth along the given path.
+        """
+        if path is None or not path:
+            return
+        for link in path:
+            link_data = next((item for item in self.state['infra_links'].values()
+                              if item['source'] == link[0] and item['destination'] == link[1]), None)
+            if link_data and 'bandwidth' in link_data and link_data['bandwidth'] > 0:
+                link_data['bandwidth'] -= required_bandwidth
+
+    def calculate_reward(self, action, app_index):
+        """
+        Calculate the reward for the current state and action.
+        """
+        app_state = self.state['applications'][app_index]
+        num_components = len(app_state['components'])
+
+        if action is not None:
+            # Extract the component and host from the action
+            component_id, host_id = action
+            # Get the component and host details
+            component = app_state['components'][component_id]
+            host = self.state['hosts'][host_id]
+            # Calculate the energy cost for the current action
+            energy_cost = host['CPU'] * 0.02 + host['RAM'] * 0.01
+        else:
+            energy_cost = 0
+
+        # Calculate the latency penalty
+        latency_penalty = self.calculate_latency_penalty(app_index)
+    
+        # Initialize total reward
+        total_reward = -energy_cost - latency_penalty
+
+        # Check if all components are deployed
+        if all(comp['deployed'] for comp in app_state['components'].values()):
+            num_links = len(app_state['links'])
+            if num_links > 0:
+                valid_paths = sum(1 for path in app_state['paths'].values() if path is not None and (path != [] or not self.check_if_inter_host(path)))
+                failed_paths = sum(1 for path in app_state['paths'].values() if path is None or (path == [] and not self.check_if_inter_host(path)))
+
+                valid_paths_percentage = valid_paths / num_links
+                failed_paths_percentage = failed_paths / num_links
+
+                total_reward += 10 * valid_paths_percentage
+                total_reward -= 10 * failed_paths_percentage
+
+        # Additional reward for deploying components even if not all are deployed yet
+        if not all(comp['deployed'] for comp in app_state['components'].values()):
+<<<<<<< HEAD
+            total_reward += 5 / num_components  # Positive reward for each component deployment action
+=======
+            total_reward += 5  # Positive reward for each component deployment action
+>>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
+>>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
 
         if action == (-1, -1):
             total_reward -= 50
 
         # Detailed debug statements for reward components
         print(f"App {app_index} Reward Calculation Debug:")
+<<<<<<< HEAD
         print(f"  Energy cost: {-energy_cost}")
         print(f"  Latency penalty: {-latency_penalty}")
         print(f"  Total calculated reward for the action: {total_reward}")
+=======
+<<<<<<< HEAD
+        print(f"  Energy cost: {-energy_cost}")
+        print(f"  Latency penalty: {-latency_penalty}")
+        print(f"  Active hosts bonus: {1 * len(set(comp['host'] for comp in app_state['components'].values() if comp['deployed']))}")
+        print(f"  Total calculated reward for the action: {total_reward}")
+=======
+        print(f"  Energy cost: {-energy}")
+        print(f"  Latency penalty: {-latency_penalty}")
+        print(f"  Active hosts bonus: {1 * len(active_hosts)}")
+        print(f"  Valid paths bonus: {10 * valid_paths_percentage }")
+        print(f"  Failed paths penalty: {-15 * failed_paths_percentage }")
+        print(f"  Total calculated reward: {total_reward}")
+>>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
+>>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
 
         return total_reward
 
@@ -337,6 +546,10 @@ class FogEnvironment(gym.Env):
         Calculate the final reward for the overall state of deployment at the end of an episode.
         """
         final_reward = 0
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         total_energy_cost = 0
 
         for app_index in range(len(self.state['applications'])):
@@ -352,6 +565,14 @@ class FogEnvironment(gym.Env):
         # Subtract the total energy cost from the final reward
         final_reward -= total_energy_cost
 
+<<<<<<< HEAD
+=======
+=======
+        for app_index in range(len(self.state['applications'])):
+            app_reward = self.calculate_reward(None, app_index)
+            final_reward += app_reward
+>>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
+>>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         return final_reward
 
     def reset(self):
