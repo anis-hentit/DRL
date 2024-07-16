@@ -10,12 +10,12 @@
         {"CPU": 6, "RAM": 5}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 25},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 30},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
       ],
       "DZ": [
-        {"component_id": 1, "host_id": 45}
+        
       ]
     },
     {
@@ -30,10 +30,10 @@
         {"CPU": 1, "RAM": 3}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 50, "latency": 15},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 50, "latency": 25},
         {"id": 2, "source": 1, "destination": 3, "bandwidth": 60, "latency": 20},
-        {"id": 3, "source": 2, "destination": 4, "bandwidth": 50, "latency": 10},
+        {"id": 3, "source": 2, "destination": 4, "bandwidth": 50, "latency": 25},
         {"id": 4, "source": 3, "destination": 5, "bandwidth": 50, "latency": 30}
       ],
       "DZ": [
@@ -51,8 +51,8 @@
         {"CPU": 4, "RAM": 3}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 20},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25}
       ],
@@ -70,9 +70,9 @@
         {"CPU": 3, "RAM": 2}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
-        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 25}
       ],
       "DZ": [
         
@@ -90,7 +90,7 @@
         {"CPU": 5, "RAM": 4}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25},
@@ -109,7 +109,7 @@
         {"CPU": 1, "RAM": 1}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 20},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15}
       ],
       "DZ": [
@@ -127,13 +127,13 @@
         {"CPU": 5, "RAM": 1}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 25, "latency": 10},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 25, "latency": 25},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 35, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 40, "latency": 25}
       ],
       "DZ": [
-        {"component_id": 4, "host_id": 42}
+        
       ]
     },
     {
@@ -146,7 +146,7 @@
         {"CPU": 4, "RAM": 4}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 30},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
       ],
@@ -166,14 +166,14 @@
         {"CPU": 5, "RAM": 4}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 25},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 20},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25},
         {"id": 4, "source": 4, "destination": 5, "bandwidth": 40, "latency": 30}
       ],
       "DZ": [
-        {"component_id": 2, "host_id": 25}
+        
       ]
     },
     {
@@ -187,13 +187,13 @@
         {"CPU": 5, "RAM": 5}
       ],
       "links": [
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 20},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 30, "latency": 25}
       ],
       "DZ": [
-        {"component_id": 1, "host_id": 51}
+        
       ]
     }
   ]

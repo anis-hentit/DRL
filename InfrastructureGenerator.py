@@ -108,4 +108,4 @@ def main(num_hosts, density_factor):
     print(f"Configuration saved to {output_path}")
 
 if __name__ == "__main__":
-    main(100, 1.5)  # Example usage: 100 nodes, density factor 1.5
+    main(50, 0.5)  # Example usage: 100 nodes, density factor 1.5

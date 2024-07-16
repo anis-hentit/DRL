@@ -21,19 +21,30 @@ The agent is implemented using TensorFlow and TensorFlow GNN. It employs a Graph
 
 | Hyperparameter   | Description                                               | Value  |
 |------------------|-----------------------------------------------------------|--------|
-| `learning_rate`  | Learning rate for the neural network optimizer            | 0.0001 |
-| `gamma`          | Discount factor for future rewards                        | 0.99   |
+| `learning_rate`  | Learning rate for the neural network optimizer            | 0.001  |
+| `gamma`          | Discount factor for future rewards                        | 0.95   |
 | `epsilon`        | Initial exploration rate for the epsilon-greedy policy    | 1.0    |
-| `epsilon_decay`  | Decay rate for epsilon after each episode                 | 0.986  |
-| `epsilon_min`    | Minimum value for epsilon to ensure exploration           | 0.02   |
+| `epsilon_decay`  | Decay rate for epsilon after each episode                 | 0.995  |
+| `epsilon_min`    | Minimum value for epsilon to ensure exploration           | 0.01   |
 
 #### Methods
 
-- **`__init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.0001)`**: Initializes the agent with the given parameters.
+- **`__init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.001)`**: Initializes the agent with the given parameters.
 - **`choose_action(self, state, app_index)`**: Chooses an action based on the current state using an epsilon-greedy policy.
-- **`learn(self, states, actions, rewards, app_indices)`**: Updates the neural network based on the experiences.
+- **`store_experience(self, state, action, reward, next_state, done, app_index, explore)`**: Stores the experience in the replay buffer.
+- **`learn(self, batch_size=32)`**: Updates the neural network based on the experiences.
 - **`GNNAgent`**: Defines the Graph Neural Network architecture used by the agent.
 - **`discount_rewards(self, rewards)`**: Computes discounted rewards to provide feedback on actions over time.
+- **`sample_experiences(self, batch_size)`**: Samples experiences from both model and random replay buffers, adjusting the ratio based on the current epsilon value.
+
+#### Replay Buffer
+
+The agent uses two types of replay buffers:
+
+- **Model Replay Buffer**: Stores experiences where actions were chosen by the model.
+- **Random Replay Buffer**: Stores experiences where actions were chosen randomly (exploration).
+
+As training progresses, the sampling ratio adjusts to favor experiences from the model replay buffer more, while still maintaining a minimum level of exploration.
 
 #### State Representation
 
@@ -66,7 +77,7 @@ The `FogEnvironment` class represents the fog computing environment where compon
 - **`find_path(self, link_id, link, app_index)`**: Finds a path for a logical link between two deployed components.
 - **`constrained_dijkstra(self, source, target, max_latency, min_bandwidth)`**: Finds a path with latency and bandwidth constraints using a constrained Dijkstra's algorithm.
 - **`validate_path_with_constraints(self, path, max_latency, min_bandwidth)`**: Validates a path based on latency and bandwidth requirements.
-- **`calculate_reward(self, action)`**: Calculates the reward for the current state and action.
+- **`calculate_reward(self, action, app_index)`**: Calculates the reward for the current state and action.
 - **`reset(self)`**: Resets the environment to the initial state.
 - **`save_deployment_strategy(self, reward)`**: Saves the current deployment strategy to a text file.
 - **`render(self, mode='console')`**: Renders the current state of the environment.

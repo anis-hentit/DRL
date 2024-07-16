@@ -15,13 +15,17 @@ def calculate_state_size(state):
 class FogEnvironment(gym.Env):
     metadata = {'render.modes': ['console']}
 
-    def __init__(self):
+    def __init__(self, num_applications=None):
         """
         Initialize the FogEnvironment with application and infrastructure configurations.
         """
         super(FogEnvironment, self).__init__()
         # Load application and infrastructure configurations from JSON files
         self.app_configs, self.infra_config = load_json_config("DRL/data/Application.json", "DRL/data/scaled_infrastructure.json")
+        
+        if num_applications is not None:
+            self.app_configs['applications'] = self.app_configs['applications'][:num_applications]
+        
         # Initialize the environment state
         self.state = self.initialize_state()
         self.path_cache = {}  # Cache for storing computed paths
@@ -144,6 +148,8 @@ class FogEnvironment(gym.Env):
         # Log final state for this step
         print("\n--- Final State After Step ---")
         self.print_state()
+        if done:
+            print(f"Final episode reward: {final_reward}")
 
         return next_state, reward, done, {}
 
@@ -261,43 +267,50 @@ class FogEnvironment(gym.Env):
         Calculate the reward for the current state and action.
         """
         app_state = self.state['applications'][app_index]
+        num_components = len(app_state['components'])
 
-        energy = 0
-        active_hosts = set(comp['host'] for comp in app_state['components'].values() if comp['deployed'])
-        for host_id in active_hosts:
+        if action is not None:
+            # Extract the component and host from the action
+            component_id, host_id = action
+            # Get the component and host details
+            component = app_state['components'][component_id]
             host = self.state['hosts'][host_id]
-            energy += host['CPU'] * 0.02 + host['RAM'] * 0.01
+            # Calculate the energy cost for the current action
+            energy_cost = host['CPU'] * 0.02 + host['RAM'] * 0.01
+        else:
+            energy_cost = 0
 
+        # Calculate the latency penalty
         latency_penalty = self.calculate_latency_penalty(app_index)
-        total_reward = -energy - latency_penalty
     
-        total_reward += 2 * len(active_hosts)
-        num_links = len(app_state['links'])
-        if num_links > 0:
-            valid_paths = sum(1 for path in app_state['paths'].values() if path is not None and (path != [] or not self.check_if_inter_host(path)))
-            failed_paths = sum(1 for path in app_state['paths'].values() if path is None or (path == [] and not self.check_if_inter_host(path)))
-    
-            valid_paths_percentage = valid_paths / num_links
-            failed_paths_percentage = failed_paths / num_links
+        # Initialize total reward
+        total_reward = -energy_cost - latency_penalty
 
-            total_reward += 10 * valid_paths_percentage
-            total_reward -= 10 * failed_paths_percentage
+        # Check if all components are deployed
+        if all(comp['deployed'] for comp in app_state['components'].values()):
+            num_links = len(app_state['links'])
+            if num_links > 0:
+                valid_paths = sum(1 for path in app_state['paths'].values() if path is not None and (path != [] or not self.check_if_inter_host(path)))
+                failed_paths = sum(1 for path in app_state['paths'].values() if path is None or (path == [] and not self.check_if_inter_host(path)))
+
+                valid_paths_percentage = valid_paths / num_links
+                failed_paths_percentage = failed_paths / num_links
+
+                total_reward += 10 * valid_paths_percentage
+                total_reward -= 10 * failed_paths_percentage
 
         # Additional reward for deploying components even if not all are deployed yet
         if not all(comp['deployed'] for comp in app_state['components'].values()):
-            total_reward += 5  # Positive reward for each component deployment action
+            total_reward += 5 / num_components  # Positive reward for each component deployment action
 
         if action == (-1, -1):
             total_reward -= 50
 
         # Detailed debug statements for reward components
         print(f"App {app_index} Reward Calculation Debug:")
-        print(f"  Energy cost: {-energy}")
+        print(f"  Energy cost: {-energy_cost}")
         print(f"  Latency penalty: {-latency_penalty}")
-        print(f"  Active hosts bonus: {1 * len(active_hosts)}")
-        print(f"  Valid paths bonus: {10 * valid_paths_percentage }")
-        print(f"  Failed paths penalty: {-15 * failed_paths_percentage }")
-        print(f"  Total calculated reward: {total_reward}")
+        print(f"  Total calculated reward for the action: {total_reward}")
 
         return total_reward
 
@@ -324,9 +337,21 @@ class FogEnvironment(gym.Env):
         Calculate the final reward for the overall state of deployment at the end of an episode.
         """
         final_reward = 0
+        total_energy_cost = 0
+
         for app_index in range(len(self.state['applications'])):
             app_reward = self.calculate_reward(None, app_index)
             final_reward += app_reward
+
+        # Calculate the total energy cost of all active hosts
+        active_hosts = set(comp['host'] for app in self.state['applications'] for comp in app['components'].values() if comp['deployed'])
+        for host_id in active_hosts:
+            host = self.state['hosts'][host_id]
+            total_energy_cost += host['CPU'] * 0.02 + host['RAM'] * 0.01
+        
+        # Subtract the total energy cost from the final reward
+        final_reward -= total_energy_cost
+
         return final_reward
 
     def reset(self):
