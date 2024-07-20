@@ -9,7 +9,7 @@ This project involves deploying multiple application components in a fog computi
 - `main.py`: The main script to initialize the environment, train the agent, and evaluate the deployment strategies.
 - `utils.py`: Utility functions for loading configuration files and supporting functions.
 - `InfrastructureGenerator.py`: Script for generating scalable and dynamic infrastructure configurations.
-- `benchmark.py`: Script to benchmark the execution time of different configurations.
+- `benchmark.py`: Script to benchmark the execution time of different configurations on multiple topologies.
 
 ### Agent
 
@@ -21,18 +21,18 @@ The agent is implemented using TensorFlow and TensorFlow GNN. It employs a Graph
 
 | Hyperparameter   | Description                                               | Value  |
 |------------------|-----------------------------------------------------------|--------|
-| `learning_rate`  | Learning rate for the neural network optimizer            | 0.001  |
-| `gamma`          | Discount factor for future rewards                        | 0.95   |
+| `learning_rate`  | Learning rate for the neural network optimizer            | 0.002  |
+| `gamma`          | Discount factor for future rewards                        | 0.96   |
 | `epsilon`        | Initial exploration rate for the epsilon-greedy policy    | 1.0    |
-| `epsilon_decay`  | Decay rate for epsilon after each episode                 | 0.995  |
+| `epsilon_decay`  | Decay rate for epsilon after each episode                 | 0.998  |
 | `epsilon_min`    | Minimum value for epsilon to ensure exploration           | 0.01   |
 
 #### Methods
 
-- **`__init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.001)`**: Initializes the agent with the given parameters.
-- **`choose_action(self, state, app_index)`**: Chooses an action based on the current state using an epsilon-greedy policy.
+- **`__init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.002)`**: Initializes the agent with the given parameters.
+- **`choose_action(self, state, app_index, mode='train', num_hosts=None)`**: Chooses an action based on the current state using an epsilon-greedy policy.
 - **`store_experience(self, state, action, reward, next_state, done, app_index, explore)`**: Stores the experience in the replay buffer.
-- **`learn(self, batch_size=32)`**: Updates the neural network based on the experiences.
+- **`learn(self, batch_size=64)`**: Updates the neural network based on the experiences.
 - **`GNNAgent`**: Defines the Graph Neural Network architecture used by the agent.
 - **`discount_rewards(self, rewards)`**: Computes discounted rewards to provide feedback on actions over time.
 - **`sample_experiences(self, batch_size)`**: Samples experiences from both model and random replay buffers, adjusting the ratio based on the current epsilon value.
@@ -68,7 +68,7 @@ The `FogEnvironment` class represents the fog computing environment where compon
 
 #### Methods
 
-- **`__init__(self)`**: Initializes the environment with application and infrastructure configurations.
+- **`__init__(self, topology_file, num_applications=None, mode='train')`**: Initializes the environment with application and infrastructure configurations.
 - **`define_action_space(self)`**: Defines the action space as a combination of components and hosts.
 - **`define_observation_space(self)`**: Defines the observation space representing the state.
 - **`initialize_state(self)`**: Initializes the environment state, deploying fixed components.
@@ -98,12 +98,12 @@ The `InfrastructureGenerator.py` script dynamically generates scalable infrastru
 
 #### Overview
 
-The `benchmark.py` script measures the execution time of different configurations to evaluate the performance of the deployment strategies. It runs the environment for a specified number of episodes and records the average time per episode.
+The `benchmark.py` script measures the execution time and performance of different configurations to evaluate the deployment strategies across multiple topologies. It runs the environment for a specified number of episodes and records various metrics.
 
 #### Methods
 
-- **`measure_execution_time(num_hosts, density_factor, num_applications)`**: Measures the execution time for given parameters.
-- **`main()`**: Main function to run the benchmark with different configurations.
+- **`run_inference(agent, env, num_episodes, num_applications)`**: Runs inference and collects metrics for the given number of episodes and applications.
+- **`main()`**: Main function to run the benchmark with different configurations and topologies.
 
 ### Main Script
 
@@ -118,7 +118,7 @@ The `main.py` script initializes the environment and agent, and runs training ep
 
 #### Execution
 
-The script runs for a specified number of episodes (default is 1000). In each episode, the agent interacts with the environment, choosing actions and learning from the rewards received. The total reward for each episode is printed to monitor the agent's performance.
+The script runs for a specified number of episodes (default is 3000). In each episode, the agent interacts with the environment, choosing actions and learning from the rewards received. The total reward for each episode is printed to monitor the agent's performance.
 
 ### Dependencies
 
