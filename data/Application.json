@@ -1,30 +1,21 @@
 {
   "applications": [
+    
     {
       "nb": 1,
       "components": 4,
       "requirements": [
-        {"CPU": 1, "RAM": 2},
+        {"CPU": 1, "RAM": 1},
         {"CPU": 4, "RAM": 3},
         {"CPU": 1, "RAM": 1},
         {"CPU": 6, "RAM": 5}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 25},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 30},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 25},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 30},
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
       ],
-      "DZ": [
+      "DZ": [{"component_id":0,"host_id":1}
         
       ]
     },
@@ -40,29 +31,14 @@
         {"CPU": 1, "RAM": 3}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 50, "latency": 25},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 50, "latency": 25},
-        {"id": 2, "source": 1, "destination": 3, "bandwidth": 60, "latency": 20},
-        {"id": 3, "source": 2, "destination": 4, "bandwidth": 50, "latency": 25},
-        {"id": 4, "source": 3, "destination": 5, "bandwidth": 50, "latency": 30}
-      ],
-      "DZ": [{"component_id":5,"host_id":7}
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 50, "latency": 15},
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         {"id": 2, "source": 1, "destination": 3, "bandwidth": 60, "latency": 20},
         {"id": 3, "source": 2, "destination": 4, "bandwidth": 50, "latency": 25},
         {"id": 4, "source": 3, "destination": 5, "bandwidth": 50, "latency": 30}
       ],
       "DZ": [
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
-        
+        {"component_id":0,"host_id":10}
       ]
     },
     {
@@ -72,31 +48,17 @@
         {"CPU": 2, "RAM": 2},
         {"CPU": 3, "RAM": 1},
         {"CPU": 5, "RAM": 4},
-        {"CPU": 1, "RAM": 2},
+        {"CPU": 1, "RAM": 1},
         {"CPU": 4, "RAM": 3}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 20},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 20},
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 30},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25}
       ],
       "DZ": [
-<<<<<<< HEAD
-        {"component_id":4,"host_id":5}
-=======
-        
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
+        {"component_id":3,"host_id":11}
       ]
     },
     {
@@ -109,24 +71,12 @@
         {"CPU": 3, "RAM": 2}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
-        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 25}
-      ],
-      "DZ": [{"component_id":2,"host_id":8}
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 25}
       ],
       "DZ": [
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
-        
+        {"component_id":2,"host_id":26}
       ]
     },
     {
@@ -141,26 +91,14 @@
         {"CPU": 5, "RAM": 4}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25},
         {"id": 4, "source": 4, "destination": 5, "bandwidth": 40, "latency": 30}
       ],
       "DZ": [
-<<<<<<< HEAD
-        {"component_id":2,"host_id":11}
-=======
-        
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
+        {"component_id":2,"host_id":19}
       ]
     },
     {
@@ -172,59 +110,31 @@
         {"CPU": 1, "RAM": 1}
       ],
       "links": [
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 20},
-=======
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 20},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15}
       ],
       "DZ": [
-        {"component_id":2, "host_id":2}
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15}
-      ],
-      "DZ": [
-        
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
+        {"component_id":2,"host_id":28}
       ]
     },
     {
       "nb": 7,
       "components": 5,
       "requirements": [
-        {"CPU": 2, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
         {"CPU": 4, "RAM": 2},
         {"CPU": 1, "RAM": 2},
         {"CPU": 3, "RAM": 3},
         {"CPU": 5, "RAM": 1}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 25, "latency": 25},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 25, "latency": 25},
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 25, "latency": 10},
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 35, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 40, "latency": 25}
       ],
       "DZ": [
-<<<<<<< HEAD
-        
-=======
-<<<<<<< HEAD
-        {"component_id": 4, "host_id": 0}
-=======
-        {"component_id": 4, "host_id": 42}
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
+        {"component_id":0,"host_id":20}
       ]
     },
     {
@@ -237,24 +147,12 @@
         {"CPU": 4, "RAM": 4}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 30},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 30},
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
       ],
       "DZ": [
-<<<<<<< HEAD
-        {"component_id":0,"host_id":25}
-=======
-        
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
+        {"component_id":0,"host_id":16}
       ]
     },
     {
@@ -269,32 +167,14 @@
         {"CPU": 5, "RAM": 4}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 25},
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 20},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 25},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 20},
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 10},
-        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25},
         {"id": 4, "source": 4, "destination": 5, "bandwidth": 40, "latency": 30}
       ],
       "DZ": [
-<<<<<<< HEAD
-        
-=======
-<<<<<<< HEAD
-        {"component_id": 2, "host_id": 1}
-=======
-        {"component_id": 2, "host_id": 25}
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
+        {"component_id":2,"host_id":22}
       ]
     },
     {
@@ -308,21 +188,13 @@
         {"CPU": 5, "RAM": 5}
       ],
       "links": [
-<<<<<<< HEAD
         {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 20},
-=======
-<<<<<<< HEAD
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 20},
-=======
-        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 10},
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 30, "latency": 25}
       ],
       "DZ": [
-        
+        {"component_id":0,"host_id":24}
       ]
     }
   ]

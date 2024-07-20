@@ -2,67 +2,24 @@ import tensorflow as tf
 import tensorflow_gnn as tfgnn
 from tensorflow_gnn.models import mt_albis
 import numpy as np
-<<<<<<< HEAD
 import random
+import os
 
 def flatten_state(state):
-=======
-<<<<<<< HEAD
-import random
-
-def flatten_state(state):
-=======
-
-def flatten_state(state):
-    """
-    Flatten the state dictionary into a single numpy array.
-    This array combines host resources, component requirements and deployment status,
-    logical links, and infrastructure links to form a comprehensive state representation.
-    """
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     hosts = state['hosts']
     applications = state['applications']
     infra_links = state['infra_links']
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     host_values = np.concatenate([list(host.values()) for host in hosts.values()])
     component_values = np.concatenate([list(component.values())[:2] for app in applications for component in app['components'].values()])
     deployed_status = np.array([1.0 if component['deployed'] else 0.0 for app in applications for component in app['components'].values()], dtype=np.float32)
     link_values = np.concatenate([list(link.values()) for app in applications for link in app['links'].values()])
     infra_link_values = np.concatenate([list(link.values()) for link in infra_links.values()])
 
-=======
-    # Flatten host values: CPU and RAM for each host
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
-    host_values = np.concatenate([list(host.values()) for host in hosts.values()])
-    component_values = np.concatenate([list(component.values())[:2] for app in applications for component in app['components'].values()])
-    deployed_status = np.array([1.0 if component['deployed'] else 0.0 for app in applications for component in app['components'].values()], dtype=np.float32)
-    link_values = np.concatenate([list(link.values()) for app in applications for link in app['links'].values()])
-    infra_link_values = np.concatenate([list(link.values()) for link in infra_links.values()])
-
-<<<<<<< HEAD
-=======
-    # Combine all flattened parts into a single array
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     flattened_state = np.concatenate([host_values, component_values, deployed_status, link_values, infra_link_values])
     return flattened_state
 
 def generate_graph_data(state, app_index):
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    """
-    Generate a GraphTensor from the state dictionary for a specific application.
-    The GraphTensor represents the physical and logical structure of the system
-    including hosts and components as nodes, and links as edges.
-    """
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     hosts = state['hosts']
     applications = state['applications']
     infra_links = state['infra_links']
@@ -72,25 +29,11 @@ def generate_graph_data(state, app_index):
     node_indices = {}
     idx = 0
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    # Add host nodes to the graph, each with its CPU and RAM as features
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     for host_id, host in hosts.items():
         node_features.append([host['CPU'], host['RAM'], 0.0])
         node_indices[('host', host_id)] = idx
         idx += 1
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    # Add component nodes to the graph, each with its CPU, RAM, and deployment status as features
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     for comp_id, comp in app['components'].items():
         node_features.append([comp['CPU'], comp['RAM'], 1.0 if comp['deployed'] else 0.0])
         node_indices[('component', app_index, comp_id)] = idx
@@ -99,13 +42,6 @@ def generate_graph_data(state, app_index):
     edge_list = []
     edge_features = []
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    # Add physical links (infrastructure links) to the graph
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     for link in infra_links.values():
         if link['source'] in hosts and link['destination'] in hosts:
             latency = link.get('latency', 0)
@@ -117,13 +53,6 @@ def generate_graph_data(state, app_index):
         else:
             print(f"Skipping invalid link with source {link['source']} and destination {link['destination']}")
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    # Add logical links (application links) to the graph
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     for link in app['links'].values():
         if link['source'] in app['components'] and link['destination'] in app['components']:
             latency = link.get('latency', 0)
@@ -135,25 +64,10 @@ def generate_graph_data(state, app_index):
         else:
             print(f"Skipping invalid link with source {link['source']} and destination {link['destination']}")
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     node_features = np.array(node_features, dtype=np.float32)
     edge_list = np.array(edge_list, dtype=np.int32).T
     edge_features = np.array(edge_features, dtype=np.float32)
 
-=======
-    # Convert node features to a NumPy array
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
-    node_features = np.array(node_features, dtype=np.float32)
-    edge_list = np.array(edge_list, dtype=np.int32).T
-    edge_features = np.array(edge_features, dtype=np.float32)
-
-<<<<<<< HEAD
-=======
-    # Create a GraphTensor from the node and edge data
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     graph = tfgnn.GraphTensor.from_pieces(
         node_sets={'nodes': tfgnn.NodeSet.from_fields(
             sizes=[len(node_features)],
@@ -171,20 +85,9 @@ def generate_graph_data(state, app_index):
 
     return graph
 
-def compute_action_mask(state, app_index, max_components):
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    """
-    Compute a mask for valid actions based on the current state for a specific application.
-    Each action corresponds to deploying a component to a host,
-    and the mask indicates if an action is valid (1) or invalid (0).
-    """
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
+def compute_action_mask(state, app_index, max_components, max_hosts):
     num_hosts = len(state['hosts'])
-    mask = np.zeros((max_components, num_hosts))
+    mask = np.zeros((max_components, max_hosts))
 
     app = state['applications'][app_index]
     for comp_id, comp in app['components'].items():
@@ -193,54 +96,20 @@ def compute_action_mask(state, app_index, max_components):
                 if comp['CPU'] <= host['CPU'] and comp['RAM'] <= host['RAM']:
                     mask[comp_id, host_id] = 1
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    # Flatten the mask and pad to the maximum size (max_components x num_hosts)
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
     mask = mask.flatten()
-    if len(mask) < max_components * num_hosts:
-        mask = np.pad(mask, (0, max_components * num_hosts - len(mask)), 'constant', constant_values=0)
+    if len(mask) < max_components * max_hosts:
+        mask = np.pad(mask, (0, max_components * max_hosts - len(mask)), 'constant', constant_values=0)
+
+ 
 
     return mask
 
+
 class GNNAgent(tf.keras.Model):
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    """
-    A Graph Neural Network (GNN) based agent model for learning deployment strategies.
-    """
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
-    def __init__(self, hidden_dim, output_dim):
+    def __init__(self, hidden_dim):
         super(GNNAgent, self).__init__()
         self.hidden_dim = hidden_dim
-        self.output_dim = output_dim
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        self.projection_layer = tf.keras.layers.Dense(hidden_dim)
-        self.graph_update = mt_albis.MtAlbisGraphUpdate(
-            units=hidden_dim,
-            message_dim=hidden_dim,
-            simple_conv_reduce_type="mean",
-            normalization_type="layer",
-            next_state_type="residual",
-            state_dropout_rate=0.2,
-            l2_regularization=1e-5,
-            receiver_tag=tfgnn.TARGET
-        )
-        self.dense = tf.keras.layers.Dense(output_dim)
-
-    def call(self, graph):
-=======
-        # Layer to project node features to the hidden dimension
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         self.projection_layer = tf.keras.layers.Dense(hidden_dim)
         self.graph_update = mt_albis.MtAlbisGraphUpdate(
             units=hidden_dim,
@@ -253,60 +122,81 @@ class GNNAgent(tf.keras.Model):
             l2_regularization=1e-5,
             receiver_tag=tfgnn.TARGET
         )
-        self.dense = tf.keras.layers.Dense(output_dim)
+        self.dense_layer = tf.keras.layers.Dense(100 * hidden_dim)
 
-    def call(self, graph):
-<<<<<<< HEAD
-=======
-        """
-        Forward pass through the GNN.
-        Project node features, apply graph update, and compute action probabilities.
-        """
-        # Project node features to hidden dimension
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
+    @tf.function
+    def call(self, graph, training=False):
         node_features = graph.node_sets['nodes']['hidden_state']
         projected_features = self.projection_layer(node_features)
         graph = graph.replace_features(node_sets={'nodes': {'hidden_state': projected_features}})
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
         graph = self.graph_update(graph)
         updated_features = graph.node_sets['nodes']['hidden_state']
         
         aggregated_features = tf.reduce_mean(updated_features, axis=0)
         aggregated_features = tf.expand_dims(aggregated_features, axis=0)
 
-        return self.dense(aggregated_features)
+        return self.dense_layer(aggregated_features)
+
+    def save(self, filepath):
+        self.save_weights(os.path.join(filepath, 'gnn_weights'))
+
+    def load(self, filepath):
+        self.load_weights(os.path.join(filepath, 'gnn_weights'))
 
 class Agent:
-    def __init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.001):
+    def __init__(self, input_dim, hidden_dim, max_components, num_hosts, learning_rate=0.001):
         learning_rate_schedule = tf.keras.optimizers.schedules.CosineDecay(
             initial_learning_rate=learning_rate,
             decay_steps=10000,
             alpha=0.0
         )
-        self.model = GNNAgent(hidden_dim, output_dim)
+        self.model = GNNAgent(hidden_dim)
         self.optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate_schedule)
-        self.gamma = 0.95
+        self.gamma = 0.96
         self.epsilon = 1.0
-        self.epsilon_decay = 0.995
+        self.epsilon_decay = 0.998
         self.epsilon_min = 0.01
         self.max_components = max_components
-        self.num_hosts = num_hosts
+        self.num_hosts = num_hosts  # This is the number of hosts the agent was trained with
 
         self.replay_buffer_model = []
         self.replay_buffer_random = []
         self.temp_experiences = []
 
-    def choose_action(self, state, app_index):
-        graph = generate_graph_data(state, app_index)
-        logits = self.model(graph).numpy().flatten()
+    def choose_action(self, state, app_index, mode='train', num_hosts=None):
+        if num_hosts is None:
+            num_hosts = self.num_hosts
 
-        mask = compute_action_mask(state, app_index, self.max_components)
-        masked_logits = np.where(mask, logits, -np.inf)
-        action_probs = np.exp(masked_logits) / np.sum(np.exp(masked_logits))
+        epsilon = 0 if mode == 'inference' else self.epsilon
+        graph = generate_graph_data(state, app_index)
+        logits = self.model(graph, training=False).numpy().flatten()
+    
+        output_dim = self.max_components * num_hosts  # Fixing the output dimension to the max number of hosts
+        logits = logits[:output_dim]
+
+        # Compute the mask based on the current number of hosts
+        mask = compute_action_mask(state, app_index, self.max_components, num_hosts)
+        masked_logits = np.where(mask, logits[:len(mask)], -np.inf)
+
+        
+
+        # Check for NaN or infinite values in masked_logits
+        if np.all(masked_logits == -np.inf):
+            
+            return None, None, None
+
+        # Calculate action probabilities with a small epsilon to avoid division by zero
+        try:
+            action_probs = np.exp(masked_logits) / (np.sum(np.exp(masked_logits)) + 1e-8)
+        except ZeroDivisionError:
+            
+            return None, None, None
+
+        # Ensure action_probs are valid probabilities
+        if np.any(np.isnan(action_probs)) or np.any(np.isinf(action_probs)):
+            
+            return None, None, None
 
         valid_indices = np.where(mask)[0]
 
@@ -314,7 +204,7 @@ class Agent:
             print(f"No valid actions available for app {app_index}. Ending episode.")
             return None, None, None
 
-        if np.random.rand() <= self.epsilon:
+        if np.random.rand() <= epsilon:
             action_index = np.random.choice(valid_indices)
             print(f"Exploring for app {app_index}: Chose random action index {action_index} with epsilon {self.epsilon}")
             explore = True
@@ -323,14 +213,15 @@ class Agent:
             print(f"Exploiting for app {app_index}: Chose best action index {action_index} with epsilon {self.epsilon}")
             explore = False
 
-        component_id, host_id = divmod(action_index, self.num_hosts)
+        component_id, host_id = divmod(action_index, num_hosts)
 
-        if component_id >= self.max_components or host_id >= self.num_hosts or mask[action_index] == 0:
+        if component_id >= self.max_components or host_id >= num_hosts or mask[action_index] == 0:
             print(f"Invalid action for app {app_index}: Trying to deploy component {component_id} to host {host_id} with insufficient resources.")
             return None, None, None
 
         print(f"Chosen action for app {app_index} - Component: {component_id}, Host: {host_id}")
         return (component_id, host_id), action_index, explore
+
 
     def store_experience(self, state, action, reward, next_state, done, app_index, explore):
         self.temp_experiences.append((state, action, reward, next_state, done, app_index, explore))
@@ -368,19 +259,25 @@ class Agent:
         experiences = self.sample_experiences(batch_size)
         total_grads = [tf.zeros_like(var) for var in self.model.trainable_weights]
 
+        rewards = [exp[2] for exp in experiences]
+        mean_reward = np.mean(rewards)
+        std_reward = np.std(rewards)
+        if std_reward > 0:
+            rewards = (rewards - mean_reward) / std_reward
+
         with tf.GradientTape() as tape:
             total_loss = 0
 
-            for state, action_index, reward, next_state, done, app_index in experiences:
+            for i, (state, action_index, reward, next_state, done, app_index) in enumerate(experiences):
                 if action_index is None:
                     continue
                 graph = generate_graph_data(state, app_index)
-                logits = self.model(graph)
+                logits = self.model(graph, training=True)
                 action_index = int(action_index)
                 action_prob = tf.nn.softmax(logits)[0, action_index]
                 log_prob = tf.math.log(action_prob + 1e-8)
 
-                loss = -log_prob * reward
+                loss = -log_prob * rewards[i]
                 total_loss += loss
 
             grads = tape.gradient(total_loss, self.model.trainable_weights)
@@ -393,7 +290,6 @@ class Agent:
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
 
-        # Logging epsilon after each learning step
         print(f"Epsilon after learning: {self.epsilon}")
 
         return total_loss / batch_size
@@ -401,7 +297,7 @@ class Agent:
     def sample_experiences(self, batch_size):
         model_size = len(self.replay_buffer_model)
         random_size = len(self.replay_buffer_random)
-        random_ratio = max(self.epsilon, 0.1)  # Ensure at least 10% random samples
+        random_ratio = max(self.epsilon, 0.1)
 
         model_sample_size = int(batch_size * (1 - random_ratio))
         random_sample_size = batch_size - model_sample_size
@@ -412,168 +308,15 @@ class Agent:
         return model_samples + random_samples
 
     def discount_rewards(self, rewards):
-=======
-        # Apply the graph update to integrate node and edge information
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
-        graph = self.graph_update(graph)
-        updated_features = graph.node_sets['nodes']['hidden_state']
-        
-        aggregated_features = tf.reduce_mean(updated_features, axis=0)
-        aggregated_features = tf.expand_dims(aggregated_features, axis=0)
-
-        return self.dense(aggregated_features)
-
-class Agent:
-    def __init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.001):
-        learning_rate_schedule = tf.keras.optimizers.schedules.CosineDecay(
-            initial_learning_rate=learning_rate,
-            decay_steps=10000,
-            alpha=0.0
-        )
-        self.model = GNNAgent(hidden_dim, output_dim)
-        self.optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate_schedule)
-        self.gamma = 0.95
-        self.epsilon = 1.0
-        self.epsilon_decay = 0.995
-        self.epsilon_min = 0.01
-        self.max_components = max_components
-        self.num_hosts = num_hosts
-
-        self.replay_buffer_model = []
-        self.replay_buffer_random = []
-        self.temp_experiences = []
-
-    def choose_action(self, state, app_index):
-        graph = generate_graph_data(state, app_index)
-        logits = self.model(graph).numpy().flatten()
-
-        mask = compute_action_mask(state, app_index, self.max_components)
-        masked_logits = np.where(mask, logits, -np.inf)
-        action_probs = np.exp(masked_logits) / np.sum(np.exp(masked_logits))
-
-        valid_indices = np.where(mask)[0]
-
-        if valid_indices.size == 0:
-            print(f"No valid actions available for app {app_index}. Ending episode.")
-            return None, None, None
-
-        if np.random.rand() <= self.epsilon:
-            action_index = np.random.choice(valid_indices)
-            print(f"Exploring for app {app_index}: Chose random action index {action_index} with epsilon {self.epsilon}")
-            explore = True
-        else:
-            action_index = np.argmax(action_probs)
-            print(f"Exploiting for app {app_index}: Chose best action index {action_index} with epsilon {self.epsilon}")
-            explore = False
-
-        component_id, host_id = divmod(action_index, self.num_hosts)
-
-        if component_id >= self.max_components or host_id >= self.num_hosts or mask[action_index] == 0:
-            print(f"Invalid action for app {app_index}: Trying to deploy component {component_id} to host {host_id} with insufficient resources.")
-            return None, None, None
-
-        print(f"Chosen action for app {app_index} - Component: {component_id}, Host: {host_id}")
-        return (component_id, host_id), action_index, explore
-
-    def store_experience(self, state, action, reward, next_state, done, app_index, explore):
-        self.temp_experiences.append((state, action, reward, next_state, done, app_index, explore))
-        if done:
-            self._flush_experiences()
-
-    def _flush_experiences(self):
-        rewards = [exp[2] for exp in self.temp_experiences]
-        discounted_rewards = self.discount_rewards(rewards)
-        for i, (state, action, reward, next_state, done, app_index, explore) in enumerate(self.temp_experiences):
-            reward = discounted_rewards[i]
-            if explore:
-                self.replay_buffer_random.append((state, action, reward, next_state, done, app_index))
-                if len(self.replay_buffer_random) > 10000:
-                    self.replay_buffer_random.pop(0)
-            else:
-                self.replay_buffer_model.append((state, action, reward, next_state, done, app_index))
-                if len(self.replay_buffer_model) > 10000:
-                    self.replay_buffer_model.pop(0)
-        self.temp_experiences = []
-
-    def learn(self, batch_size=32):
-        print(f"Replay buffer sizes - Model: {len(self.replay_buffer_model)}, Random: {len(self.replay_buffer_random)}")
-        
-        total_experiences = len(self.replay_buffer_model) + len(self.replay_buffer_random)
-        if total_experiences < batch_size:
-            print("Not enough samples to learn.")
-            # Ensure epsilon decays even when not learning
-            if self.epsilon > self.epsilon_min:
-                self.epsilon *= self.epsilon_decay
-                self.epsilon = max(self.epsilon, self.epsilon_min)
-            print(f"Epsilon after checking buffer size: {self.epsilon}")
-            return
-
-        experiences = self.sample_experiences(batch_size)
-        total_grads = [tf.zeros_like(var) for var in self.model.trainable_weights]
-
-        with tf.GradientTape() as tape:
-            total_loss = 0
-
-            for state, action_index, reward, next_state, done, app_index in experiences:
-                if action_index is None:
-                    continue
-                graph = generate_graph_data(state, app_index)
-                logits = self.model(graph)
-                action_index = int(action_index)
-                action_prob = tf.nn.softmax(logits)[0, action_index]
-                log_prob = tf.math.log(action_prob + 1e-8)
-
-                loss = -log_prob * reward
-                total_loss += loss
-
-            grads = tape.gradient(total_loss, self.model.trainable_weights)
-            for i in range(len(total_grads)):
-                total_grads[i] += grads[i]
-
-        total_grads, _ = tf.clip_by_global_norm(total_grads, 1.0)
-        self.optimizer.apply_gradients(zip(total_grads, self.model.trainable_weights))
-
-        if self.epsilon > self.epsilon_min:
-            self.epsilon *= self.epsilon_decay
-
-        # Logging epsilon after each learning step
-        print(f"Epsilon after learning: {self.epsilon}")
-
-        return total_loss / batch_size
-
-    def sample_experiences(self, batch_size):
-        model_size = len(self.replay_buffer_model)
-        random_size = len(self.replay_buffer_random)
-        random_ratio = max(self.epsilon, 0.1)  # Ensure at least 10% random samples
-
-        model_sample_size = int(batch_size * (1 - random_ratio))
-        random_sample_size = batch_size - model_sample_size
-
-        model_samples = random.sample(self.replay_buffer_model, min(model_sample_size, model_size))
-        random_samples = random.sample(self.replay_buffer_random, min(random_sample_size, random_size))
-
-        return model_samples + random_samples
-
-    def discount_rewards(self, rewards):
-<<<<<<< HEAD
-=======
-        """
-        Compute discounted rewards.
-        Apply discount factor to rewards to emphasize immediate rewards over distant future rewards.
-        """
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
         discounted = np.zeros_like(rewards, dtype=np.float32)
         cumulative = 0.0
         for i in reversed(range(len(rewards))):
             cumulative = cumulative * self.gamma + rewards[i]
             discounted[i] = cumulative
-<<<<<<< HEAD
         return discounted
-=======
-<<<<<<< HEAD
-        return discounted
-=======
-        return discounted
->>>>>>> cb6bf5738e4f5823784affb5113bb4ecfac2527c
->>>>>>> 891a75b2eeed1d61932ee5e971ce929efddb6240
+
+    def save(self, filepath):
+        self.model.save_weights(os.path.join(filepath, 'gnn_weights'))
+
+    def load(self, filepath):
+        self.model.load_weights(os.path.join(filepath, 'gnn_weights'))
