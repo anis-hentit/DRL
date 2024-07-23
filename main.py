@@ -17,17 +17,17 @@ def has_converged(rewards, threshold=0.01, window=30):
     return improvement < threshold and variance < threshold
 
 def test_initialization():
-    topology_files = ["DRL/data/scaled_infrastructure_H100_L7250.json", "DRL/data/scaled_infrastructure_H50_L885.json"]
+    topology_files = ["DRL/data/scaled_infrastructure_H100_L3625.json", "DRL/data/scaled_infrastructure_H50_L885.json"]
     input_dim = 3
-    hidden_dim = 256
+    hidden_dim = 258
     max_components = 6  # Set this to the maximum number of components we expect can make it dynamic from the env class ( "env.max_components")
     num_hosts = 100  # Set to the maximum number of hosts across all topologies
     agent = Agent(input_dim, hidden_dim, max_components, num_hosts, learning_rate=0.002)
 
     rewards = []
     start_time = time.time()
-    max_training_time = 5*3600  # 5 hours in seconds
-    max_episodes = 3000 # Training for 1500 episodes
+    max_training_time = 10*3600  # 5 hours in seconds
+    max_episodes = 4500 # Training for 1500 episodes
     window = 30
     convergence_threshold = 0.1
 
@@ -72,7 +72,7 @@ def test_initialization():
             break
 
     print(f"Training completed in {e} episodes and {elapsed_time:.2f} seconds.")
-    agent.save('gnn_agent_model')  # Save the trained model
+    agent.save('gnn_agent_model_256')  # Save the trained model
 
 if __name__ == "__main__":
     test_initialization()

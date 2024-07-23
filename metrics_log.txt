@@ -2,140 +2,51 @@
 --- Running inference on topology DRL/data/scaled_infrastructure_H100_L3625.json ---
 
 Running inference with 1 applications...
-Avg Time per Episode: 0.4990 seconds
-Avg Reward: 108.7833 per application
-Std Reward: 75.4383
-Min Reward: 15.9667
-Max Reward: 250.4733
-Avg Latency Penalty: -14.8483 per application
-Std Latency Penalty: 3.1821
-Min Latency Penalty: -20.3333
-Max Latency Penalty: -10.0000
-
-Running inference with 5 applications...
-Avg Time per Episode: 1.1705 seconds
-Avg Reward: 95.6009 per application
-Std Reward: 14.1895
-Min Reward: 68.2853
-Max Reward: 115.5053
-Avg Latency Penalty: -13.9317 per application
-Std Latency Penalty: 0.8075
-Min Latency Penalty: -15.3033
-Max Latency Penalty: -12.4900
-
-Running inference with 10 applications...
-Avg Time per Episode: 2.2846 seconds
-Avg Reward: 97.0033 per application
-Std Reward: 4.0460
-Min Reward: 91.2587
-Max Reward: 106.4527
-Avg Latency Penalty: -13.4410 per application
-Std Latency Penalty: 0.0649
-Min Latency Penalty: -13.5283
-Max Latency Penalty: -13.3433
+Avg Time per Episode: 0.2299 seconds
+Avg Reward: 98.1200 per application
+Std Reward: 0.0000
+Min Reward: 98.1200
+Max Reward: 98.1200
+Avg Latency Penalty: -15.3333 per application
+Std Latency Penalty: 0.0000
+Min Latency Penalty: -15.3333
+Max Latency Penalty: -15.3333
 
 --- Running inference on topology DRL/data/scaled_infrastructure_H100_L1551.json ---
 
 Running inference with 1 applications...
-Avg Time per Episode: 0.1285 seconds
-Avg Reward: 69.1533 per application
-Std Reward: 39.8818
-Min Reward: 9.3867
-Max Reward: 147.8533
-Avg Latency Penalty: -10.0583 per application
-Std Latency Penalty: 2.5064
-Min Latency Penalty: -14.3333
-Max Latency Penalty: -6.5000
-
-Running inference with 5 applications...
-Avg Time per Episode: 0.6113 seconds
-Avg Reward: 71.5372 per application
-Std Reward: 13.0899
-Min Reward: 53.2640
-Max Reward: 88.7533
-Avg Latency Penalty: -10.5197 per application
-Std Latency Penalty: 0.8698
-Min Latency Penalty: -12.2033
-Max Latency Penalty: -9.1767
-
-Running inference with 10 applications...
-Avg Time per Episode: 1.2028 seconds
-Avg Reward: 72.0021 per application
-Std Reward: 1.8038
-Min Reward: 70.2447
-Max Reward: 74.7727
-Avg Latency Penalty: -10.1037 per application
-Std Latency Penalty: 0.0160
-Min Latency Penalty: -10.1117
-Max Latency Penalty: -10.0717
+Avg Time per Episode: 0.0768 seconds
+Avg Reward: 64.2200 per application
+Std Reward: 0.0000
+Min Reward: 64.2200
+Max Reward: 64.2200
+Avg Latency Penalty: -11.0000 per application
+Std Latency Penalty: 0.0000
+Min Latency Penalty: -11.0000
+Max Latency Penalty: -11.0000
 
 --- Running inference on topology DRL/data/scaled_infrastructure_H50_L885.json ---
 
 Running inference with 1 applications...
-Avg Time per Episode: 0.0993 seconds
-Avg Reward: 71.2367 per application
-Std Reward: 33.5659
-Min Reward: 16.3267
-Max Reward: 138.4933
-Avg Latency Penalty: -9.0883 per application
-Std Latency Penalty: 5.2577
-Min Latency Penalty: -15.7500
-Max Latency Penalty: -0.8000
-
-Running inference with 5 applications...
-Avg Time per Episode: 0.4181 seconds
-Avg Reward: 39.7271 per application
-Std Reward: 17.2638
-Min Reward: 3.0987
-Max Reward: 65.0320
-Avg Latency Penalty: -8.1590 per application
-Std Latency Penalty: 1.5588
-Min Latency Penalty: -10.4167
-Max Latency Penalty: -5.8300
-
-Running inference with 10 applications...
-Avg Time per Episode: 1.1679 seconds
-Avg Reward: 43.4657 per application
-Std Reward: 3.4973
-Min Reward: 36.5907
-Max Reward: 47.7867
-Avg Latency Penalty: -8.4653 per application
-Std Latency Penalty: 0.4673
-Min Latency Penalty: -9.1350
-Max Latency Penalty: -7.5350
+Avg Time per Episode: 0.0633 seconds
+Avg Reward: 48.3800 per application
+Std Reward: 0.0000
+Min Reward: 48.3800
+Max Reward: 48.3800
+Avg Latency Penalty: -14.6667 per application
+Std Latency Penalty: 0.0000
+Min Latency Penalty: -14.6667
+Max Latency Penalty: -14.6667
 
 --- Running inference on topology DRL/data/scaled_infrastructure_H50_L542.json ---
 
 Running inference with 1 applications...
-Avg Time per Episode: 0.0971 seconds
-Avg Reward: 38.6547 per application
-Std Reward: 81.3118
-Min Reward: -70.9667
-Max Reward: 167.0733
-Avg Latency Penalty: -6.3600 per application
-Std Latency Penalty: 6.0945
-Min Latency Penalty: -15.0000
-Max Latency Penalty: 0.8000
-
-Running inference with 5 applications...
-Avg Time per Episode: 0.6191 seconds
-Avg Reward: 23.6343 per application
-Std Reward: 17.4640
-Min Reward: -5.6653
-Max Reward: 52.6013
-Avg Latency Penalty: -6.2273 per application
-Std Latency Penalty: 1.8387
-Min Latency Penalty: -9.6833
-Max Latency Penalty: -3.3400
-
-Running inference with 10 applications...
-Avg Time per Episode: 0.9997 seconds
-Avg Reward: 28.2471 per application
-Std Reward: 3.9513
-Min Reward: 19.4927
-Max Reward: 33.0727
-Avg Latency Penalty: -6.1708 per application
-Std Latency Penalty: 0.4587
-Min Latency Penalty: -6.7750
-Max Latency Penalty: -5.2750
-
+Avg Time per Episode: 0.0554 seconds
+Avg Reward: 54.1600 per application
+Std Reward: 0.0000
+Min Reward: 54.1600
+Max Reward: 54.1600
+Avg Latency Penalty: -10.3333 per application
+Std Latency Penalty: 0.0000
+Min Latency Penalty: -10.3333
+Max Latency Penalty: -10.3333

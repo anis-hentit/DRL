@@ -1,2 +1,0 @@
-model_checkpoint_path: "gnn_weights"
-all_model_checkpoint_paths: "gnn_weights"

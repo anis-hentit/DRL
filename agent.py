@@ -153,7 +153,7 @@ class Agent:
         )
         self.model = GNNAgent(hidden_dim)
         self.optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate_schedule)
-        self.gamma = 0.96
+        self.gamma = 0.95
         self.epsilon = 1.0
         self.epsilon_decay = 0.998
         self.epsilon_min = 0.01

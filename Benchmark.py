@@ -77,15 +77,15 @@ def run_inference(agent, env, num_episodes, num_applications):
 
 # Load the pre-trained model including dense layers
 input_dim = 3
-hidden_dim = 256
+hidden_dim = 258
 max_components = 6  # Set this to the maximum number of components we expect can make it dynamic from the env class ( "env.max_components")
 num_hosts = 100  # Should be set to the maximum number of hosts across all topologies
 
 agent = Agent(input_dim, hidden_dim, max_components, num_hosts, learning_rate=0.002)
-agent.load('gnn_agent_model')
+agent.load('gnn_agent_model_256')
 
 num_episodes = 10
-application_configs = [1,5,10]
+application_configs = [1]
 topology_files = ["DRL/data/scaled_infrastructure_H100_L3625.json","DRL/data/scaled_infrastructure_H100_L1551.json","DRL/data/scaled_infrastructure_H50_L885.json",
 "DRL/data/scaled_infrastructure_H50_L542.json"]
 
