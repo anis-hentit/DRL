@@ -1,0 +1,140 @@
+
+--- Running inference on topology DRL/data/scaled_infrastructure_H100_L3606.json ---
+
+Running inference with 10 applications using GNN agent...
+Avg Time per Episode: 1.9153 seconds
+Avg Reward: 49.2849 per application
+Std Reward: 3.9523
+Min Reward: 41.5391
+Max Reward: 54.5326
+Avg Latency Penalty: -0.8708 per application
+Std Latency Penalty: 1.6168
+Min Latency Penalty: -3.0106
+Max Latency Penalty: 1.6011
+Avg Total Reward per Episode: 59.3490
+Std Total Reward per Episode: 37.6672
+Min Total Reward per Episode: -13.4824
+Max Total Reward per Episode: 114.9415
+
+Running inference with 10 applications using BestFit Agent...
+Avg Time per Episode: 0.3975 seconds
+Avg Reward: 40.9548 per application
+Std Reward: 6.3580
+Min Reward: 28.1669
+Max Reward: 50.2502
+Avg Latency Penalty: 3.2592 per application
+Std Latency Penalty: 2.0130
+Min Latency Penalty: 0.0628
+Max Latency Penalty: 6.3261
+Avg Total Reward per Episode: -91.1583
+Std Total Reward per Episode: 58.3980
+Min Total Reward per Episode: -203.8722
+Max Total Reward per Episode: -0.7738
+
+
+
+--- Running inference on topology DRL/data/scaled_infrastructure_H50_L808T.json ---
+
+Running inference with 10 applications using GNN agent...
+Avg Time per Episode: 1.1126 seconds
+Avg Reward: 31.0454 per application
+Std Reward: 6.5034
+Min Reward: 23.5964
+Max Reward: 42.0678
+Avg Latency Penalty: 1.2741 per application
+Std Latency Penalty: 1.6888
+Min Latency Penalty: -1.9967
+Max Latency Penalty: 4.0200
+Avg Total Reward per Episode: -39.1368
+Std Total Reward per Episode: 60.9814
+Min Total Reward per Episode: -111.0437
+Max Total Reward per Episode: 77.1011
+
+Running inference with 10 applications using BestFit Agent...
+Avg Time per Episode: 0.1057 seconds
+Avg Reward: 13.6442 per application
+Std Reward: 8.9086
+Min Reward: -0.8850
+Max Reward: 25.8840
+Avg Latency Penalty: 7.3069 per application
+Std Latency Penalty: 2.9850
+Min Latency Penalty: 2.5194
+Max Latency Penalty: 12.0756
+Avg Total Reward per Episode: -249.2884
+Std Total Reward per Episode: 86.4599
+Min Total Reward per Episode: -393.4993
+Max Total Reward per Episode: -118.1936
+
+
+
+
+
+
+
+
+
+--- Running inference on topology DRL/data/scaled_infrastructure_H100_L3606T.json ---
+
+Running inference with 5 applications using GNN agent...
+Avg Time per Episode: 0.7880 seconds
+Avg Reward: 45.0731 per application
+Std Reward: 7.4731
+Min Reward: 35.0688
+Max Reward: 61.1065
+Avg Latency Penalty: -0.8480 per application
+Std Latency Penalty: 1.4373
+Min Latency Penalty: -2.9578
+Max Latency Penalty: 1.0456
+Avg Total Reward per Episode: 14.6130
+Std Total Reward per Episode: 23.0645
+Min Total Reward per Episode: -11.2312
+Max Total Reward per Episode: 44.1780
+
+Running inference with 5 applications using BestFit Agent...
+Avg Time per Episode: 0.2041 seconds
+Avg Reward: 40.4081 per application
+Std Reward: 6.5754
+Min Reward: 28.2359
+Max Reward: 46.3543
+Avg Latency Penalty: 3.2382 per application
+Std Latency Penalty: 2.5329
+Min Latency Penalty: 0.6656
+Max Latency Penalty: 8.1222
+Avg Total Reward per Episode: -52.4286
+Std Total Reward per Episode: 32.0911
+Min Total Reward per Episode: -110.2734
+Max Total Reward per Episode: -13.0654
+
+
+
+--- Running inference on topology DRL/data/scaled_infrastructure_H50_L808T.json ---
+
+Running inference with 5 applications using GNN agent...
+Avg Time per Episode: 0.4540 seconds
+Avg Reward: 30.3287 per application
+Std Reward: 9.5971
+Min Reward: 19.7141
+Max Reward: 48.5343
+Avg Latency Penalty: 1.1533 per application
+Std Latency Penalty: 1.6134
+Min Latency Penalty: -1.2900
+Max Latency Penalty: 3.1856
+Avg Total Reward per Episode: -17.8684
+Std Total Reward per Episode: 30.2559
+Min Total Reward per Episode: -58.5118
+Max Total Reward per Episode: 27.1533
+
+Running inference with 5 applications using BestFit Agent...
+Avg Time per Episode: 0.0559 seconds
+Avg Reward: 25.5847 per application
+Std Reward: 13.4623
+Min Reward: -0.7116
+Max Reward: 47.6442
+Avg Latency Penalty: 6.3307 per application
+Std Latency Penalty: 3.7046
+Min Latency Penalty: 0.2733
+Max Latency Penalty: 13.8067
+Avg Total Reward per Episode: -91.7499
+Std Total Reward per Episode: 59.5645
+Min Total Reward per Episode: -226.9732
+Max Total Reward per Episode: 15.9586

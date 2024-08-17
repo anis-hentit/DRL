@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  tensorflow:
+    image: tensorflow/tensorflow:2.12.0-gpu
+    container_name: tensorflow-gpu
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command: bash -c "pip install tensorflow-gnn gym && tail -f /dev/null"

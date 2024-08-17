@@ -1,0 +1,6715 @@
+{
+    "hosts": {
+        "nb": 50,
+        "configuration": [
+            {
+                "CPU": 2,
+                "BW": 1
+            },
+            {
+                "CPU": 1,
+                "BW": 2
+            },
+            {
+                "CPU": 4,
+                "BW": 1
+            },
+            {
+                "CPU": 1,
+                "BW": 2
+            },
+            {
+                "CPU": 3,
+                "BW": 2
+            },
+            {
+                "CPU": 5,
+                "BW": 3
+            },
+            {
+                "CPU": 2,
+                "BW": 3
+            },
+            {
+                "CPU": 5,
+                "BW": 1
+            },
+            {
+                "CPU": 2,
+                "BW": 2
+            },
+            {
+                "CPU": 5,
+                "BW": 2
+            },
+            {
+                "CPU": 2,
+                "BW": 1
+            },
+            {
+                "CPU": 4,
+                "BW": 2
+            },
+            {
+                "CPU": 2,
+                "BW": 2
+            },
+            {
+                "CPU": 2,
+                "BW": 3
+            },
+            {
+                "CPU": 1,
+                "BW": 1
+            },
+            {
+                "CPU": 3,
+                "BW": 3
+            },
+            {
+                "CPU": 4,
+                "BW": 2
+            },
+            {
+                "CPU": 2,
+                "BW": 3
+            },
+            {
+                "CPU": 1,
+                "BW": 1
+            },
+            {
+                "CPU": 5,
+                "BW": 2
+            },
+            {
+                "CPU": 45,
+                "BW": 23
+            },
+            {
+                "CPU": 40,
+                "BW": 32
+            },
+            {
+                "CPU": 44,
+                "BW": 24
+            },
+            {
+                "CPU": 44,
+                "BW": 31
+            },
+            {
+                "CPU": 60,
+                "BW": 25
+            },
+            {
+                "CPU": 47,
+                "BW": 36
+            },
+            {
+                "CPU": 46,
+                "BW": 37
+            },
+            {
+                "CPU": 52,
+                "BW": 34
+            },
+            {
+                "CPU": 59,
+                "BW": 31
+            },
+            {
+                "CPU": 45,
+                "BW": 37
+            },
+            {
+                "CPU": 40,
+                "BW": 40
+            },
+            {
+                "CPU": 44,
+                "BW": 39
+            },
+            {
+                "CPU": 58,
+                "BW": 21
+            },
+            {
+                "CPU": 49,
+                "BW": 24
+            },
+            {
+                "CPU": 54,
+                "BW": 29
+            },
+            {
+                "CPU": 45,
+                "BW": 26
+            },
+            {
+                "CPU": 50,
+                "BW": 25
+            },
+            {
+                "CPU": 46,
+                "BW": 23
+            },
+            {
+                "CPU": 51,
+                "BW": 23
+            },
+            {
+                "CPU": 50,
+                "BW": 33
+            },
+            {
+                "CPU": 239,
+                "BW": 112
+            },
+            {
+                "CPU": 222,
+                "BW": 117
+            },
+            {
+                "CPU": 201,
+                "BW": 113
+            },
+            {
+                "CPU": 249,
+                "BW": 82
+            },
+            {
+                "CPU": 276,
+                "BW": 112
+            },
+            {
+                "CPU": 261,
+                "BW": 103
+            },
+            {
+                "CPU": 230,
+                "BW": 105
+            },
+            {
+                "CPU": 277,
+                "BW": 84
+            },
+            {
+                "CPU": 254,
+                "BW": 110
+            },
+            {
+                "CPU": 247,
+                "BW": 98
+            }
+        ]
+    },
+    "network": {
+        "topology": [
+            {
+                "source": 0,
+                "destination": 9,
+                "bandwidth": 49,
+                "latency": 7
+            },
+            {
+                "source": 9,
+                "destination": 0,
+                "bandwidth": 49,
+                "latency": 7
+            },
+            {
+                "source": 0,
+                "destination": 12,
+                "bandwidth": 49,
+                "latency": 2
+            },
+            {
+                "source": 12,
+                "destination": 0,
+                "bandwidth": 49,
+                "latency": 2
+            },
+            {
+                "source": 1,
+                "destination": 3,
+                "bandwidth": 49,
+                "latency": 6
+            },
+            {
+                "source": 3,
+                "destination": 1,
+                "bandwidth": 49,
+                "latency": 6
+            },
+            {
+                "source": 1,
+                "destination": 4,
+                "bandwidth": 47,
+                "latency": 10
+            },
+            {
+                "source": 4,
+                "destination": 1,
+                "bandwidth": 47,
+                "latency": 10
+            },
+            {
+                "source": 1,
+                "destination": 9,
+                "bandwidth": 33,
+                "latency": 9
+            },
+            {
+                "source": 9,
+                "destination": 1,
+                "bandwidth": 33,
+                "latency": 9
+            },
+            {
+                "source": 2,
+                "destination": 5,
+                "bandwidth": 39,
+                "latency": 7
+            },
+            {
+                "source": 5,
+                "destination": 2,
+                "bandwidth": 39,
+                "latency": 7
+            },
+            {
+                "source": 2,
+                "destination": 15,
+                "bandwidth": 37,
+                "latency": 1
+            },
+            {
+                "source": 15,
+                "destination": 2,
+                "bandwidth": 37,
+                "latency": 1
+            },
+            {
+                "source": 2,
+                "destination": 17,
+                "bandwidth": 50,
+                "latency": 2
+            },
+            {
+                "source": 17,
+                "destination": 2,
+                "bandwidth": 50,
+                "latency": 2
+            },
+            {
+                "source": 2,
+                "destination": 18,
+                "bandwidth": 33,
+                "latency": 7
+            },
+            {
+                "source": 18,
+                "destination": 2,
+                "bandwidth": 33,
+                "latency": 7
+            },
+            {
+                "source": 3,
+                "destination": 7,
+                "bandwidth": 47,
+                "latency": 5
+            },
+            {
+                "source": 7,
+                "destination": 3,
+                "bandwidth": 47,
+                "latency": 5
+            },
+            {
+                "source": 3,
+                "destination": 11,
+                "bandwidth": 42,
+                "latency": 9
+            },
+            {
+                "source": 11,
+                "destination": 3,
+                "bandwidth": 42,
+                "latency": 9
+            },
+            {
+                "source": 4,
+                "destination": 12,
+                "bandwidth": 32,
+                "latency": 10
+            },
+            {
+                "source": 12,
+                "destination": 4,
+                "bandwidth": 32,
+                "latency": 10
+            },
+            {
+                "source": 4,
+                "destination": 13,
+                "bandwidth": 42,
+                "latency": 3
+            },
+            {
+                "source": 13,
+                "destination": 4,
+                "bandwidth": 42,
+                "latency": 3
+            },
+            {
+                "source": 4,
+                "destination": 14,
+                "bandwidth": 41,
+                "latency": 5
+            },
+            {
+                "source": 14,
+                "destination": 4,
+                "bandwidth": 41,
+                "latency": 5
+            },
+            {
+                "source": 5,
+                "destination": 13,
+                "bandwidth": 42,
+                "latency": 9
+            },
+            {
+                "source": 13,
+                "destination": 5,
+                "bandwidth": 42,
+                "latency": 9
+            },
+            {
+                "source": 7,
+                "destination": 8,
+                "bandwidth": 44,
+                "latency": 7
+            },
+            {
+                "source": 8,
+                "destination": 7,
+                "bandwidth": 44,
+                "latency": 7
+            },
+            {
+                "source": 7,
+                "destination": 12,
+                "bandwidth": 32,
+                "latency": 2
+            },
+            {
+                "source": 12,
+                "destination": 7,
+                "bandwidth": 32,
+                "latency": 2
+            },
+            {
+                "source": 7,
+                "destination": 17,
+                "bandwidth": 33,
+                "latency": 2
+            },
+            {
+                "source": 17,
+                "destination": 7,
+                "bandwidth": 33,
+                "latency": 2
+            },
+            {
+                "source": 8,
+                "destination": 18,
+                "bandwidth": 30,
+                "latency": 7
+            },
+            {
+                "source": 18,
+                "destination": 8,
+                "bandwidth": 30,
+                "latency": 7
+            },
+            {
+                "source": 9,
+                "destination": 16,
+                "bandwidth": 38,
+                "latency": 5
+            },
+            {
+                "source": 16,
+                "destination": 9,
+                "bandwidth": 38,
+                "latency": 5
+            },
+            {
+                "source": 10,
+                "destination": 13,
+                "bandwidth": 42,
+                "latency": 1
+            },
+            {
+                "source": 13,
+                "destination": 10,
+                "bandwidth": 42,
+                "latency": 1
+            },
+            {
+                "source": 11,
+                "destination": 15,
+                "bandwidth": 48,
+                "latency": 2
+            },
+            {
+                "source": 15,
+                "destination": 11,
+                "bandwidth": 48,
+                "latency": 2
+            },
+            {
+                "source": 11,
+                "destination": 18,
+                "bandwidth": 49,
+                "latency": 9
+            },
+            {
+                "source": 18,
+                "destination": 11,
+                "bandwidth": 49,
+                "latency": 9
+            },
+            {
+                "source": 13,
+                "destination": 15,
+                "bandwidth": 33,
+                "latency": 1
+            },
+            {
+                "source": 15,
+                "destination": 13,
+                "bandwidth": 33,
+                "latency": 1
+            },
+            {
+                "source": 13,
+                "destination": 18,
+                "bandwidth": 40,
+                "latency": 1
+            },
+            {
+                "source": 18,
+                "destination": 13,
+                "bandwidth": 40,
+                "latency": 1
+            },
+            {
+                "source": 15,
+                "destination": 17,
+                "bandwidth": 46,
+                "latency": 1
+            },
+            {
+                "source": 17,
+                "destination": 15,
+                "bandwidth": 46,
+                "latency": 1
+            },
+            {
+                "source": 0,
+                "destination": 21,
+                "bandwidth": 59,
+                "latency": 10
+            },
+            {
+                "source": 21,
+                "destination": 0,
+                "bandwidth": 59,
+                "latency": 10
+            },
+            {
+                "source": 0,
+                "destination": 24,
+                "bandwidth": 60,
+                "latency": 15
+            },
+            {
+                "source": 24,
+                "destination": 0,
+                "bandwidth": 60,
+                "latency": 15
+            },
+            {
+                "source": 0,
+                "destination": 25,
+                "bandwidth": 50,
+                "latency": 12
+            },
+            {
+                "source": 25,
+                "destination": 0,
+                "bandwidth": 50,
+                "latency": 12
+            },
+            {
+                "source": 0,
+                "destination": 26,
+                "bandwidth": 58,
+                "latency": 10
+            },
+            {
+                "source": 26,
+                "destination": 0,
+                "bandwidth": 58,
+                "latency": 10
+            },
+            {
+                "source": 0,
+                "destination": 28,
+                "bandwidth": 63,
+                "latency": 15
+            },
+            {
+                "source": 28,
+                "destination": 0,
+                "bandwidth": 63,
+                "latency": 15
+            },
+            {
+                "source": 0,
+                "destination": 29,
+                "bandwidth": 53,
+                "latency": 7
+            },
+            {
+                "source": 29,
+                "destination": 0,
+                "bandwidth": 53,
+                "latency": 7
+            },
+            {
+                "source": 0,
+                "destination": 30,
+                "bandwidth": 60,
+                "latency": 12
+            },
+            {
+                "source": 30,
+                "destination": 0,
+                "bandwidth": 60,
+                "latency": 12
+            },
+            {
+                "source": 0,
+                "destination": 32,
+                "bandwidth": 52,
+                "latency": 6
+            },
+            {
+                "source": 32,
+                "destination": 0,
+                "bandwidth": 52,
+                "latency": 6
+            },
+            {
+                "source": 0,
+                "destination": 33,
+                "bandwidth": 64,
+                "latency": 12
+            },
+            {
+                "source": 33,
+                "destination": 0,
+                "bandwidth": 64,
+                "latency": 12
+            },
+            {
+                "source": 0,
+                "destination": 34,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 34,
+                "destination": 0,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 0,
+                "destination": 36,
+                "bandwidth": 67,
+                "latency": 12
+            },
+            {
+                "source": 36,
+                "destination": 0,
+                "bandwidth": 67,
+                "latency": 12
+            },
+            {
+                "source": 1,
+                "destination": 20,
+                "bandwidth": 61,
+                "latency": 8
+            },
+            {
+                "source": 20,
+                "destination": 1,
+                "bandwidth": 61,
+                "latency": 8
+            },
+            {
+                "source": 1,
+                "destination": 21,
+                "bandwidth": 57,
+                "latency": 11
+            },
+            {
+                "source": 21,
+                "destination": 1,
+                "bandwidth": 57,
+                "latency": 11
+            },
+            {
+                "source": 1,
+                "destination": 24,
+                "bandwidth": 60,
+                "latency": 12
+            },
+            {
+                "source": 24,
+                "destination": 1,
+                "bandwidth": 60,
+                "latency": 12
+            },
+            {
+                "source": 1,
+                "destination": 25,
+                "bandwidth": 67,
+                "latency": 13
+            },
+            {
+                "source": 25,
+                "destination": 1,
+                "bandwidth": 67,
+                "latency": 13
+            },
+            {
+                "source": 1,
+                "destination": 28,
+                "bandwidth": 55,
+                "latency": 9
+            },
+            {
+                "source": 28,
+                "destination": 1,
+                "bandwidth": 55,
+                "latency": 9
+            },
+            {
+                "source": 1,
+                "destination": 29,
+                "bandwidth": 65,
+                "latency": 6
+            },
+            {
+                "source": 29,
+                "destination": 1,
+                "bandwidth": 65,
+                "latency": 6
+            },
+            {
+                "source": 1,
+                "destination": 30,
+                "bandwidth": 60,
+                "latency": 5
+            },
+            {
+                "source": 30,
+                "destination": 1,
+                "bandwidth": 60,
+                "latency": 5
+            },
+            {
+                "source": 1,
+                "destination": 31,
+                "bandwidth": 63,
+                "latency": 11
+            },
+            {
+                "source": 31,
+                "destination": 1,
+                "bandwidth": 63,
+                "latency": 11
+            },
+            {
+                "source": 1,
+                "destination": 33,
+                "bandwidth": 63,
+                "latency": 7
+            },
+            {
+                "source": 33,
+                "destination": 1,
+                "bandwidth": 63,
+                "latency": 7
+            },
+            {
+                "source": 1,
+                "destination": 36,
+                "bandwidth": 64,
+                "latency": 10
+            },
+            {
+                "source": 36,
+                "destination": 1,
+                "bandwidth": 64,
+                "latency": 10
+            },
+            {
+                "source": 1,
+                "destination": 37,
+                "bandwidth": 67,
+                "latency": 15
+            },
+            {
+                "source": 37,
+                "destination": 1,
+                "bandwidth": 67,
+                "latency": 15
+            },
+            {
+                "source": 1,
+                "destination": 38,
+                "bandwidth": 58,
+                "latency": 12
+            },
+            {
+                "source": 38,
+                "destination": 1,
+                "bandwidth": 58,
+                "latency": 12
+            },
+            {
+                "source": 1,
+                "destination": 39,
+                "bandwidth": 54,
+                "latency": 9
+            },
+            {
+                "source": 39,
+                "destination": 1,
+                "bandwidth": 54,
+                "latency": 9
+            },
+            {
+                "source": 2,
+                "destination": 21,
+                "bandwidth": 56,
+                "latency": 13
+            },
+            {
+                "source": 21,
+                "destination": 2,
+                "bandwidth": 56,
+                "latency": 13
+            },
+            {
+                "source": 2,
+                "destination": 22,
+                "bandwidth": 51,
+                "latency": 7
+            },
+            {
+                "source": 22,
+                "destination": 2,
+                "bandwidth": 51,
+                "latency": 7
+            },
+            {
+                "source": 2,
+                "destination": 23,
+                "bandwidth": 69,
+                "latency": 11
+            },
+            {
+                "source": 23,
+                "destination": 2,
+                "bandwidth": 69,
+                "latency": 11
+            },
+            {
+                "source": 2,
+                "destination": 24,
+                "bandwidth": 65,
+                "latency": 6
+            },
+            {
+                "source": 24,
+                "destination": 2,
+                "bandwidth": 65,
+                "latency": 6
+            },
+            {
+                "source": 2,
+                "destination": 25,
+                "bandwidth": 59,
+                "latency": 9
+            },
+            {
+                "source": 25,
+                "destination": 2,
+                "bandwidth": 59,
+                "latency": 9
+            },
+            {
+                "source": 2,
+                "destination": 26,
+                "bandwidth": 60,
+                "latency": 6
+            },
+            {
+                "source": 26,
+                "destination": 2,
+                "bandwidth": 60,
+                "latency": 6
+            },
+            {
+                "source": 2,
+                "destination": 27,
+                "bandwidth": 62,
+                "latency": 10
+            },
+            {
+                "source": 27,
+                "destination": 2,
+                "bandwidth": 62,
+                "latency": 10
+            },
+            {
+                "source": 2,
+                "destination": 28,
+                "bandwidth": 61,
+                "latency": 12
+            },
+            {
+                "source": 28,
+                "destination": 2,
+                "bandwidth": 61,
+                "latency": 12
+            },
+            {
+                "source": 2,
+                "destination": 30,
+                "bandwidth": 65,
+                "latency": 6
+            },
+            {
+                "source": 30,
+                "destination": 2,
+                "bandwidth": 65,
+                "latency": 6
+            },
+            {
+                "source": 2,
+                "destination": 33,
+                "bandwidth": 65,
+                "latency": 10
+            },
+            {
+                "source": 33,
+                "destination": 2,
+                "bandwidth": 65,
+                "latency": 10
+            },
+            {
+                "source": 2,
+                "destination": 34,
+                "bandwidth": 68,
+                "latency": 14
+            },
+            {
+                "source": 34,
+                "destination": 2,
+                "bandwidth": 68,
+                "latency": 14
+            },
+            {
+                "source": 2,
+                "destination": 35,
+                "bandwidth": 53,
+                "latency": 13
+            },
+            {
+                "source": 35,
+                "destination": 2,
+                "bandwidth": 53,
+                "latency": 13
+            },
+            {
+                "source": 2,
+                "destination": 36,
+                "bandwidth": 50,
+                "latency": 14
+            },
+            {
+                "source": 36,
+                "destination": 2,
+                "bandwidth": 50,
+                "latency": 14
+            },
+            {
+                "source": 2,
+                "destination": 37,
+                "bandwidth": 52,
+                "latency": 12
+            },
+            {
+                "source": 37,
+                "destination": 2,
+                "bandwidth": 52,
+                "latency": 12
+            },
+            {
+                "source": 2,
+                "destination": 38,
+                "bandwidth": 58,
+                "latency": 8
+            },
+            {
+                "source": 38,
+                "destination": 2,
+                "bandwidth": 58,
+                "latency": 8
+            },
+            {
+                "source": 2,
+                "destination": 39,
+                "bandwidth": 57,
+                "latency": 8
+            },
+            {
+                "source": 39,
+                "destination": 2,
+                "bandwidth": 57,
+                "latency": 8
+            },
+            {
+                "source": 3,
+                "destination": 21,
+                "bandwidth": 64,
+                "latency": 5
+            },
+            {
+                "source": 21,
+                "destination": 3,
+                "bandwidth": 64,
+                "latency": 5
+            },
+            {
+                "source": 3,
+                "destination": 22,
+                "bandwidth": 63,
+                "latency": 13
+            },
+            {
+                "source": 22,
+                "destination": 3,
+                "bandwidth": 63,
+                "latency": 13
+            },
+            {
+                "source": 3,
+                "destination": 23,
+                "bandwidth": 59,
+                "latency": 12
+            },
+            {
+                "source": 23,
+                "destination": 3,
+                "bandwidth": 59,
+                "latency": 12
+            },
+            {
+                "source": 3,
+                "destination": 25,
+                "bandwidth": 62,
+                "latency": 14
+            },
+            {
+                "source": 25,
+                "destination": 3,
+                "bandwidth": 62,
+                "latency": 14
+            },
+            {
+                "source": 3,
+                "destination": 27,
+                "bandwidth": 53,
+                "latency": 10
+            },
+            {
+                "source": 27,
+                "destination": 3,
+                "bandwidth": 53,
+                "latency": 10
+            },
+            {
+                "source": 3,
+                "destination": 28,
+                "bandwidth": 62,
+                "latency": 11
+            },
+            {
+                "source": 28,
+                "destination": 3,
+                "bandwidth": 62,
+                "latency": 11
+            },
+            {
+                "source": 3,
+                "destination": 29,
+                "bandwidth": 59,
+                "latency": 7
+            },
+            {
+                "source": 29,
+                "destination": 3,
+                "bandwidth": 59,
+                "latency": 7
+            },
+            {
+                "source": 3,
+                "destination": 30,
+                "bandwidth": 66,
+                "latency": 11
+            },
+            {
+                "source": 30,
+                "destination": 3,
+                "bandwidth": 66,
+                "latency": 11
+            },
+            {
+                "source": 3,
+                "destination": 31,
+                "bandwidth": 62,
+                "latency": 13
+            },
+            {
+                "source": 31,
+                "destination": 3,
+                "bandwidth": 62,
+                "latency": 13
+            },
+            {
+                "source": 3,
+                "destination": 34,
+                "bandwidth": 68,
+                "latency": 8
+            },
+            {
+                "source": 34,
+                "destination": 3,
+                "bandwidth": 68,
+                "latency": 8
+            },
+            {
+                "source": 3,
+                "destination": 35,
+                "bandwidth": 69,
+                "latency": 9
+            },
+            {
+                "source": 35,
+                "destination": 3,
+                "bandwidth": 69,
+                "latency": 9
+            },
+            {
+                "source": 3,
+                "destination": 36,
+                "bandwidth": 64,
+                "latency": 13
+            },
+            {
+                "source": 36,
+                "destination": 3,
+                "bandwidth": 64,
+                "latency": 13
+            },
+            {
+                "source": 3,
+                "destination": 37,
+                "bandwidth": 64,
+                "latency": 7
+            },
+            {
+                "source": 37,
+                "destination": 3,
+                "bandwidth": 64,
+                "latency": 7
+            },
+            {
+                "source": 3,
+                "destination": 38,
+                "bandwidth": 51,
+                "latency": 10
+            },
+            {
+                "source": 38,
+                "destination": 3,
+                "bandwidth": 51,
+                "latency": 10
+            },
+            {
+                "source": 3,
+                "destination": 39,
+                "bandwidth": 60,
+                "latency": 9
+            },
+            {
+                "source": 39,
+                "destination": 3,
+                "bandwidth": 60,
+                "latency": 9
+            },
+            {
+                "source": 4,
+                "destination": 20,
+                "bandwidth": 51,
+                "latency": 9
+            },
+            {
+                "source": 20,
+                "destination": 4,
+                "bandwidth": 51,
+                "latency": 9
+            },
+            {
+                "source": 4,
+                "destination": 22,
+                "bandwidth": 67,
+                "latency": 6
+            },
+            {
+                "source": 22,
+                "destination": 4,
+                "bandwidth": 67,
+                "latency": 6
+            },
+            {
+                "source": 4,
+                "destination": 24,
+                "bandwidth": 57,
+                "latency": 11
+            },
+            {
+                "source": 24,
+                "destination": 4,
+                "bandwidth": 57,
+                "latency": 11
+            },
+            {
+                "source": 4,
+                "destination": 26,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 26,
+                "destination": 4,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 4,
+                "destination": 27,
+                "bandwidth": 56,
+                "latency": 9
+            },
+            {
+                "source": 27,
+                "destination": 4,
+                "bandwidth": 56,
+                "latency": 9
+            },
+            {
+                "source": 4,
+                "destination": 28,
+                "bandwidth": 63,
+                "latency": 6
+            },
+            {
+                "source": 28,
+                "destination": 4,
+                "bandwidth": 63,
+                "latency": 6
+            },
+            {
+                "source": 4,
+                "destination": 30,
+                "bandwidth": 69,
+                "latency": 15
+            },
+            {
+                "source": 30,
+                "destination": 4,
+                "bandwidth": 69,
+                "latency": 15
+            },
+            {
+                "source": 4,
+                "destination": 32,
+                "bandwidth": 53,
+                "latency": 15
+            },
+            {
+                "source": 32,
+                "destination": 4,
+                "bandwidth": 53,
+                "latency": 15
+            },
+            {
+                "source": 4,
+                "destination": 33,
+                "bandwidth": 59,
+                "latency": 11
+            },
+            {
+                "source": 33,
+                "destination": 4,
+                "bandwidth": 59,
+                "latency": 11
+            },
+            {
+                "source": 4,
+                "destination": 34,
+                "bandwidth": 60,
+                "latency": 7
+            },
+            {
+                "source": 34,
+                "destination": 4,
+                "bandwidth": 60,
+                "latency": 7
+            },
+            {
+                "source": 4,
+                "destination": 35,
+                "bandwidth": 54,
+                "latency": 8
+            },
+            {
+                "source": 35,
+                "destination": 4,
+                "bandwidth": 54,
+                "latency": 8
+            },
+            {
+                "source": 4,
+                "destination": 36,
+                "bandwidth": 63,
+                "latency": 7
+            },
+            {
+                "source": 36,
+                "destination": 4,
+                "bandwidth": 63,
+                "latency": 7
+            },
+            {
+                "source": 4,
+                "destination": 38,
+                "bandwidth": 55,
+                "latency": 9
+            },
+            {
+                "source": 38,
+                "destination": 4,
+                "bandwidth": 55,
+                "latency": 9
+            },
+            {
+                "source": 4,
+                "destination": 39,
+                "bandwidth": 57,
+                "latency": 15
+            },
+            {
+                "source": 39,
+                "destination": 4,
+                "bandwidth": 57,
+                "latency": 15
+            },
+            {
+                "source": 5,
+                "destination": 20,
+                "bandwidth": 63,
+                "latency": 10
+            },
+            {
+                "source": 20,
+                "destination": 5,
+                "bandwidth": 63,
+                "latency": 10
+            },
+            {
+                "source": 5,
+                "destination": 24,
+                "bandwidth": 62,
+                "latency": 8
+            },
+            {
+                "source": 24,
+                "destination": 5,
+                "bandwidth": 62,
+                "latency": 8
+            },
+            {
+                "source": 5,
+                "destination": 25,
+                "bandwidth": 66,
+                "latency": 9
+            },
+            {
+                "source": 25,
+                "destination": 5,
+                "bandwidth": 66,
+                "latency": 9
+            },
+            {
+                "source": 5,
+                "destination": 27,
+                "bandwidth": 58,
+                "latency": 15
+            },
+            {
+                "source": 27,
+                "destination": 5,
+                "bandwidth": 58,
+                "latency": 15
+            },
+            {
+                "source": 5,
+                "destination": 28,
+                "bandwidth": 70,
+                "latency": 13
+            },
+            {
+                "source": 28,
+                "destination": 5,
+                "bandwidth": 70,
+                "latency": 13
+            },
+            {
+                "source": 5,
+                "destination": 29,
+                "bandwidth": 62,
+                "latency": 9
+            },
+            {
+                "source": 29,
+                "destination": 5,
+                "bandwidth": 62,
+                "latency": 9
+            },
+            {
+                "source": 5,
+                "destination": 30,
+                "bandwidth": 68,
+                "latency": 15
+            },
+            {
+                "source": 30,
+                "destination": 5,
+                "bandwidth": 68,
+                "latency": 15
+            },
+            {
+                "source": 5,
+                "destination": 31,
+                "bandwidth": 57,
+                "latency": 10
+            },
+            {
+                "source": 31,
+                "destination": 5,
+                "bandwidth": 57,
+                "latency": 10
+            },
+            {
+                "source": 5,
+                "destination": 32,
+                "bandwidth": 63,
+                "latency": 7
+            },
+            {
+                "source": 32,
+                "destination": 5,
+                "bandwidth": 63,
+                "latency": 7
+            },
+            {
+                "source": 5,
+                "destination": 34,
+                "bandwidth": 69,
+                "latency": 8
+            },
+            {
+                "source": 34,
+                "destination": 5,
+                "bandwidth": 69,
+                "latency": 8
+            },
+            {
+                "source": 5,
+                "destination": 35,
+                "bandwidth": 66,
+                "latency": 15
+            },
+            {
+                "source": 35,
+                "destination": 5,
+                "bandwidth": 66,
+                "latency": 15
+            },
+            {
+                "source": 5,
+                "destination": 37,
+                "bandwidth": 55,
+                "latency": 11
+            },
+            {
+                "source": 37,
+                "destination": 5,
+                "bandwidth": 55,
+                "latency": 11
+            },
+            {
+                "source": 5,
+                "destination": 38,
+                "bandwidth": 57,
+                "latency": 14
+            },
+            {
+                "source": 38,
+                "destination": 5,
+                "bandwidth": 57,
+                "latency": 14
+            },
+            {
+                "source": 5,
+                "destination": 39,
+                "bandwidth": 60,
+                "latency": 7
+            },
+            {
+                "source": 39,
+                "destination": 5,
+                "bandwidth": 60,
+                "latency": 7
+            },
+            {
+                "source": 6,
+                "destination": 20,
+                "bandwidth": 68,
+                "latency": 5
+            },
+            {
+                "source": 20,
+                "destination": 6,
+                "bandwidth": 68,
+                "latency": 5
+            },
+            {
+                "source": 6,
+                "destination": 22,
+                "bandwidth": 70,
+                "latency": 8
+            },
+            {
+                "source": 22,
+                "destination": 6,
+                "bandwidth": 70,
+                "latency": 8
+            },
+            {
+                "source": 6,
+                "destination": 23,
+                "bandwidth": 61,
+                "latency": 9
+            },
+            {
+                "source": 23,
+                "destination": 6,
+                "bandwidth": 61,
+                "latency": 9
+            },
+            {
+                "source": 6,
+                "destination": 24,
+                "bandwidth": 56,
+                "latency": 14
+            },
+            {
+                "source": 24,
+                "destination": 6,
+                "bandwidth": 56,
+                "latency": 14
+            },
+            {
+                "source": 6,
+                "destination": 27,
+                "bandwidth": 53,
+                "latency": 5
+            },
+            {
+                "source": 27,
+                "destination": 6,
+                "bandwidth": 53,
+                "latency": 5
+            },
+            {
+                "source": 6,
+                "destination": 28,
+                "bandwidth": 53,
+                "latency": 12
+            },
+            {
+                "source": 28,
+                "destination": 6,
+                "bandwidth": 53,
+                "latency": 12
+            },
+            {
+                "source": 6,
+                "destination": 30,
+                "bandwidth": 63,
+                "latency": 8
+            },
+            {
+                "source": 30,
+                "destination": 6,
+                "bandwidth": 63,
+                "latency": 8
+            },
+            {
+                "source": 6,
+                "destination": 31,
+                "bandwidth": 50,
+                "latency": 15
+            },
+            {
+                "source": 31,
+                "destination": 6,
+                "bandwidth": 50,
+                "latency": 15
+            },
+            {
+                "source": 6,
+                "destination": 32,
+                "bandwidth": 64,
+                "latency": 12
+            },
+            {
+                "source": 32,
+                "destination": 6,
+                "bandwidth": 64,
+                "latency": 12
+            },
+            {
+                "source": 6,
+                "destination": 35,
+                "bandwidth": 64,
+                "latency": 11
+            },
+            {
+                "source": 35,
+                "destination": 6,
+                "bandwidth": 64,
+                "latency": 11
+            },
+            {
+                "source": 6,
+                "destination": 36,
+                "bandwidth": 62,
+                "latency": 6
+            },
+            {
+                "source": 36,
+                "destination": 6,
+                "bandwidth": 62,
+                "latency": 6
+            },
+            {
+                "source": 6,
+                "destination": 38,
+                "bandwidth": 56,
+                "latency": 11
+            },
+            {
+                "source": 38,
+                "destination": 6,
+                "bandwidth": 56,
+                "latency": 11
+            },
+            {
+                "source": 7,
+                "destination": 20,
+                "bandwidth": 54,
+                "latency": 8
+            },
+            {
+                "source": 20,
+                "destination": 7,
+                "bandwidth": 54,
+                "latency": 8
+            },
+            {
+                "source": 7,
+                "destination": 21,
+                "bandwidth": 63,
+                "latency": 11
+            },
+            {
+                "source": 21,
+                "destination": 7,
+                "bandwidth": 63,
+                "latency": 11
+            },
+            {
+                "source": 7,
+                "destination": 22,
+                "bandwidth": 54,
+                "latency": 12
+            },
+            {
+                "source": 22,
+                "destination": 7,
+                "bandwidth": 54,
+                "latency": 12
+            },
+            {
+                "source": 7,
+                "destination": 24,
+                "bandwidth": 62,
+                "latency": 5
+            },
+            {
+                "source": 24,
+                "destination": 7,
+                "bandwidth": 62,
+                "latency": 5
+            },
+            {
+                "source": 7,
+                "destination": 25,
+                "bandwidth": 59,
+                "latency": 13
+            },
+            {
+                "source": 25,
+                "destination": 7,
+                "bandwidth": 59,
+                "latency": 13
+            },
+            {
+                "source": 7,
+                "destination": 26,
+                "bandwidth": 63,
+                "latency": 12
+            },
+            {
+                "source": 26,
+                "destination": 7,
+                "bandwidth": 63,
+                "latency": 12
+            },
+            {
+                "source": 7,
+                "destination": 27,
+                "bandwidth": 68,
+                "latency": 6
+            },
+            {
+                "source": 27,
+                "destination": 7,
+                "bandwidth": 68,
+                "latency": 6
+            },
+            {
+                "source": 7,
+                "destination": 28,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 28,
+                "destination": 7,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 7,
+                "destination": 29,
+                "bandwidth": 54,
+                "latency": 13
+            },
+            {
+                "source": 29,
+                "destination": 7,
+                "bandwidth": 54,
+                "latency": 13
+            },
+            {
+                "source": 7,
+                "destination": 32,
+                "bandwidth": 51,
+                "latency": 8
+            },
+            {
+                "source": 32,
+                "destination": 7,
+                "bandwidth": 51,
+                "latency": 8
+            },
+            {
+                "source": 7,
+                "destination": 33,
+                "bandwidth": 63,
+                "latency": 13
+            },
+            {
+                "source": 33,
+                "destination": 7,
+                "bandwidth": 63,
+                "latency": 13
+            },
+            {
+                "source": 7,
+                "destination": 36,
+                "bandwidth": 62,
+                "latency": 13
+            },
+            {
+                "source": 36,
+                "destination": 7,
+                "bandwidth": 62,
+                "latency": 13
+            },
+            {
+                "source": 7,
+                "destination": 37,
+                "bandwidth": 66,
+                "latency": 8
+            },
+            {
+                "source": 37,
+                "destination": 7,
+                "bandwidth": 66,
+                "latency": 8
+            },
+            {
+                "source": 7,
+                "destination": 38,
+                "bandwidth": 67,
+                "latency": 10
+            },
+            {
+                "source": 38,
+                "destination": 7,
+                "bandwidth": 67,
+                "latency": 10
+            },
+            {
+                "source": 7,
+                "destination": 39,
+                "bandwidth": 67,
+                "latency": 15
+            },
+            {
+                "source": 39,
+                "destination": 7,
+                "bandwidth": 67,
+                "latency": 15
+            },
+            {
+                "source": 8,
+                "destination": 20,
+                "bandwidth": 66,
+                "latency": 6
+            },
+            {
+                "source": 20,
+                "destination": 8,
+                "bandwidth": 66,
+                "latency": 6
+            },
+            {
+                "source": 8,
+                "destination": 22,
+                "bandwidth": 55,
+                "latency": 10
+            },
+            {
+                "source": 22,
+                "destination": 8,
+                "bandwidth": 55,
+                "latency": 10
+            },
+            {
+                "source": 8,
+                "destination": 23,
+                "bandwidth": 57,
+                "latency": 14
+            },
+            {
+                "source": 23,
+                "destination": 8,
+                "bandwidth": 57,
+                "latency": 14
+            },
+            {
+                "source": 8,
+                "destination": 24,
+                "bandwidth": 68,
+                "latency": 9
+            },
+            {
+                "source": 24,
+                "destination": 8,
+                "bandwidth": 68,
+                "latency": 9
+            },
+            {
+                "source": 8,
+                "destination": 25,
+                "bandwidth": 58,
+                "latency": 6
+            },
+            {
+                "source": 25,
+                "destination": 8,
+                "bandwidth": 58,
+                "latency": 6
+            },
+            {
+                "source": 8,
+                "destination": 26,
+                "bandwidth": 60,
+                "latency": 14
+            },
+            {
+                "source": 26,
+                "destination": 8,
+                "bandwidth": 60,
+                "latency": 14
+            },
+            {
+                "source": 8,
+                "destination": 27,
+                "bandwidth": 58,
+                "latency": 13
+            },
+            {
+                "source": 27,
+                "destination": 8,
+                "bandwidth": 58,
+                "latency": 13
+            },
+            {
+                "source": 8,
+                "destination": 28,
+                "bandwidth": 65,
+                "latency": 9
+            },
+            {
+                "source": 28,
+                "destination": 8,
+                "bandwidth": 65,
+                "latency": 9
+            },
+            {
+                "source": 8,
+                "destination": 29,
+                "bandwidth": 62,
+                "latency": 8
+            },
+            {
+                "source": 29,
+                "destination": 8,
+                "bandwidth": 62,
+                "latency": 8
+            },
+            {
+                "source": 8,
+                "destination": 31,
+                "bandwidth": 67,
+                "latency": 14
+            },
+            {
+                "source": 31,
+                "destination": 8,
+                "bandwidth": 67,
+                "latency": 14
+            },
+            {
+                "source": 8,
+                "destination": 32,
+                "bandwidth": 67,
+                "latency": 9
+            },
+            {
+                "source": 32,
+                "destination": 8,
+                "bandwidth": 67,
+                "latency": 9
+            },
+            {
+                "source": 8,
+                "destination": 33,
+                "bandwidth": 58,
+                "latency": 12
+            },
+            {
+                "source": 33,
+                "destination": 8,
+                "bandwidth": 58,
+                "latency": 12
+            },
+            {
+                "source": 8,
+                "destination": 34,
+                "bandwidth": 53,
+                "latency": 12
+            },
+            {
+                "source": 34,
+                "destination": 8,
+                "bandwidth": 53,
+                "latency": 12
+            },
+            {
+                "source": 8,
+                "destination": 35,
+                "bandwidth": 62,
+                "latency": 8
+            },
+            {
+                "source": 35,
+                "destination": 8,
+                "bandwidth": 62,
+                "latency": 8
+            },
+            {
+                "source": 8,
+                "destination": 36,
+                "bandwidth": 55,
+                "latency": 8
+            },
+            {
+                "source": 36,
+                "destination": 8,
+                "bandwidth": 55,
+                "latency": 8
+            },
+            {
+                "source": 8,
+                "destination": 37,
+                "bandwidth": 51,
+                "latency": 5
+            },
+            {
+                "source": 37,
+                "destination": 8,
+                "bandwidth": 51,
+                "latency": 5
+            },
+            {
+                "source": 8,
+                "destination": 38,
+                "bandwidth": 55,
+                "latency": 8
+            },
+            {
+                "source": 38,
+                "destination": 8,
+                "bandwidth": 55,
+                "latency": 8
+            },
+            {
+                "source": 8,
+                "destination": 39,
+                "bandwidth": 59,
+                "latency": 11
+            },
+            {
+                "source": 39,
+                "destination": 8,
+                "bandwidth": 59,
+                "latency": 11
+            },
+            {
+                "source": 9,
+                "destination": 20,
+                "bandwidth": 69,
+                "latency": 12
+            },
+            {
+                "source": 20,
+                "destination": 9,
+                "bandwidth": 69,
+                "latency": 12
+            },
+            {
+                "source": 9,
+                "destination": 23,
+                "bandwidth": 56,
+                "latency": 14
+            },
+            {
+                "source": 23,
+                "destination": 9,
+                "bandwidth": 56,
+                "latency": 14
+            },
+            {
+                "source": 9,
+                "destination": 24,
+                "bandwidth": 57,
+                "latency": 6
+            },
+            {
+                "source": 24,
+                "destination": 9,
+                "bandwidth": 57,
+                "latency": 6
+            },
+            {
+                "source": 9,
+                "destination": 25,
+                "bandwidth": 70,
+                "latency": 8
+            },
+            {
+                "source": 25,
+                "destination": 9,
+                "bandwidth": 70,
+                "latency": 8
+            },
+            {
+                "source": 9,
+                "destination": 27,
+                "bandwidth": 57,
+                "latency": 6
+            },
+            {
+                "source": 27,
+                "destination": 9,
+                "bandwidth": 57,
+                "latency": 6
+            },
+            {
+                "source": 9,
+                "destination": 28,
+                "bandwidth": 56,
+                "latency": 10
+            },
+            {
+                "source": 28,
+                "destination": 9,
+                "bandwidth": 56,
+                "latency": 10
+            },
+            {
+                "source": 9,
+                "destination": 30,
+                "bandwidth": 61,
+                "latency": 12
+            },
+            {
+                "source": 30,
+                "destination": 9,
+                "bandwidth": 61,
+                "latency": 12
+            },
+            {
+                "source": 9,
+                "destination": 31,
+                "bandwidth": 51,
+                "latency": 7
+            },
+            {
+                "source": 31,
+                "destination": 9,
+                "bandwidth": 51,
+                "latency": 7
+            },
+            {
+                "source": 9,
+                "destination": 32,
+                "bandwidth": 63,
+                "latency": 5
+            },
+            {
+                "source": 32,
+                "destination": 9,
+                "bandwidth": 63,
+                "latency": 5
+            },
+            {
+                "source": 9,
+                "destination": 34,
+                "bandwidth": 55,
+                "latency": 13
+            },
+            {
+                "source": 34,
+                "destination": 9,
+                "bandwidth": 55,
+                "latency": 13
+            },
+            {
+                "source": 9,
+                "destination": 36,
+                "bandwidth": 61,
+                "latency": 8
+            },
+            {
+                "source": 36,
+                "destination": 9,
+                "bandwidth": 61,
+                "latency": 8
+            },
+            {
+                "source": 9,
+                "destination": 38,
+                "bandwidth": 55,
+                "latency": 6
+            },
+            {
+                "source": 38,
+                "destination": 9,
+                "bandwidth": 55,
+                "latency": 6
+            },
+            {
+                "source": 10,
+                "destination": 21,
+                "bandwidth": 58,
+                "latency": 8
+            },
+            {
+                "source": 21,
+                "destination": 10,
+                "bandwidth": 58,
+                "latency": 8
+            },
+            {
+                "source": 10,
+                "destination": 23,
+                "bandwidth": 59,
+                "latency": 9
+            },
+            {
+                "source": 23,
+                "destination": 10,
+                "bandwidth": 59,
+                "latency": 9
+            },
+            {
+                "source": 10,
+                "destination": 24,
+                "bandwidth": 65,
+                "latency": 11
+            },
+            {
+                "source": 24,
+                "destination": 10,
+                "bandwidth": 65,
+                "latency": 11
+            },
+            {
+                "source": 10,
+                "destination": 27,
+                "bandwidth": 66,
+                "latency": 8
+            },
+            {
+                "source": 27,
+                "destination": 10,
+                "bandwidth": 66,
+                "latency": 8
+            },
+            {
+                "source": 10,
+                "destination": 28,
+                "bandwidth": 51,
+                "latency": 10
+            },
+            {
+                "source": 28,
+                "destination": 10,
+                "bandwidth": 51,
+                "latency": 10
+            },
+            {
+                "source": 10,
+                "destination": 30,
+                "bandwidth": 51,
+                "latency": 12
+            },
+            {
+                "source": 30,
+                "destination": 10,
+                "bandwidth": 51,
+                "latency": 12
+            },
+            {
+                "source": 10,
+                "destination": 31,
+                "bandwidth": 68,
+                "latency": 8
+            },
+            {
+                "source": 31,
+                "destination": 10,
+                "bandwidth": 68,
+                "latency": 8
+            },
+            {
+                "source": 10,
+                "destination": 32,
+                "bandwidth": 59,
+                "latency": 5
+            },
+            {
+                "source": 32,
+                "destination": 10,
+                "bandwidth": 59,
+                "latency": 5
+            },
+            {
+                "source": 10,
+                "destination": 33,
+                "bandwidth": 66,
+                "latency": 10
+            },
+            {
+                "source": 33,
+                "destination": 10,
+                "bandwidth": 66,
+                "latency": 10
+            },
+            {
+                "source": 10,
+                "destination": 34,
+                "bandwidth": 68,
+                "latency": 11
+            },
+            {
+                "source": 34,
+                "destination": 10,
+                "bandwidth": 68,
+                "latency": 11
+            },
+            {
+                "source": 10,
+                "destination": 35,
+                "bandwidth": 59,
+                "latency": 5
+            },
+            {
+                "source": 35,
+                "destination": 10,
+                "bandwidth": 59,
+                "latency": 5
+            },
+            {
+                "source": 10,
+                "destination": 37,
+                "bandwidth": 56,
+                "latency": 13
+            },
+            {
+                "source": 37,
+                "destination": 10,
+                "bandwidth": 56,
+                "latency": 13
+            },
+            {
+                "source": 10,
+                "destination": 38,
+                "bandwidth": 51,
+                "latency": 6
+            },
+            {
+                "source": 38,
+                "destination": 10,
+                "bandwidth": 51,
+                "latency": 6
+            },
+            {
+                "source": 11,
+                "destination": 20,
+                "bandwidth": 51,
+                "latency": 7
+            },
+            {
+                "source": 20,
+                "destination": 11,
+                "bandwidth": 51,
+                "latency": 7
+            },
+            {
+                "source": 11,
+                "destination": 22,
+                "bandwidth": 51,
+                "latency": 8
+            },
+            {
+                "source": 22,
+                "destination": 11,
+                "bandwidth": 51,
+                "latency": 8
+            },
+            {
+                "source": 11,
+                "destination": 23,
+                "bandwidth": 50,
+                "latency": 13
+            },
+            {
+                "source": 23,
+                "destination": 11,
+                "bandwidth": 50,
+                "latency": 13
+            },
+            {
+                "source": 11,
+                "destination": 24,
+                "bandwidth": 61,
+                "latency": 12
+            },
+            {
+                "source": 24,
+                "destination": 11,
+                "bandwidth": 61,
+                "latency": 12
+            },
+            {
+                "source": 11,
+                "destination": 25,
+                "bandwidth": 67,
+                "latency": 5
+            },
+            {
+                "source": 25,
+                "destination": 11,
+                "bandwidth": 67,
+                "latency": 5
+            },
+            {
+                "source": 11,
+                "destination": 27,
+                "bandwidth": 60,
+                "latency": 9
+            },
+            {
+                "source": 27,
+                "destination": 11,
+                "bandwidth": 60,
+                "latency": 9
+            },
+            {
+                "source": 11,
+                "destination": 29,
+                "bandwidth": 67,
+                "latency": 12
+            },
+            {
+                "source": 29,
+                "destination": 11,
+                "bandwidth": 67,
+                "latency": 12
+            },
+            {
+                "source": 11,
+                "destination": 30,
+                "bandwidth": 64,
+                "latency": 7
+            },
+            {
+                "source": 30,
+                "destination": 11,
+                "bandwidth": 64,
+                "latency": 7
+            },
+            {
+                "source": 11,
+                "destination": 31,
+                "bandwidth": 67,
+                "latency": 6
+            },
+            {
+                "source": 31,
+                "destination": 11,
+                "bandwidth": 67,
+                "latency": 6
+            },
+            {
+                "source": 11,
+                "destination": 33,
+                "bandwidth": 69,
+                "latency": 15
+            },
+            {
+                "source": 33,
+                "destination": 11,
+                "bandwidth": 69,
+                "latency": 15
+            },
+            {
+                "source": 11,
+                "destination": 35,
+                "bandwidth": 58,
+                "latency": 8
+            },
+            {
+                "source": 35,
+                "destination": 11,
+                "bandwidth": 58,
+                "latency": 8
+            },
+            {
+                "source": 11,
+                "destination": 37,
+                "bandwidth": 53,
+                "latency": 10
+            },
+            {
+                "source": 37,
+                "destination": 11,
+                "bandwidth": 53,
+                "latency": 10
+            },
+            {
+                "source": 11,
+                "destination": 38,
+                "bandwidth": 62,
+                "latency": 5
+            },
+            {
+                "source": 38,
+                "destination": 11,
+                "bandwidth": 62,
+                "latency": 5
+            },
+            {
+                "source": 12,
+                "destination": 20,
+                "bandwidth": 51,
+                "latency": 12
+            },
+            {
+                "source": 20,
+                "destination": 12,
+                "bandwidth": 51,
+                "latency": 12
+            },
+            {
+                "source": 12,
+                "destination": 21,
+                "bandwidth": 68,
+                "latency": 15
+            },
+            {
+                "source": 21,
+                "destination": 12,
+                "bandwidth": 68,
+                "latency": 15
+            },
+            {
+                "source": 12,
+                "destination": 22,
+                "bandwidth": 52,
+                "latency": 8
+            },
+            {
+                "source": 22,
+                "destination": 12,
+                "bandwidth": 52,
+                "latency": 8
+            },
+            {
+                "source": 12,
+                "destination": 24,
+                "bandwidth": 66,
+                "latency": 13
+            },
+            {
+                "source": 24,
+                "destination": 12,
+                "bandwidth": 66,
+                "latency": 13
+            },
+            {
+                "source": 12,
+                "destination": 25,
+                "bandwidth": 67,
+                "latency": 6
+            },
+            {
+                "source": 25,
+                "destination": 12,
+                "bandwidth": 67,
+                "latency": 6
+            },
+            {
+                "source": 12,
+                "destination": 28,
+                "bandwidth": 57,
+                "latency": 6
+            },
+            {
+                "source": 28,
+                "destination": 12,
+                "bandwidth": 57,
+                "latency": 6
+            },
+            {
+                "source": 12,
+                "destination": 29,
+                "bandwidth": 69,
+                "latency": 6
+            },
+            {
+                "source": 29,
+                "destination": 12,
+                "bandwidth": 69,
+                "latency": 6
+            },
+            {
+                "source": 12,
+                "destination": 31,
+                "bandwidth": 68,
+                "latency": 10
+            },
+            {
+                "source": 31,
+                "destination": 12,
+                "bandwidth": 68,
+                "latency": 10
+            },
+            {
+                "source": 12,
+                "destination": 32,
+                "bandwidth": 70,
+                "latency": 12
+            },
+            {
+                "source": 32,
+                "destination": 12,
+                "bandwidth": 70,
+                "latency": 12
+            },
+            {
+                "source": 12,
+                "destination": 33,
+                "bandwidth": 60,
+                "latency": 14
+            },
+            {
+                "source": 33,
+                "destination": 12,
+                "bandwidth": 60,
+                "latency": 14
+            },
+            {
+                "source": 12,
+                "destination": 36,
+                "bandwidth": 63,
+                "latency": 12
+            },
+            {
+                "source": 36,
+                "destination": 12,
+                "bandwidth": 63,
+                "latency": 12
+            },
+            {
+                "source": 12,
+                "destination": 38,
+                "bandwidth": 58,
+                "latency": 13
+            },
+            {
+                "source": 38,
+                "destination": 12,
+                "bandwidth": 58,
+                "latency": 13
+            },
+            {
+                "source": 12,
+                "destination": 39,
+                "bandwidth": 63,
+                "latency": 13
+            },
+            {
+                "source": 39,
+                "destination": 12,
+                "bandwidth": 63,
+                "latency": 13
+            },
+            {
+                "source": 13,
+                "destination": 20,
+                "bandwidth": 51,
+                "latency": 6
+            },
+            {
+                "source": 20,
+                "destination": 13,
+                "bandwidth": 51,
+                "latency": 6
+            },
+            {
+                "source": 13,
+                "destination": 22,
+                "bandwidth": 61,
+                "latency": 8
+            },
+            {
+                "source": 22,
+                "destination": 13,
+                "bandwidth": 61,
+                "latency": 8
+            },
+            {
+                "source": 13,
+                "destination": 23,
+                "bandwidth": 55,
+                "latency": 8
+            },
+            {
+                "source": 23,
+                "destination": 13,
+                "bandwidth": 55,
+                "latency": 8
+            },
+            {
+                "source": 13,
+                "destination": 25,
+                "bandwidth": 59,
+                "latency": 15
+            },
+            {
+                "source": 25,
+                "destination": 13,
+                "bandwidth": 59,
+                "latency": 15
+            },
+            {
+                "source": 13,
+                "destination": 29,
+                "bandwidth": 63,
+                "latency": 11
+            },
+            {
+                "source": 29,
+                "destination": 13,
+                "bandwidth": 63,
+                "latency": 11
+            },
+            {
+                "source": 13,
+                "destination": 30,
+                "bandwidth": 58,
+                "latency": 9
+            },
+            {
+                "source": 30,
+                "destination": 13,
+                "bandwidth": 58,
+                "latency": 9
+            },
+            {
+                "source": 13,
+                "destination": 32,
+                "bandwidth": 59,
+                "latency": 14
+            },
+            {
+                "source": 32,
+                "destination": 13,
+                "bandwidth": 59,
+                "latency": 14
+            },
+            {
+                "source": 13,
+                "destination": 33,
+                "bandwidth": 51,
+                "latency": 13
+            },
+            {
+                "source": 33,
+                "destination": 13,
+                "bandwidth": 51,
+                "latency": 13
+            },
+            {
+                "source": 13,
+                "destination": 34,
+                "bandwidth": 66,
+                "latency": 7
+            },
+            {
+                "source": 34,
+                "destination": 13,
+                "bandwidth": 66,
+                "latency": 7
+            },
+            {
+                "source": 13,
+                "destination": 37,
+                "bandwidth": 53,
+                "latency": 10
+            },
+            {
+                "source": 37,
+                "destination": 13,
+                "bandwidth": 53,
+                "latency": 10
+            },
+            {
+                "source": 13,
+                "destination": 38,
+                "bandwidth": 56,
+                "latency": 8
+            },
+            {
+                "source": 38,
+                "destination": 13,
+                "bandwidth": 56,
+                "latency": 8
+            },
+            {
+                "source": 13,
+                "destination": 39,
+                "bandwidth": 60,
+                "latency": 15
+            },
+            {
+                "source": 39,
+                "destination": 13,
+                "bandwidth": 60,
+                "latency": 15
+            },
+            {
+                "source": 14,
+                "destination": 21,
+                "bandwidth": 60,
+                "latency": 8
+            },
+            {
+                "source": 21,
+                "destination": 14,
+                "bandwidth": 60,
+                "latency": 8
+            },
+            {
+                "source": 14,
+                "destination": 22,
+                "bandwidth": 66,
+                "latency": 13
+            },
+            {
+                "source": 22,
+                "destination": 14,
+                "bandwidth": 66,
+                "latency": 13
+            },
+            {
+                "source": 14,
+                "destination": 23,
+                "bandwidth": 63,
+                "latency": 8
+            },
+            {
+                "source": 23,
+                "destination": 14,
+                "bandwidth": 63,
+                "latency": 8
+            },
+            {
+                "source": 14,
+                "destination": 24,
+                "bandwidth": 64,
+                "latency": 5
+            },
+            {
+                "source": 24,
+                "destination": 14,
+                "bandwidth": 64,
+                "latency": 5
+            },
+            {
+                "source": 14,
+                "destination": 27,
+                "bandwidth": 66,
+                "latency": 7
+            },
+            {
+                "source": 27,
+                "destination": 14,
+                "bandwidth": 66,
+                "latency": 7
+            },
+            {
+                "source": 14,
+                "destination": 28,
+                "bandwidth": 59,
+                "latency": 10
+            },
+            {
+                "source": 28,
+                "destination": 14,
+                "bandwidth": 59,
+                "latency": 10
+            },
+            {
+                "source": 14,
+                "destination": 29,
+                "bandwidth": 54,
+                "latency": 14
+            },
+            {
+                "source": 29,
+                "destination": 14,
+                "bandwidth": 54,
+                "latency": 14
+            },
+            {
+                "source": 14,
+                "destination": 30,
+                "bandwidth": 64,
+                "latency": 8
+            },
+            {
+                "source": 30,
+                "destination": 14,
+                "bandwidth": 64,
+                "latency": 8
+            },
+            {
+                "source": 14,
+                "destination": 31,
+                "bandwidth": 60,
+                "latency": 5
+            },
+            {
+                "source": 31,
+                "destination": 14,
+                "bandwidth": 60,
+                "latency": 5
+            },
+            {
+                "source": 14,
+                "destination": 34,
+                "bandwidth": 59,
+                "latency": 10
+            },
+            {
+                "source": 34,
+                "destination": 14,
+                "bandwidth": 59,
+                "latency": 10
+            },
+            {
+                "source": 14,
+                "destination": 35,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 35,
+                "destination": 14,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 14,
+                "destination": 38,
+                "bandwidth": 53,
+                "latency": 13
+            },
+            {
+                "source": 38,
+                "destination": 14,
+                "bandwidth": 53,
+                "latency": 13
+            },
+            {
+                "source": 14,
+                "destination": 39,
+                "bandwidth": 62,
+                "latency": 14
+            },
+            {
+                "source": 39,
+                "destination": 14,
+                "bandwidth": 62,
+                "latency": 14
+            },
+            {
+                "source": 15,
+                "destination": 21,
+                "bandwidth": 55,
+                "latency": 15
+            },
+            {
+                "source": 21,
+                "destination": 15,
+                "bandwidth": 55,
+                "latency": 15
+            },
+            {
+                "source": 15,
+                "destination": 23,
+                "bandwidth": 55,
+                "latency": 7
+            },
+            {
+                "source": 23,
+                "destination": 15,
+                "bandwidth": 55,
+                "latency": 7
+            },
+            {
+                "source": 15,
+                "destination": 24,
+                "bandwidth": 66,
+                "latency": 9
+            },
+            {
+                "source": 24,
+                "destination": 15,
+                "bandwidth": 66,
+                "latency": 9
+            },
+            {
+                "source": 15,
+                "destination": 26,
+                "bandwidth": 58,
+                "latency": 12
+            },
+            {
+                "source": 26,
+                "destination": 15,
+                "bandwidth": 58,
+                "latency": 12
+            },
+            {
+                "source": 15,
+                "destination": 30,
+                "bandwidth": 65,
+                "latency": 14
+            },
+            {
+                "source": 30,
+                "destination": 15,
+                "bandwidth": 65,
+                "latency": 14
+            },
+            {
+                "source": 15,
+                "destination": 31,
+                "bandwidth": 60,
+                "latency": 7
+            },
+            {
+                "source": 31,
+                "destination": 15,
+                "bandwidth": 60,
+                "latency": 7
+            },
+            {
+                "source": 15,
+                "destination": 32,
+                "bandwidth": 55,
+                "latency": 5
+            },
+            {
+                "source": 32,
+                "destination": 15,
+                "bandwidth": 55,
+                "latency": 5
+            },
+            {
+                "source": 15,
+                "destination": 33,
+                "bandwidth": 70,
+                "latency": 8
+            },
+            {
+                "source": 33,
+                "destination": 15,
+                "bandwidth": 70,
+                "latency": 8
+            },
+            {
+                "source": 15,
+                "destination": 37,
+                "bandwidth": 64,
+                "latency": 7
+            },
+            {
+                "source": 37,
+                "destination": 15,
+                "bandwidth": 64,
+                "latency": 7
+            },
+            {
+                "source": 15,
+                "destination": 39,
+                "bandwidth": 59,
+                "latency": 5
+            },
+            {
+                "source": 39,
+                "destination": 15,
+                "bandwidth": 59,
+                "latency": 5
+            },
+            {
+                "source": 16,
+                "destination": 21,
+                "bandwidth": 63,
+                "latency": 13
+            },
+            {
+                "source": 21,
+                "destination": 16,
+                "bandwidth": 63,
+                "latency": 13
+            },
+            {
+                "source": 16,
+                "destination": 25,
+                "bandwidth": 50,
+                "latency": 5
+            },
+            {
+                "source": 25,
+                "destination": 16,
+                "bandwidth": 50,
+                "latency": 5
+            },
+            {
+                "source": 16,
+                "destination": 26,
+                "bandwidth": 51,
+                "latency": 15
+            },
+            {
+                "source": 26,
+                "destination": 16,
+                "bandwidth": 51,
+                "latency": 15
+            },
+            {
+                "source": 16,
+                "destination": 27,
+                "bandwidth": 63,
+                "latency": 7
+            },
+            {
+                "source": 27,
+                "destination": 16,
+                "bandwidth": 63,
+                "latency": 7
+            },
+            {
+                "source": 16,
+                "destination": 29,
+                "bandwidth": 66,
+                "latency": 10
+            },
+            {
+                "source": 29,
+                "destination": 16,
+                "bandwidth": 66,
+                "latency": 10
+            },
+            {
+                "source": 16,
+                "destination": 30,
+                "bandwidth": 70,
+                "latency": 10
+            },
+            {
+                "source": 30,
+                "destination": 16,
+                "bandwidth": 70,
+                "latency": 10
+            },
+            {
+                "source": 16,
+                "destination": 33,
+                "bandwidth": 65,
+                "latency": 5
+            },
+            {
+                "source": 33,
+                "destination": 16,
+                "bandwidth": 65,
+                "latency": 5
+            },
+            {
+                "source": 16,
+                "destination": 34,
+                "bandwidth": 57,
+                "latency": 5
+            },
+            {
+                "source": 34,
+                "destination": 16,
+                "bandwidth": 57,
+                "latency": 5
+            },
+            {
+                "source": 16,
+                "destination": 35,
+                "bandwidth": 52,
+                "latency": 6
+            },
+            {
+                "source": 35,
+                "destination": 16,
+                "bandwidth": 52,
+                "latency": 6
+            },
+            {
+                "source": 16,
+                "destination": 36,
+                "bandwidth": 58,
+                "latency": 15
+            },
+            {
+                "source": 36,
+                "destination": 16,
+                "bandwidth": 58,
+                "latency": 15
+            },
+            {
+                "source": 16,
+                "destination": 38,
+                "bandwidth": 59,
+                "latency": 10
+            },
+            {
+                "source": 38,
+                "destination": 16,
+                "bandwidth": 59,
+                "latency": 10
+            },
+            {
+                "source": 17,
+                "destination": 20,
+                "bandwidth": 64,
+                "latency": 10
+            },
+            {
+                "source": 20,
+                "destination": 17,
+                "bandwidth": 64,
+                "latency": 10
+            },
+            {
+                "source": 17,
+                "destination": 22,
+                "bandwidth": 67,
+                "latency": 15
+            },
+            {
+                "source": 22,
+                "destination": 17,
+                "bandwidth": 67,
+                "latency": 15
+            },
+            {
+                "source": 17,
+                "destination": 26,
+                "bandwidth": 61,
+                "latency": 6
+            },
+            {
+                "source": 26,
+                "destination": 17,
+                "bandwidth": 61,
+                "latency": 6
+            },
+            {
+                "source": 17,
+                "destination": 27,
+                "bandwidth": 65,
+                "latency": 6
+            },
+            {
+                "source": 27,
+                "destination": 17,
+                "bandwidth": 65,
+                "latency": 6
+            },
+            {
+                "source": 17,
+                "destination": 28,
+                "bandwidth": 63,
+                "latency": 8
+            },
+            {
+                "source": 28,
+                "destination": 17,
+                "bandwidth": 63,
+                "latency": 8
+            },
+            {
+                "source": 17,
+                "destination": 29,
+                "bandwidth": 58,
+                "latency": 5
+            },
+            {
+                "source": 29,
+                "destination": 17,
+                "bandwidth": 58,
+                "latency": 5
+            },
+            {
+                "source": 17,
+                "destination": 30,
+                "bandwidth": 50,
+                "latency": 14
+            },
+            {
+                "source": 30,
+                "destination": 17,
+                "bandwidth": 50,
+                "latency": 14
+            },
+            {
+                "source": 17,
+                "destination": 31,
+                "bandwidth": 62,
+                "latency": 13
+            },
+            {
+                "source": 31,
+                "destination": 17,
+                "bandwidth": 62,
+                "latency": 13
+            },
+            {
+                "source": 17,
+                "destination": 33,
+                "bandwidth": 54,
+                "latency": 8
+            },
+            {
+                "source": 33,
+                "destination": 17,
+                "bandwidth": 54,
+                "latency": 8
+            },
+            {
+                "source": 17,
+                "destination": 34,
+                "bandwidth": 67,
+                "latency": 7
+            },
+            {
+                "source": 34,
+                "destination": 17,
+                "bandwidth": 67,
+                "latency": 7
+            },
+            {
+                "source": 17,
+                "destination": 36,
+                "bandwidth": 56,
+                "latency": 15
+            },
+            {
+                "source": 36,
+                "destination": 17,
+                "bandwidth": 56,
+                "latency": 15
+            },
+            {
+                "source": 17,
+                "destination": 38,
+                "bandwidth": 64,
+                "latency": 10
+            },
+            {
+                "source": 38,
+                "destination": 17,
+                "bandwidth": 64,
+                "latency": 10
+            },
+            {
+                "source": 17,
+                "destination": 39,
+                "bandwidth": 69,
+                "latency": 13
+            },
+            {
+                "source": 39,
+                "destination": 17,
+                "bandwidth": 69,
+                "latency": 13
+            },
+            {
+                "source": 18,
+                "destination": 20,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 20,
+                "destination": 18,
+                "bandwidth": 53,
+                "latency": 6
+            },
+            {
+                "source": 18,
+                "destination": 21,
+                "bandwidth": 70,
+                "latency": 6
+            },
+            {
+                "source": 21,
+                "destination": 18,
+                "bandwidth": 70,
+                "latency": 6
+            },
+            {
+                "source": 18,
+                "destination": 22,
+                "bandwidth": 69,
+                "latency": 8
+            },
+            {
+                "source": 22,
+                "destination": 18,
+                "bandwidth": 69,
+                "latency": 8
+            },
+            {
+                "source": 18,
+                "destination": 23,
+                "bandwidth": 65,
+                "latency": 11
+            },
+            {
+                "source": 23,
+                "destination": 18,
+                "bandwidth": 65,
+                "latency": 11
+            },
+            {
+                "source": 18,
+                "destination": 25,
+                "bandwidth": 68,
+                "latency": 7
+            },
+            {
+                "source": 25,
+                "destination": 18,
+                "bandwidth": 68,
+                "latency": 7
+            },
+            {
+                "source": 18,
+                "destination": 26,
+                "bandwidth": 65,
+                "latency": 15
+            },
+            {
+                "source": 26,
+                "destination": 18,
+                "bandwidth": 65,
+                "latency": 15
+            },
+            {
+                "source": 18,
+                "destination": 28,
+                "bandwidth": 53,
+                "latency": 10
+            },
+            {
+                "source": 28,
+                "destination": 18,
+                "bandwidth": 53,
+                "latency": 10
+            },
+            {
+                "source": 18,
+                "destination": 29,
+                "bandwidth": 60,
+                "latency": 11
+            },
+            {
+                "source": 29,
+                "destination": 18,
+                "bandwidth": 60,
+                "latency": 11
+            },
+            {
+                "source": 18,
+                "destination": 30,
+                "bandwidth": 65,
+                "latency": 9
+            },
+            {
+                "source": 30,
+                "destination": 18,
+                "bandwidth": 65,
+                "latency": 9
+            },
+            {
+                "source": 18,
+                "destination": 31,
+                "bandwidth": 56,
+                "latency": 11
+            },
+            {
+                "source": 31,
+                "destination": 18,
+                "bandwidth": 56,
+                "latency": 11
+            },
+            {
+                "source": 18,
+                "destination": 32,
+                "bandwidth": 70,
+                "latency": 5
+            },
+            {
+                "source": 32,
+                "destination": 18,
+                "bandwidth": 70,
+                "latency": 5
+            },
+            {
+                "source": 18,
+                "destination": 33,
+                "bandwidth": 52,
+                "latency": 14
+            },
+            {
+                "source": 33,
+                "destination": 18,
+                "bandwidth": 52,
+                "latency": 14
+            },
+            {
+                "source": 18,
+                "destination": 34,
+                "bandwidth": 50,
+                "latency": 9
+            },
+            {
+                "source": 34,
+                "destination": 18,
+                "bandwidth": 50,
+                "latency": 9
+            },
+            {
+                "source": 18,
+                "destination": 38,
+                "bandwidth": 50,
+                "latency": 15
+            },
+            {
+                "source": 38,
+                "destination": 18,
+                "bandwidth": 50,
+                "latency": 15
+            },
+            {
+                "source": 18,
+                "destination": 39,
+                "bandwidth": 60,
+                "latency": 11
+            },
+            {
+                "source": 39,
+                "destination": 18,
+                "bandwidth": 60,
+                "latency": 11
+            },
+            {
+                "source": 19,
+                "destination": 21,
+                "bandwidth": 70,
+                "latency": 11
+            },
+            {
+                "source": 21,
+                "destination": 19,
+                "bandwidth": 70,
+                "latency": 11
+            },
+            {
+                "source": 19,
+                "destination": 22,
+                "bandwidth": 58,
+                "latency": 15
+            },
+            {
+                "source": 22,
+                "destination": 19,
+                "bandwidth": 58,
+                "latency": 15
+            },
+            {
+                "source": 19,
+                "destination": 26,
+                "bandwidth": 63,
+                "latency": 12
+            },
+            {
+                "source": 26,
+                "destination": 19,
+                "bandwidth": 63,
+                "latency": 12
+            },
+            {
+                "source": 19,
+                "destination": 27,
+                "bandwidth": 57,
+                "latency": 8
+            },
+            {
+                "source": 27,
+                "destination": 19,
+                "bandwidth": 57,
+                "latency": 8
+            },
+            {
+                "source": 19,
+                "destination": 28,
+                "bandwidth": 55,
+                "latency": 12
+            },
+            {
+                "source": 28,
+                "destination": 19,
+                "bandwidth": 55,
+                "latency": 12
+            },
+            {
+                "source": 19,
+                "destination": 29,
+                "bandwidth": 51,
+                "latency": 9
+            },
+            {
+                "source": 29,
+                "destination": 19,
+                "bandwidth": 51,
+                "latency": 9
+            },
+            {
+                "source": 19,
+                "destination": 32,
+                "bandwidth": 53,
+                "latency": 9
+            },
+            {
+                "source": 32,
+                "destination": 19,
+                "bandwidth": 53,
+                "latency": 9
+            },
+            {
+                "source": 19,
+                "destination": 33,
+                "bandwidth": 52,
+                "latency": 12
+            },
+            {
+                "source": 33,
+                "destination": 19,
+                "bandwidth": 52,
+                "latency": 12
+            },
+            {
+                "source": 19,
+                "destination": 34,
+                "bandwidth": 61,
+                "latency": 11
+            },
+            {
+                "source": 34,
+                "destination": 19,
+                "bandwidth": 61,
+                "latency": 11
+            },
+            {
+                "source": 19,
+                "destination": 35,
+                "bandwidth": 66,
+                "latency": 5
+            },
+            {
+                "source": 35,
+                "destination": 19,
+                "bandwidth": 66,
+                "latency": 5
+            },
+            {
+                "source": 19,
+                "destination": 38,
+                "bandwidth": 50,
+                "latency": 15
+            },
+            {
+                "source": 38,
+                "destination": 19,
+                "bandwidth": 50,
+                "latency": 15
+            },
+            {
+                "source": 20,
+                "destination": 21,
+                "bandwidth": 86,
+                "latency": 21
+            },
+            {
+                "source": 21,
+                "destination": 20,
+                "bandwidth": 86,
+                "latency": 21
+            },
+            {
+                "source": 20,
+                "destination": 23,
+                "bandwidth": 99,
+                "latency": 24
+            },
+            {
+                "source": 23,
+                "destination": 20,
+                "bandwidth": 99,
+                "latency": 24
+            },
+            {
+                "source": 20,
+                "destination": 27,
+                "bandwidth": 87,
+                "latency": 23
+            },
+            {
+                "source": 27,
+                "destination": 20,
+                "bandwidth": 87,
+                "latency": 23
+            },
+            {
+                "source": 20,
+                "destination": 28,
+                "bandwidth": 86,
+                "latency": 19
+            },
+            {
+                "source": 28,
+                "destination": 20,
+                "bandwidth": 86,
+                "latency": 19
+            },
+            {
+                "source": 20,
+                "destination": 29,
+                "bandwidth": 80,
+                "latency": 21
+            },
+            {
+                "source": 29,
+                "destination": 20,
+                "bandwidth": 80,
+                "latency": 21
+            },
+            {
+                "source": 20,
+                "destination": 30,
+                "bandwidth": 99,
+                "latency": 17
+            },
+            {
+                "source": 30,
+                "destination": 20,
+                "bandwidth": 99,
+                "latency": 17
+            },
+            {
+                "source": 20,
+                "destination": 34,
+                "bandwidth": 88,
+                "latency": 19
+            },
+            {
+                "source": 34,
+                "destination": 20,
+                "bandwidth": 88,
+                "latency": 19
+            },
+            {
+                "source": 20,
+                "destination": 35,
+                "bandwidth": 81,
+                "latency": 24
+            },
+            {
+                "source": 35,
+                "destination": 20,
+                "bandwidth": 81,
+                "latency": 24
+            },
+            {
+                "source": 20,
+                "destination": 36,
+                "bandwidth": 95,
+                "latency": 24
+            },
+            {
+                "source": 36,
+                "destination": 20,
+                "bandwidth": 95,
+                "latency": 24
+            },
+            {
+                "source": 20,
+                "destination": 37,
+                "bandwidth": 89,
+                "latency": 17
+            },
+            {
+                "source": 37,
+                "destination": 20,
+                "bandwidth": 89,
+                "latency": 17
+            },
+            {
+                "source": 20,
+                "destination": 38,
+                "bandwidth": 81,
+                "latency": 22
+            },
+            {
+                "source": 38,
+                "destination": 20,
+                "bandwidth": 81,
+                "latency": 22
+            },
+            {
+                "source": 21,
+                "destination": 22,
+                "bandwidth": 84,
+                "latency": 24
+            },
+            {
+                "source": 22,
+                "destination": 21,
+                "bandwidth": 84,
+                "latency": 24
+            },
+            {
+                "source": 21,
+                "destination": 23,
+                "bandwidth": 84,
+                "latency": 23
+            },
+            {
+                "source": 23,
+                "destination": 21,
+                "bandwidth": 84,
+                "latency": 23
+            },
+            {
+                "source": 21,
+                "destination": 24,
+                "bandwidth": 84,
+                "latency": 24
+            },
+            {
+                "source": 24,
+                "destination": 21,
+                "bandwidth": 84,
+                "latency": 24
+            },
+            {
+                "source": 21,
+                "destination": 25,
+                "bandwidth": 95,
+                "latency": 19
+            },
+            {
+                "source": 25,
+                "destination": 21,
+                "bandwidth": 95,
+                "latency": 19
+            },
+            {
+                "source": 21,
+                "destination": 27,
+                "bandwidth": 85,
+                "latency": 18
+            },
+            {
+                "source": 27,
+                "destination": 21,
+                "bandwidth": 85,
+                "latency": 18
+            },
+            {
+                "source": 21,
+                "destination": 29,
+                "bandwidth": 95,
+                "latency": 20
+            },
+            {
+                "source": 29,
+                "destination": 21,
+                "bandwidth": 95,
+                "latency": 20
+            },
+            {
+                "source": 21,
+                "destination": 30,
+                "bandwidth": 94,
+                "latency": 16
+            },
+            {
+                "source": 30,
+                "destination": 21,
+                "bandwidth": 94,
+                "latency": 16
+            },
+            {
+                "source": 21,
+                "destination": 32,
+                "bandwidth": 90,
+                "latency": 20
+            },
+            {
+                "source": 32,
+                "destination": 21,
+                "bandwidth": 90,
+                "latency": 20
+            },
+            {
+                "source": 21,
+                "destination": 33,
+                "bandwidth": 81,
+                "latency": 18
+            },
+            {
+                "source": 33,
+                "destination": 21,
+                "bandwidth": 81,
+                "latency": 18
+            },
+            {
+                "source": 21,
+                "destination": 34,
+                "bandwidth": 95,
+                "latency": 22
+            },
+            {
+                "source": 34,
+                "destination": 21,
+                "bandwidth": 95,
+                "latency": 22
+            },
+            {
+                "source": 21,
+                "destination": 37,
+                "bandwidth": 97,
+                "latency": 18
+            },
+            {
+                "source": 37,
+                "destination": 21,
+                "bandwidth": 97,
+                "latency": 18
+            },
+            {
+                "source": 21,
+                "destination": 38,
+                "bandwidth": 87,
+                "latency": 20
+            },
+            {
+                "source": 38,
+                "destination": 21,
+                "bandwidth": 87,
+                "latency": 20
+            },
+            {
+                "source": 21,
+                "destination": 39,
+                "bandwidth": 97,
+                "latency": 16
+            },
+            {
+                "source": 39,
+                "destination": 21,
+                "bandwidth": 97,
+                "latency": 16
+            },
+            {
+                "source": 22,
+                "destination": 23,
+                "bandwidth": 83,
+                "latency": 25
+            },
+            {
+                "source": 23,
+                "destination": 22,
+                "bandwidth": 83,
+                "latency": 25
+            },
+            {
+                "source": 22,
+                "destination": 25,
+                "bandwidth": 87,
+                "latency": 16
+            },
+            {
+                "source": 25,
+                "destination": 22,
+                "bandwidth": 87,
+                "latency": 16
+            },
+            {
+                "source": 22,
+                "destination": 26,
+                "bandwidth": 85,
+                "latency": 18
+            },
+            {
+                "source": 26,
+                "destination": 22,
+                "bandwidth": 85,
+                "latency": 18
+            },
+            {
+                "source": 22,
+                "destination": 27,
+                "bandwidth": 81,
+                "latency": 20
+            },
+            {
+                "source": 27,
+                "destination": 22,
+                "bandwidth": 81,
+                "latency": 20
+            },
+            {
+                "source": 22,
+                "destination": 28,
+                "bandwidth": 85,
+                "latency": 22
+            },
+            {
+                "source": 28,
+                "destination": 22,
+                "bandwidth": 85,
+                "latency": 22
+            },
+            {
+                "source": 22,
+                "destination": 32,
+                "bandwidth": 95,
+                "latency": 20
+            },
+            {
+                "source": 32,
+                "destination": 22,
+                "bandwidth": 95,
+                "latency": 20
+            },
+            {
+                "source": 22,
+                "destination": 34,
+                "bandwidth": 98,
+                "latency": 23
+            },
+            {
+                "source": 34,
+                "destination": 22,
+                "bandwidth": 98,
+                "latency": 23
+            },
+            {
+                "source": 22,
+                "destination": 35,
+                "bandwidth": 84,
+                "latency": 16
+            },
+            {
+                "source": 35,
+                "destination": 22,
+                "bandwidth": 84,
+                "latency": 16
+            },
+            {
+                "source": 22,
+                "destination": 36,
+                "bandwidth": 92,
+                "latency": 21
+            },
+            {
+                "source": 36,
+                "destination": 22,
+                "bandwidth": 92,
+                "latency": 21
+            },
+            {
+                "source": 23,
+                "destination": 25,
+                "bandwidth": 84,
+                "latency": 21
+            },
+            {
+                "source": 25,
+                "destination": 23,
+                "bandwidth": 84,
+                "latency": 21
+            },
+            {
+                "source": 23,
+                "destination": 27,
+                "bandwidth": 91,
+                "latency": 22
+            },
+            {
+                "source": 27,
+                "destination": 23,
+                "bandwidth": 91,
+                "latency": 22
+            },
+            {
+                "source": 23,
+                "destination": 28,
+                "bandwidth": 84,
+                "latency": 22
+            },
+            {
+                "source": 28,
+                "destination": 23,
+                "bandwidth": 84,
+                "latency": 22
+            },
+            {
+                "source": 23,
+                "destination": 29,
+                "bandwidth": 93,
+                "latency": 19
+            },
+            {
+                "source": 29,
+                "destination": 23,
+                "bandwidth": 93,
+                "latency": 19
+            },
+            {
+                "source": 23,
+                "destination": 30,
+                "bandwidth": 80,
+                "latency": 19
+            },
+            {
+                "source": 30,
+                "destination": 23,
+                "bandwidth": 80,
+                "latency": 19
+            },
+            {
+                "source": 23,
+                "destination": 31,
+                "bandwidth": 98,
+                "latency": 22
+            },
+            {
+                "source": 31,
+                "destination": 23,
+                "bandwidth": 98,
+                "latency": 22
+            },
+            {
+                "source": 23,
+                "destination": 32,
+                "bandwidth": 81,
+                "latency": 19
+            },
+            {
+                "source": 32,
+                "destination": 23,
+                "bandwidth": 81,
+                "latency": 19
+            },
+            {
+                "source": 23,
+                "destination": 33,
+                "bandwidth": 98,
+                "latency": 20
+            },
+            {
+                "source": 33,
+                "destination": 23,
+                "bandwidth": 98,
+                "latency": 20
+            },
+            {
+                "source": 23,
+                "destination": 34,
+                "bandwidth": 84,
+                "latency": 22
+            },
+            {
+                "source": 34,
+                "destination": 23,
+                "bandwidth": 84,
+                "latency": 22
+            },
+            {
+                "source": 23,
+                "destination": 35,
+                "bandwidth": 97,
+                "latency": 18
+            },
+            {
+                "source": 35,
+                "destination": 23,
+                "bandwidth": 97,
+                "latency": 18
+            },
+            {
+                "source": 23,
+                "destination": 36,
+                "bandwidth": 90,
+                "latency": 17
+            },
+            {
+                "source": 36,
+                "destination": 23,
+                "bandwidth": 90,
+                "latency": 17
+            },
+            {
+                "source": 23,
+                "destination": 37,
+                "bandwidth": 80,
+                "latency": 20
+            },
+            {
+                "source": 37,
+                "destination": 23,
+                "bandwidth": 80,
+                "latency": 20
+            },
+            {
+                "source": 23,
+                "destination": 39,
+                "bandwidth": 96,
+                "latency": 18
+            },
+            {
+                "source": 39,
+                "destination": 23,
+                "bandwidth": 96,
+                "latency": 18
+            },
+            {
+                "source": 24,
+                "destination": 26,
+                "bandwidth": 88,
+                "latency": 22
+            },
+            {
+                "source": 26,
+                "destination": 24,
+                "bandwidth": 88,
+                "latency": 22
+            },
+            {
+                "source": 24,
+                "destination": 27,
+                "bandwidth": 81,
+                "latency": 19
+            },
+            {
+                "source": 27,
+                "destination": 24,
+                "bandwidth": 81,
+                "latency": 19
+            },
+            {
+                "source": 24,
+                "destination": 29,
+                "bandwidth": 80,
+                "latency": 20
+            },
+            {
+                "source": 29,
+                "destination": 24,
+                "bandwidth": 80,
+                "latency": 20
+            },
+            {
+                "source": 24,
+                "destination": 33,
+                "bandwidth": 84,
+                "latency": 24
+            },
+            {
+                "source": 33,
+                "destination": 24,
+                "bandwidth": 84,
+                "latency": 24
+            },
+            {
+                "source": 24,
+                "destination": 36,
+                "bandwidth": 97,
+                "latency": 19
+            },
+            {
+                "source": 36,
+                "destination": 24,
+                "bandwidth": 97,
+                "latency": 19
+            },
+            {
+                "source": 24,
+                "destination": 37,
+                "bandwidth": 84,
+                "latency": 21
+            },
+            {
+                "source": 37,
+                "destination": 24,
+                "bandwidth": 84,
+                "latency": 21
+            },
+            {
+                "source": 24,
+                "destination": 38,
+                "bandwidth": 92,
+                "latency": 22
+            },
+            {
+                "source": 38,
+                "destination": 24,
+                "bandwidth": 92,
+                "latency": 22
+            },
+            {
+                "source": 25,
+                "destination": 26,
+                "bandwidth": 100,
+                "latency": 21
+            },
+            {
+                "source": 26,
+                "destination": 25,
+                "bandwidth": 100,
+                "latency": 21
+            },
+            {
+                "source": 25,
+                "destination": 29,
+                "bandwidth": 81,
+                "latency": 23
+            },
+            {
+                "source": 29,
+                "destination": 25,
+                "bandwidth": 81,
+                "latency": 23
+            },
+            {
+                "source": 25,
+                "destination": 32,
+                "bandwidth": 99,
+                "latency": 20
+            },
+            {
+                "source": 32,
+                "destination": 25,
+                "bandwidth": 99,
+                "latency": 20
+            },
+            {
+                "source": 25,
+                "destination": 36,
+                "bandwidth": 88,
+                "latency": 23
+            },
+            {
+                "source": 36,
+                "destination": 25,
+                "bandwidth": 88,
+                "latency": 23
+            },
+            {
+                "source": 25,
+                "destination": 37,
+                "bandwidth": 81,
+                "latency": 16
+            },
+            {
+                "source": 37,
+                "destination": 25,
+                "bandwidth": 81,
+                "latency": 16
+            },
+            {
+                "source": 25,
+                "destination": 39,
+                "bandwidth": 99,
+                "latency": 24
+            },
+            {
+                "source": 39,
+                "destination": 25,
+                "bandwidth": 99,
+                "latency": 24
+            },
+            {
+                "source": 26,
+                "destination": 27,
+                "bandwidth": 99,
+                "latency": 22
+            },
+            {
+                "source": 27,
+                "destination": 26,
+                "bandwidth": 99,
+                "latency": 22
+            },
+            {
+                "source": 26,
+                "destination": 28,
+                "bandwidth": 99,
+                "latency": 21
+            },
+            {
+                "source": 28,
+                "destination": 26,
+                "bandwidth": 99,
+                "latency": 21
+            },
+            {
+                "source": 26,
+                "destination": 30,
+                "bandwidth": 85,
+                "latency": 17
+            },
+            {
+                "source": 30,
+                "destination": 26,
+                "bandwidth": 85,
+                "latency": 17
+            },
+            {
+                "source": 26,
+                "destination": 31,
+                "bandwidth": 95,
+                "latency": 22
+            },
+            {
+                "source": 31,
+                "destination": 26,
+                "bandwidth": 95,
+                "latency": 22
+            },
+            {
+                "source": 26,
+                "destination": 34,
+                "bandwidth": 99,
+                "latency": 25
+            },
+            {
+                "source": 34,
+                "destination": 26,
+                "bandwidth": 99,
+                "latency": 25
+            },
+            {
+                "source": 26,
+                "destination": 36,
+                "bandwidth": 98,
+                "latency": 16
+            },
+            {
+                "source": 36,
+                "destination": 26,
+                "bandwidth": 98,
+                "latency": 16
+            },
+            {
+                "source": 26,
+                "destination": 37,
+                "bandwidth": 85,
+                "latency": 20
+            },
+            {
+                "source": 37,
+                "destination": 26,
+                "bandwidth": 85,
+                "latency": 20
+            },
+            {
+                "source": 26,
+                "destination": 39,
+                "bandwidth": 94,
+                "latency": 18
+            },
+            {
+                "source": 39,
+                "destination": 26,
+                "bandwidth": 94,
+                "latency": 18
+            },
+            {
+                "source": 27,
+                "destination": 28,
+                "bandwidth": 84,
+                "latency": 21
+            },
+            {
+                "source": 28,
+                "destination": 27,
+                "bandwidth": 84,
+                "latency": 21
+            },
+            {
+                "source": 27,
+                "destination": 31,
+                "bandwidth": 88,
+                "latency": 19
+            },
+            {
+                "source": 31,
+                "destination": 27,
+                "bandwidth": 88,
+                "latency": 19
+            },
+            {
+                "source": 27,
+                "destination": 33,
+                "bandwidth": 80,
+                "latency": 19
+            },
+            {
+                "source": 33,
+                "destination": 27,
+                "bandwidth": 80,
+                "latency": 19
+            },
+            {
+                "source": 27,
+                "destination": 34,
+                "bandwidth": 86,
+                "latency": 21
+            },
+            {
+                "source": 34,
+                "destination": 27,
+                "bandwidth": 86,
+                "latency": 21
+            },
+            {
+                "source": 27,
+                "destination": 37,
+                "bandwidth": 94,
+                "latency": 20
+            },
+            {
+                "source": 37,
+                "destination": 27,
+                "bandwidth": 94,
+                "latency": 20
+            },
+            {
+                "source": 27,
+                "destination": 39,
+                "bandwidth": 86,
+                "latency": 24
+            },
+            {
+                "source": 39,
+                "destination": 27,
+                "bandwidth": 86,
+                "latency": 24
+            },
+            {
+                "source": 28,
+                "destination": 29,
+                "bandwidth": 82,
+                "latency": 18
+            },
+            {
+                "source": 29,
+                "destination": 28,
+                "bandwidth": 82,
+                "latency": 18
+            },
+            {
+                "source": 28,
+                "destination": 32,
+                "bandwidth": 87,
+                "latency": 23
+            },
+            {
+                "source": 32,
+                "destination": 28,
+                "bandwidth": 87,
+                "latency": 23
+            },
+            {
+                "source": 28,
+                "destination": 34,
+                "bandwidth": 90,
+                "latency": 19
+            },
+            {
+                "source": 34,
+                "destination": 28,
+                "bandwidth": 90,
+                "latency": 19
+            },
+            {
+                "source": 28,
+                "destination": 36,
+                "bandwidth": 99,
+                "latency": 20
+            },
+            {
+                "source": 36,
+                "destination": 28,
+                "bandwidth": 99,
+                "latency": 20
+            },
+            {
+                "source": 28,
+                "destination": 37,
+                "bandwidth": 89,
+                "latency": 25
+            },
+            {
+                "source": 37,
+                "destination": 28,
+                "bandwidth": 89,
+                "latency": 25
+            },
+            {
+                "source": 28,
+                "destination": 38,
+                "bandwidth": 99,
+                "latency": 24
+            },
+            {
+                "source": 38,
+                "destination": 28,
+                "bandwidth": 99,
+                "latency": 24
+            },
+            {
+                "source": 28,
+                "destination": 39,
+                "bandwidth": 84,
+                "latency": 18
+            },
+            {
+                "source": 39,
+                "destination": 28,
+                "bandwidth": 84,
+                "latency": 18
+            },
+            {
+                "source": 29,
+                "destination": 31,
+                "bandwidth": 88,
+                "latency": 20
+            },
+            {
+                "source": 31,
+                "destination": 29,
+                "bandwidth": 88,
+                "latency": 20
+            },
+            {
+                "source": 29,
+                "destination": 33,
+                "bandwidth": 89,
+                "latency": 20
+            },
+            {
+                "source": 33,
+                "destination": 29,
+                "bandwidth": 89,
+                "latency": 20
+            },
+            {
+                "source": 29,
+                "destination": 34,
+                "bandwidth": 86,
+                "latency": 21
+            },
+            {
+                "source": 34,
+                "destination": 29,
+                "bandwidth": 86,
+                "latency": 21
+            },
+            {
+                "source": 29,
+                "destination": 35,
+                "bandwidth": 88,
+                "latency": 19
+            },
+            {
+                "source": 35,
+                "destination": 29,
+                "bandwidth": 88,
+                "latency": 19
+            },
+            {
+                "source": 30,
+                "destination": 31,
+                "bandwidth": 80,
+                "latency": 21
+            },
+            {
+                "source": 31,
+                "destination": 30,
+                "bandwidth": 80,
+                "latency": 21
+            },
+            {
+                "source": 30,
+                "destination": 32,
+                "bandwidth": 85,
+                "latency": 25
+            },
+            {
+                "source": 32,
+                "destination": 30,
+                "bandwidth": 85,
+                "latency": 25
+            },
+            {
+                "source": 30,
+                "destination": 34,
+                "bandwidth": 92,
+                "latency": 20
+            },
+            {
+                "source": 34,
+                "destination": 30,
+                "bandwidth": 92,
+                "latency": 20
+            },
+            {
+                "source": 30,
+                "destination": 36,
+                "bandwidth": 89,
+                "latency": 23
+            },
+            {
+                "source": 36,
+                "destination": 30,
+                "bandwidth": 89,
+                "latency": 23
+            },
+            {
+                "source": 30,
+                "destination": 37,
+                "bandwidth": 100,
+                "latency": 22
+            },
+            {
+                "source": 37,
+                "destination": 30,
+                "bandwidth": 100,
+                "latency": 22
+            },
+            {
+                "source": 30,
+                "destination": 38,
+                "bandwidth": 99,
+                "latency": 16
+            },
+            {
+                "source": 38,
+                "destination": 30,
+                "bandwidth": 99,
+                "latency": 16
+            },
+            {
+                "source": 30,
+                "destination": 39,
+                "bandwidth": 98,
+                "latency": 19
+            },
+            {
+                "source": 39,
+                "destination": 30,
+                "bandwidth": 98,
+                "latency": 19
+            },
+            {
+                "source": 31,
+                "destination": 32,
+                "bandwidth": 86,
+                "latency": 17
+            },
+            {
+                "source": 32,
+                "destination": 31,
+                "bandwidth": 86,
+                "latency": 17
+            },
+            {
+                "source": 31,
+                "destination": 34,
+                "bandwidth": 89,
+                "latency": 17
+            },
+            {
+                "source": 34,
+                "destination": 31,
+                "bandwidth": 89,
+                "latency": 17
+            },
+            {
+                "source": 31,
+                "destination": 36,
+                "bandwidth": 91,
+                "latency": 20
+            },
+            {
+                "source": 36,
+                "destination": 31,
+                "bandwidth": 91,
+                "latency": 20
+            },
+            {
+                "source": 32,
+                "destination": 34,
+                "bandwidth": 93,
+                "latency": 21
+            },
+            {
+                "source": 34,
+                "destination": 32,
+                "bandwidth": 93,
+                "latency": 21
+            },
+            {
+                "source": 32,
+                "destination": 35,
+                "bandwidth": 83,
+                "latency": 17
+            },
+            {
+                "source": 35,
+                "destination": 32,
+                "bandwidth": 83,
+                "latency": 17
+            },
+            {
+                "source": 32,
+                "destination": 37,
+                "bandwidth": 100,
+                "latency": 17
+            },
+            {
+                "source": 37,
+                "destination": 32,
+                "bandwidth": 100,
+                "latency": 17
+            },
+            {
+                "source": 33,
+                "destination": 36,
+                "bandwidth": 88,
+                "latency": 20
+            },
+            {
+                "source": 36,
+                "destination": 33,
+                "bandwidth": 88,
+                "latency": 20
+            },
+            {
+                "source": 33,
+                "destination": 38,
+                "bandwidth": 88,
+                "latency": 20
+            },
+            {
+                "source": 38,
+                "destination": 33,
+                "bandwidth": 88,
+                "latency": 20
+            },
+            {
+                "source": 34,
+                "destination": 35,
+                "bandwidth": 91,
+                "latency": 19
+            },
+            {
+                "source": 35,
+                "destination": 34,
+                "bandwidth": 91,
+                "latency": 19
+            },
+            {
+                "source": 34,
+                "destination": 36,
+                "bandwidth": 84,
+                "latency": 17
+            },
+            {
+                "source": 36,
+                "destination": 34,
+                "bandwidth": 84,
+                "latency": 17
+            },
+            {
+                "source": 34,
+                "destination": 38,
+                "bandwidth": 100,
+                "latency": 25
+            },
+            {
+                "source": 38,
+                "destination": 34,
+                "bandwidth": 100,
+                "latency": 25
+            },
+            {
+                "source": 34,
+                "destination": 39,
+                "bandwidth": 91,
+                "latency": 22
+            },
+            {
+                "source": 39,
+                "destination": 34,
+                "bandwidth": 91,
+                "latency": 22
+            },
+            {
+                "source": 35,
+                "destination": 36,
+                "bandwidth": 98,
+                "latency": 21
+            },
+            {
+                "source": 36,
+                "destination": 35,
+                "bandwidth": 98,
+                "latency": 21
+            },
+            {
+                "source": 36,
+                "destination": 37,
+                "bandwidth": 91,
+                "latency": 18
+            },
+            {
+                "source": 37,
+                "destination": 36,
+                "bandwidth": 91,
+                "latency": 18
+            },
+            {
+                "source": 36,
+                "destination": 38,
+                "bandwidth": 85,
+                "latency": 20
+            },
+            {
+                "source": 38,
+                "destination": 36,
+                "bandwidth": 85,
+                "latency": 20
+            },
+            {
+                "source": 36,
+                "destination": 39,
+                "bandwidth": 85,
+                "latency": 18
+            },
+            {
+                "source": 39,
+                "destination": 36,
+                "bandwidth": 85,
+                "latency": 18
+            },
+            {
+                "source": 37,
+                "destination": 38,
+                "bandwidth": 95,
+                "latency": 21
+            },
+            {
+                "source": 38,
+                "destination": 37,
+                "bandwidth": 95,
+                "latency": 21
+            },
+            {
+                "source": 37,
+                "destination": 39,
+                "bandwidth": 87,
+                "latency": 19
+            },
+            {
+                "source": 39,
+                "destination": 37,
+                "bandwidth": 87,
+                "latency": 19
+            },
+            {
+                "source": 38,
+                "destination": 39,
+                "bandwidth": 99,
+                "latency": 17
+            },
+            {
+                "source": 39,
+                "destination": 38,
+                "bandwidth": 99,
+                "latency": 17
+            },
+            {
+                "source": 20,
+                "destination": 40,
+                "bandwidth": 197,
+                "latency": 39
+            },
+            {
+                "source": 40,
+                "destination": 20,
+                "bandwidth": 197,
+                "latency": 39
+            },
+            {
+                "source": 20,
+                "destination": 41,
+                "bandwidth": 154,
+                "latency": 57
+            },
+            {
+                "source": 41,
+                "destination": 20,
+                "bandwidth": 154,
+                "latency": 57
+            },
+            {
+                "source": 20,
+                "destination": 45,
+                "bandwidth": 173,
+                "latency": 58
+            },
+            {
+                "source": 45,
+                "destination": 20,
+                "bandwidth": 173,
+                "latency": 58
+            },
+            {
+                "source": 20,
+                "destination": 48,
+                "bandwidth": 191,
+                "latency": 30
+            },
+            {
+                "source": 48,
+                "destination": 20,
+                "bandwidth": 191,
+                "latency": 30
+            },
+            {
+                "source": 21,
+                "destination": 43,
+                "bandwidth": 175,
+                "latency": 41
+            },
+            {
+                "source": 43,
+                "destination": 21,
+                "bandwidth": 175,
+                "latency": 41
+            },
+            {
+                "source": 21,
+                "destination": 44,
+                "bandwidth": 179,
+                "latency": 49
+            },
+            {
+                "source": 44,
+                "destination": 21,
+                "bandwidth": 179,
+                "latency": 49
+            },
+            {
+                "source": 21,
+                "destination": 45,
+                "bandwidth": 175,
+                "latency": 54
+            },
+            {
+                "source": 45,
+                "destination": 21,
+                "bandwidth": 175,
+                "latency": 54
+            },
+            {
+                "source": 21,
+                "destination": 48,
+                "bandwidth": 179,
+                "latency": 45
+            },
+            {
+                "source": 48,
+                "destination": 21,
+                "bandwidth": 179,
+                "latency": 45
+            },
+            {
+                "source": 21,
+                "destination": 49,
+                "bandwidth": 200,
+                "latency": 51
+            },
+            {
+                "source": 49,
+                "destination": 21,
+                "bandwidth": 200,
+                "latency": 51
+            },
+            {
+                "source": 22,
+                "destination": 45,
+                "bandwidth": 156,
+                "latency": 37
+            },
+            {
+                "source": 45,
+                "destination": 22,
+                "bandwidth": 156,
+                "latency": 37
+            },
+            {
+                "source": 22,
+                "destination": 46,
+                "bandwidth": 195,
+                "latency": 44
+            },
+            {
+                "source": 46,
+                "destination": 22,
+                "bandwidth": 195,
+                "latency": 44
+            },
+            {
+                "source": 22,
+                "destination": 48,
+                "bandwidth": 192,
+                "latency": 59
+            },
+            {
+                "source": 48,
+                "destination": 22,
+                "bandwidth": 192,
+                "latency": 59
+            },
+            {
+                "source": 22,
+                "destination": 49,
+                "bandwidth": 189,
+                "latency": 40
+            },
+            {
+                "source": 49,
+                "destination": 22,
+                "bandwidth": 189,
+                "latency": 40
+            },
+            {
+                "source": 23,
+                "destination": 40,
+                "bandwidth": 160,
+                "latency": 45
+            },
+            {
+                "source": 40,
+                "destination": 23,
+                "bandwidth": 160,
+                "latency": 45
+            },
+            {
+                "source": 23,
+                "destination": 45,
+                "bandwidth": 190,
+                "latency": 45
+            },
+            {
+                "source": 45,
+                "destination": 23,
+                "bandwidth": 190,
+                "latency": 45
+            },
+            {
+                "source": 23,
+                "destination": 47,
+                "bandwidth": 185,
+                "latency": 56
+            },
+            {
+                "source": 47,
+                "destination": 23,
+                "bandwidth": 185,
+                "latency": 56
+            },
+            {
+                "source": 24,
+                "destination": 41,
+                "bandwidth": 151,
+                "latency": 57
+            },
+            {
+                "source": 41,
+                "destination": 24,
+                "bandwidth": 151,
+                "latency": 57
+            },
+            {
+                "source": 24,
+                "destination": 42,
+                "bandwidth": 176,
+                "latency": 57
+            },
+            {
+                "source": 42,
+                "destination": 24,
+                "bandwidth": 176,
+                "latency": 57
+            },
+            {
+                "source": 24,
+                "destination": 45,
+                "bandwidth": 158,
+                "latency": 30
+            },
+            {
+                "source": 45,
+                "destination": 24,
+                "bandwidth": 158,
+                "latency": 30
+            },
+            {
+                "source": 24,
+                "destination": 47,
+                "bandwidth": 198,
+                "latency": 46
+            },
+            {
+                "source": 47,
+                "destination": 24,
+                "bandwidth": 198,
+                "latency": 46
+            },
+            {
+                "source": 25,
+                "destination": 41,
+                "bandwidth": 175,
+                "latency": 49
+            },
+            {
+                "source": 41,
+                "destination": 25,
+                "bandwidth": 175,
+                "latency": 49
+            },
+            {
+                "source": 25,
+                "destination": 42,
+                "bandwidth": 152,
+                "latency": 49
+            },
+            {
+                "source": 42,
+                "destination": 25,
+                "bandwidth": 152,
+                "latency": 49
+            },
+            {
+                "source": 25,
+                "destination": 44,
+                "bandwidth": 161,
+                "latency": 50
+            },
+            {
+                "source": 44,
+                "destination": 25,
+                "bandwidth": 161,
+                "latency": 50
+            },
+            {
+                "source": 25,
+                "destination": 46,
+                "bandwidth": 161,
+                "latency": 44
+            },
+            {
+                "source": 46,
+                "destination": 25,
+                "bandwidth": 161,
+                "latency": 44
+            },
+            {
+                "source": 25,
+                "destination": 47,
+                "bandwidth": 162,
+                "latency": 45
+            },
+            {
+                "source": 47,
+                "destination": 25,
+                "bandwidth": 162,
+                "latency": 45
+            },
+            {
+                "source": 25,
+                "destination": 49,
+                "bandwidth": 156,
+                "latency": 46
+            },
+            {
+                "source": 49,
+                "destination": 25,
+                "bandwidth": 156,
+                "latency": 46
+            },
+            {
+                "source": 26,
+                "destination": 40,
+                "bandwidth": 171,
+                "latency": 39
+            },
+            {
+                "source": 40,
+                "destination": 26,
+                "bandwidth": 171,
+                "latency": 39
+            },
+            {
+                "source": 26,
+                "destination": 42,
+                "bandwidth": 177,
+                "latency": 44
+            },
+            {
+                "source": 42,
+                "destination": 26,
+                "bandwidth": 177,
+                "latency": 44
+            },
+            {
+                "source": 26,
+                "destination": 43,
+                "bandwidth": 185,
+                "latency": 48
+            },
+            {
+                "source": 43,
+                "destination": 26,
+                "bandwidth": 185,
+                "latency": 48
+            },
+            {
+                "source": 26,
+                "destination": 44,
+                "bandwidth": 198,
+                "latency": 55
+            },
+            {
+                "source": 44,
+                "destination": 26,
+                "bandwidth": 198,
+                "latency": 55
+            },
+            {
+                "source": 26,
+                "destination": 45,
+                "bandwidth": 194,
+                "latency": 42
+            },
+            {
+                "source": 45,
+                "destination": 26,
+                "bandwidth": 194,
+                "latency": 42
+            },
+            {
+                "source": 26,
+                "destination": 46,
+                "bandwidth": 166,
+                "latency": 40
+            },
+            {
+                "source": 46,
+                "destination": 26,
+                "bandwidth": 166,
+                "latency": 40
+            },
+            {
+                "source": 26,
+                "destination": 47,
+                "bandwidth": 179,
+                "latency": 50
+            },
+            {
+                "source": 47,
+                "destination": 26,
+                "bandwidth": 179,
+                "latency": 50
+            },
+            {
+                "source": 26,
+                "destination": 49,
+                "bandwidth": 181,
+                "latency": 58
+            },
+            {
+                "source": 49,
+                "destination": 26,
+                "bandwidth": 181,
+                "latency": 58
+            },
+            {
+                "source": 27,
+                "destination": 40,
+                "bandwidth": 164,
+                "latency": 37
+            },
+            {
+                "source": 40,
+                "destination": 27,
+                "bandwidth": 164,
+                "latency": 37
+            },
+            {
+                "source": 27,
+                "destination": 43,
+                "bandwidth": 178,
+                "latency": 60
+            },
+            {
+                "source": 43,
+                "destination": 27,
+                "bandwidth": 178,
+                "latency": 60
+            },
+            {
+                "source": 27,
+                "destination": 44,
+                "bandwidth": 192,
+                "latency": 40
+            },
+            {
+                "source": 44,
+                "destination": 27,
+                "bandwidth": 192,
+                "latency": 40
+            },
+            {
+                "source": 27,
+                "destination": 45,
+                "bandwidth": 186,
+                "latency": 41
+            },
+            {
+                "source": 45,
+                "destination": 27,
+                "bandwidth": 186,
+                "latency": 41
+            },
+            {
+                "source": 27,
+                "destination": 46,
+                "bandwidth": 151,
+                "latency": 35
+            },
+            {
+                "source": 46,
+                "destination": 27,
+                "bandwidth": 151,
+                "latency": 35
+            },
+            {
+                "source": 27,
+                "destination": 49,
+                "bandwidth": 195,
+                "latency": 52
+            },
+            {
+                "source": 49,
+                "destination": 27,
+                "bandwidth": 195,
+                "latency": 52
+            },
+            {
+                "source": 28,
+                "destination": 41,
+                "bandwidth": 187,
+                "latency": 41
+            },
+            {
+                "source": 41,
+                "destination": 28,
+                "bandwidth": 187,
+                "latency": 41
+            },
+            {
+                "source": 28,
+                "destination": 42,
+                "bandwidth": 162,
+                "latency": 44
+            },
+            {
+                "source": 42,
+                "destination": 28,
+                "bandwidth": 162,
+                "latency": 44
+            },
+            {
+                "source": 28,
+                "destination": 43,
+                "bandwidth": 190,
+                "latency": 60
+            },
+            {
+                "source": 43,
+                "destination": 28,
+                "bandwidth": 190,
+                "latency": 60
+            },
+            {
+                "source": 28,
+                "destination": 44,
+                "bandwidth": 150,
+                "latency": 55
+            },
+            {
+                "source": 44,
+                "destination": 28,
+                "bandwidth": 150,
+                "latency": 55
+            },
+            {
+                "source": 28,
+                "destination": 45,
+                "bandwidth": 151,
+                "latency": 47
+            },
+            {
+                "source": 45,
+                "destination": 28,
+                "bandwidth": 151,
+                "latency": 47
+            },
+            {
+                "source": 28,
+                "destination": 46,
+                "bandwidth": 179,
+                "latency": 48
+            },
+            {
+                "source": 46,
+                "destination": 28,
+                "bandwidth": 179,
+                "latency": 48
+            },
+            {
+                "source": 28,
+                "destination": 47,
+                "bandwidth": 179,
+                "latency": 59
+            },
+            {
+                "source": 47,
+                "destination": 28,
+                "bandwidth": 179,
+                "latency": 59
+            },
+            {
+                "source": 29,
+                "destination": 40,
+                "bandwidth": 170,
+                "latency": 30
+            },
+            {
+                "source": 40,
+                "destination": 29,
+                "bandwidth": 170,
+                "latency": 30
+            },
+            {
+                "source": 29,
+                "destination": 41,
+                "bandwidth": 197,
+                "latency": 48
+            },
+            {
+                "source": 41,
+                "destination": 29,
+                "bandwidth": 197,
+                "latency": 48
+            },
+            {
+                "source": 29,
+                "destination": 42,
+                "bandwidth": 175,
+                "latency": 41
+            },
+            {
+                "source": 42,
+                "destination": 29,
+                "bandwidth": 175,
+                "latency": 41
+            },
+            {
+                "source": 29,
+                "destination": 43,
+                "bandwidth": 156,
+                "latency": 44
+            },
+            {
+                "source": 43,
+                "destination": 29,
+                "bandwidth": 156,
+                "latency": 44
+            },
+            {
+                "source": 29,
+                "destination": 44,
+                "bandwidth": 176,
+                "latency": 30
+            },
+            {
+                "source": 44,
+                "destination": 29,
+                "bandwidth": 176,
+                "latency": 30
+            },
+            {
+                "source": 29,
+                "destination": 45,
+                "bandwidth": 171,
+                "latency": 55
+            },
+            {
+                "source": 45,
+                "destination": 29,
+                "bandwidth": 171,
+                "latency": 55
+            },
+            {
+                "source": 29,
+                "destination": 47,
+                "bandwidth": 153,
+                "latency": 44
+            },
+            {
+                "source": 47,
+                "destination": 29,
+                "bandwidth": 153,
+                "latency": 44
+            },
+            {
+                "source": 30,
+                "destination": 41,
+                "bandwidth": 198,
+                "latency": 34
+            },
+            {
+                "source": 41,
+                "destination": 30,
+                "bandwidth": 198,
+                "latency": 34
+            },
+            {
+                "source": 30,
+                "destination": 42,
+                "bandwidth": 171,
+                "latency": 41
+            },
+            {
+                "source": 42,
+                "destination": 30,
+                "bandwidth": 171,
+                "latency": 41
+            },
+            {
+                "source": 30,
+                "destination": 43,
+                "bandwidth": 157,
+                "latency": 55
+            },
+            {
+                "source": 43,
+                "destination": 30,
+                "bandwidth": 157,
+                "latency": 55
+            },
+            {
+                "source": 30,
+                "destination": 47,
+                "bandwidth": 166,
+                "latency": 51
+            },
+            {
+                "source": 47,
+                "destination": 30,
+                "bandwidth": 166,
+                "latency": 51
+            },
+            {
+                "source": 30,
+                "destination": 49,
+                "bandwidth": 161,
+                "latency": 56
+            },
+            {
+                "source": 49,
+                "destination": 30,
+                "bandwidth": 161,
+                "latency": 56
+            },
+            {
+                "source": 31,
+                "destination": 40,
+                "bandwidth": 168,
+                "latency": 47
+            },
+            {
+                "source": 40,
+                "destination": 31,
+                "bandwidth": 168,
+                "latency": 47
+            },
+            {
+                "source": 31,
+                "destination": 41,
+                "bandwidth": 164,
+                "latency": 37
+            },
+            {
+                "source": 41,
+                "destination": 31,
+                "bandwidth": 164,
+                "latency": 37
+            },
+            {
+                "source": 31,
+                "destination": 42,
+                "bandwidth": 161,
+                "latency": 52
+            },
+            {
+                "source": 42,
+                "destination": 31,
+                "bandwidth": 161,
+                "latency": 52
+            },
+            {
+                "source": 31,
+                "destination": 43,
+                "bandwidth": 159,
+                "latency": 33
+            },
+            {
+                "source": 43,
+                "destination": 31,
+                "bandwidth": 159,
+                "latency": 33
+            },
+            {
+                "source": 31,
+                "destination": 45,
+                "bandwidth": 150,
+                "latency": 38
+            },
+            {
+                "source": 45,
+                "destination": 31,
+                "bandwidth": 150,
+                "latency": 38
+            },
+            {
+                "source": 31,
+                "destination": 46,
+                "bandwidth": 187,
+                "latency": 59
+            },
+            {
+                "source": 46,
+                "destination": 31,
+                "bandwidth": 187,
+                "latency": 59
+            },
+            {
+                "source": 31,
+                "destination": 49,
+                "bandwidth": 188,
+                "latency": 36
+            },
+            {
+                "source": 49,
+                "destination": 31,
+                "bandwidth": 188,
+                "latency": 36
+            },
+            {
+                "source": 32,
+                "destination": 42,
+                "bandwidth": 166,
+                "latency": 31
+            },
+            {
+                "source": 42,
+                "destination": 32,
+                "bandwidth": 166,
+                "latency": 31
+            },
+            {
+                "source": 32,
+                "destination": 43,
+                "bandwidth": 167,
+                "latency": 36
+            },
+            {
+                "source": 43,
+                "destination": 32,
+                "bandwidth": 167,
+                "latency": 36
+            },
+            {
+                "source": 32,
+                "destination": 44,
+                "bandwidth": 152,
+                "latency": 56
+            },
+            {
+                "source": 44,
+                "destination": 32,
+                "bandwidth": 152,
+                "latency": 56
+            },
+            {
+                "source": 32,
+                "destination": 48,
+                "bandwidth": 163,
+                "latency": 47
+            },
+            {
+                "source": 48,
+                "destination": 32,
+                "bandwidth": 163,
+                "latency": 47
+            },
+            {
+                "source": 33,
+                "destination": 40,
+                "bandwidth": 186,
+                "latency": 33
+            },
+            {
+                "source": 40,
+                "destination": 33,
+                "bandwidth": 186,
+                "latency": 33
+            },
+            {
+                "source": 33,
+                "destination": 41,
+                "bandwidth": 183,
+                "latency": 34
+            },
+            {
+                "source": 41,
+                "destination": 33,
+                "bandwidth": 183,
+                "latency": 34
+            },
+            {
+                "source": 33,
+                "destination": 42,
+                "bandwidth": 152,
+                "latency": 43
+            },
+            {
+                "source": 42,
+                "destination": 33,
+                "bandwidth": 152,
+                "latency": 43
+            },
+            {
+                "source": 33,
+                "destination": 43,
+                "bandwidth": 157,
+                "latency": 54
+            },
+            {
+                "source": 43,
+                "destination": 33,
+                "bandwidth": 157,
+                "latency": 54
+            },
+            {
+                "source": 33,
+                "destination": 45,
+                "bandwidth": 171,
+                "latency": 35
+            },
+            {
+                "source": 45,
+                "destination": 33,
+                "bandwidth": 171,
+                "latency": 35
+            },
+            {
+                "source": 33,
+                "destination": 47,
+                "bandwidth": 188,
+                "latency": 43
+            },
+            {
+                "source": 47,
+                "destination": 33,
+                "bandwidth": 188,
+                "latency": 43
+            },
+            {
+                "source": 33,
+                "destination": 48,
+                "bandwidth": 171,
+                "latency": 57
+            },
+            {
+                "source": 48,
+                "destination": 33,
+                "bandwidth": 171,
+                "latency": 57
+            },
+            {
+                "source": 33,
+                "destination": 49,
+                "bandwidth": 157,
+                "latency": 38
+            },
+            {
+                "source": 49,
+                "destination": 33,
+                "bandwidth": 157,
+                "latency": 38
+            },
+            {
+                "source": 34,
+                "destination": 40,
+                "bandwidth": 165,
+                "latency": 56
+            },
+            {
+                "source": 40,
+                "destination": 34,
+                "bandwidth": 165,
+                "latency": 56
+            },
+            {
+                "source": 34,
+                "destination": 44,
+                "bandwidth": 170,
+                "latency": 43
+            },
+            {
+                "source": 44,
+                "destination": 34,
+                "bandwidth": 170,
+                "latency": 43
+            },
+            {
+                "source": 34,
+                "destination": 48,
+                "bandwidth": 199,
+                "latency": 30
+            },
+            {
+                "source": 48,
+                "destination": 34,
+                "bandwidth": 199,
+                "latency": 30
+            },
+            {
+                "source": 34,
+                "destination": 49,
+                "bandwidth": 155,
+                "latency": 52
+            },
+            {
+                "source": 49,
+                "destination": 34,
+                "bandwidth": 155,
+                "latency": 52
+            },
+            {
+                "source": 35,
+                "destination": 42,
+                "bandwidth": 194,
+                "latency": 44
+            },
+            {
+                "source": 42,
+                "destination": 35,
+                "bandwidth": 194,
+                "latency": 44
+            },
+            {
+                "source": 35,
+                "destination": 44,
+                "bandwidth": 179,
+                "latency": 33
+            },
+            {
+                "source": 44,
+                "destination": 35,
+                "bandwidth": 179,
+                "latency": 33
+            },
+            {
+                "source": 35,
+                "destination": 45,
+                "bandwidth": 161,
+                "latency": 39
+            },
+            {
+                "source": 45,
+                "destination": 35,
+                "bandwidth": 161,
+                "latency": 39
+            },
+            {
+                "source": 35,
+                "destination": 46,
+                "bandwidth": 177,
+                "latency": 36
+            },
+            {
+                "source": 46,
+                "destination": 35,
+                "bandwidth": 177,
+                "latency": 36
+            },
+            {
+                "source": 35,
+                "destination": 47,
+                "bandwidth": 154,
+                "latency": 50
+            },
+            {
+                "source": 47,
+                "destination": 35,
+                "bandwidth": 154,
+                "latency": 50
+            },
+            {
+                "source": 35,
+                "destination": 49,
+                "bandwidth": 154,
+                "latency": 45
+            },
+            {
+                "source": 49,
+                "destination": 35,
+                "bandwidth": 154,
+                "latency": 45
+            },
+            {
+                "source": 36,
+                "destination": 40,
+                "bandwidth": 159,
+                "latency": 42
+            },
+            {
+                "source": 40,
+                "destination": 36,
+                "bandwidth": 159,
+                "latency": 42
+            },
+            {
+                "source": 36,
+                "destination": 41,
+                "bandwidth": 200,
+                "latency": 47
+            },
+            {
+                "source": 41,
+                "destination": 36,
+                "bandwidth": 200,
+                "latency": 47
+            },
+            {
+                "source": 36,
+                "destination": 42,
+                "bandwidth": 197,
+                "latency": 35
+            },
+            {
+                "source": 42,
+                "destination": 36,
+                "bandwidth": 197,
+                "latency": 35
+            },
+            {
+                "source": 36,
+                "destination": 43,
+                "bandwidth": 151,
+                "latency": 41
+            },
+            {
+                "source": 43,
+                "destination": 36,
+                "bandwidth": 151,
+                "latency": 41
+            },
+            {
+                "source": 36,
+                "destination": 45,
+                "bandwidth": 180,
+                "latency": 41
+            },
+            {
+                "source": 45,
+                "destination": 36,
+                "bandwidth": 180,
+                "latency": 41
+            },
+            {
+                "source": 36,
+                "destination": 47,
+                "bandwidth": 176,
+                "latency": 55
+            },
+            {
+                "source": 47,
+                "destination": 36,
+                "bandwidth": 176,
+                "latency": 55
+            },
+            {
+                "source": 36,
+                "destination": 48,
+                "bandwidth": 162,
+                "latency": 30
+            },
+            {
+                "source": 48,
+                "destination": 36,
+                "bandwidth": 162,
+                "latency": 30
+            },
+            {
+                "source": 37,
+                "destination": 40,
+                "bandwidth": 181,
+                "latency": 51
+            },
+            {
+                "source": 40,
+                "destination": 37,
+                "bandwidth": 181,
+                "latency": 51
+            },
+            {
+                "source": 37,
+                "destination": 41,
+                "bandwidth": 175,
+                "latency": 32
+            },
+            {
+                "source": 41,
+                "destination": 37,
+                "bandwidth": 175,
+                "latency": 32
+            },
+            {
+                "source": 37,
+                "destination": 42,
+                "bandwidth": 158,
+                "latency": 47
+            },
+            {
+                "source": 42,
+                "destination": 37,
+                "bandwidth": 158,
+                "latency": 47
+            },
+            {
+                "source": 37,
+                "destination": 44,
+                "bandwidth": 169,
+                "latency": 44
+            },
+            {
+                "source": 44,
+                "destination": 37,
+                "bandwidth": 169,
+                "latency": 44
+            },
+            {
+                "source": 37,
+                "destination": 46,
+                "bandwidth": 195,
+                "latency": 37
+            },
+            {
+                "source": 46,
+                "destination": 37,
+                "bandwidth": 195,
+                "latency": 37
+            },
+            {
+                "source": 37,
+                "destination": 48,
+                "bandwidth": 152,
+                "latency": 36
+            },
+            {
+                "source": 48,
+                "destination": 37,
+                "bandwidth": 152,
+                "latency": 36
+            },
+            {
+                "source": 37,
+                "destination": 49,
+                "bandwidth": 165,
+                "latency": 58
+            },
+            {
+                "source": 49,
+                "destination": 37,
+                "bandwidth": 165,
+                "latency": 58
+            },
+            {
+                "source": 38,
+                "destination": 41,
+                "bandwidth": 160,
+                "latency": 43
+            },
+            {
+                "source": 41,
+                "destination": 38,
+                "bandwidth": 160,
+                "latency": 43
+            },
+            {
+                "source": 38,
+                "destination": 46,
+                "bandwidth": 153,
+                "latency": 37
+            },
+            {
+                "source": 46,
+                "destination": 38,
+                "bandwidth": 153,
+                "latency": 37
+            },
+            {
+                "source": 38,
+                "destination": 47,
+                "bandwidth": 176,
+                "latency": 34
+            },
+            {
+                "source": 47,
+                "destination": 38,
+                "bandwidth": 176,
+                "latency": 34
+            },
+            {
+                "source": 38,
+                "destination": 49,
+                "bandwidth": 154,
+                "latency": 57
+            },
+            {
+                "source": 49,
+                "destination": 38,
+                "bandwidth": 154,
+                "latency": 57
+            },
+            {
+                "source": 39,
+                "destination": 41,
+                "bandwidth": 166,
+                "latency": 43
+            },
+            {
+                "source": 41,
+                "destination": 39,
+                "bandwidth": 166,
+                "latency": 43
+            },
+            {
+                "source": 39,
+                "destination": 42,
+                "bandwidth": 188,
+                "latency": 43
+            },
+            {
+                "source": 42,
+                "destination": 39,
+                "bandwidth": 188,
+                "latency": 43
+            },
+            {
+                "source": 39,
+                "destination": 43,
+                "bandwidth": 161,
+                "latency": 47
+            },
+            {
+                "source": 43,
+                "destination": 39,
+                "bandwidth": 161,
+                "latency": 47
+            },
+            {
+                "source": 39,
+                "destination": 45,
+                "bandwidth": 188,
+                "latency": 51
+            },
+            {
+                "source": 45,
+                "destination": 39,
+                "bandwidth": 188,
+                "latency": 51
+            },
+            {
+                "source": 39,
+                "destination": 46,
+                "bandwidth": 190,
+                "latency": 48
+            },
+            {
+                "source": 46,
+                "destination": 39,
+                "bandwidth": 190,
+                "latency": 48
+            },
+            {
+                "source": 39,
+                "destination": 47,
+                "bandwidth": 174,
+                "latency": 48
+            },
+            {
+                "source": 47,
+                "destination": 39,
+                "bandwidth": 174,
+                "latency": 48
+            },
+            {
+                "source": 40,
+                "destination": 41,
+                "bandwidth": 234,
+                "latency": 71
+            },
+            {
+                "source": 41,
+                "destination": 40,
+                "bandwidth": 234,
+                "latency": 71
+            },
+            {
+                "source": 40,
+                "destination": 44,
+                "bandwidth": 212,
+                "latency": 83
+            },
+            {
+                "source": 44,
+                "destination": 40,
+                "bandwidth": 212,
+                "latency": 83
+            },
+            {
+                "source": 40,
+                "destination": 45,
+                "bandwidth": 242,
+                "latency": 74
+            },
+            {
+                "source": 45,
+                "destination": 40,
+                "bandwidth": 242,
+                "latency": 74
+            },
+            {
+                "source": 40,
+                "destination": 47,
+                "bandwidth": 258,
+                "latency": 80
+            },
+            {
+                "source": 47,
+                "destination": 40,
+                "bandwidth": 258,
+                "latency": 80
+            },
+            {
+                "source": 40,
+                "destination": 48,
+                "bandwidth": 255,
+                "latency": 80
+            },
+            {
+                "source": 48,
+                "destination": 40,
+                "bandwidth": 255,
+                "latency": 80
+            },
+            {
+                "source": 40,
+                "destination": 49,
+                "bandwidth": 230,
+                "latency": 80
+            },
+            {
+                "source": 49,
+                "destination": 40,
+                "bandwidth": 230,
+                "latency": 80
+            },
+            {
+                "source": 41,
+                "destination": 43,
+                "bandwidth": 250,
+                "latency": 86
+            },
+            {
+                "source": 43,
+                "destination": 41,
+                "bandwidth": 250,
+                "latency": 86
+            },
+            {
+                "source": 41,
+                "destination": 44,
+                "bandwidth": 261,
+                "latency": 67
+            },
+            {
+                "source": 44,
+                "destination": 41,
+                "bandwidth": 261,
+                "latency": 67
+            },
+            {
+                "source": 41,
+                "destination": 45,
+                "bandwidth": 237,
+                "latency": 66
+            },
+            {
+                "source": 45,
+                "destination": 41,
+                "bandwidth": 237,
+                "latency": 66
+            },
+            {
+                "source": 41,
+                "destination": 46,
+                "bandwidth": 207,
+                "latency": 82
+            },
+            {
+                "source": 46,
+                "destination": 41,
+                "bandwidth": 207,
+                "latency": 82
+            },
+            {
+                "source": 41,
+                "destination": 47,
+                "bandwidth": 270,
+                "latency": 83
+            },
+            {
+                "source": 47,
+                "destination": 41,
+                "bandwidth": 270,
+                "latency": 83
+            },
+            {
+                "source": 41,
+                "destination": 48,
+                "bandwidth": 265,
+                "latency": 88
+            },
+            {
+                "source": 48,
+                "destination": 41,
+                "bandwidth": 265,
+                "latency": 88
+            },
+            {
+                "source": 42,
+                "destination": 43,
+                "bandwidth": 232,
+                "latency": 63
+            },
+            {
+                "source": 43,
+                "destination": 42,
+                "bandwidth": 232,
+                "latency": 63
+            },
+            {
+                "source": 42,
+                "destination": 44,
+                "bandwidth": 227,
+                "latency": 65
+            },
+            {
+                "source": 44,
+                "destination": 42,
+                "bandwidth": 227,
+                "latency": 65
+            },
+            {
+                "source": 42,
+                "destination": 45,
+                "bandwidth": 258,
+                "latency": 63
+            },
+            {
+                "source": 45,
+                "destination": 42,
+                "bandwidth": 258,
+                "latency": 63
+            },
+            {
+                "source": 42,
+                "destination": 49,
+                "bandwidth": 297,
+                "latency": 88
+            },
+            {
+                "source": 49,
+                "destination": 42,
+                "bandwidth": 297,
+                "latency": 88
+            },
+            {
+                "source": 43,
+                "destination": 44,
+                "bandwidth": 284,
+                "latency": 72
+            },
+            {
+                "source": 44,
+                "destination": 43,
+                "bandwidth": 284,
+                "latency": 72
+            },
+            {
+                "source": 43,
+                "destination": 45,
+                "bandwidth": 219,
+                "latency": 90
+            },
+            {
+                "source": 45,
+                "destination": 43,
+                "bandwidth": 219,
+                "latency": 90
+            },
+            {
+                "source": 43,
+                "destination": 46,
+                "bandwidth": 206,
+                "latency": 76
+            },
+            {
+                "source": 46,
+                "destination": 43,
+                "bandwidth": 206,
+                "latency": 76
+            },
+            {
+                "source": 43,
+                "destination": 48,
+                "bandwidth": 221,
+                "latency": 63
+            },
+            {
+                "source": 48,
+                "destination": 43,
+                "bandwidth": 221,
+                "latency": 63
+            },
+            {
+                "source": 44,
+                "destination": 45,
+                "bandwidth": 288,
+                "latency": 77
+            },
+            {
+                "source": 45,
+                "destination": 44,
+                "bandwidth": 288,
+                "latency": 77
+            },
+            {
+                "source": 44,
+                "destination": 46,
+                "bandwidth": 263,
+                "latency": 81
+            },
+            {
+                "source": 46,
+                "destination": 44,
+                "bandwidth": 263,
+                "latency": 81
+            },
+            {
+                "source": 44,
+                "destination": 47,
+                "bandwidth": 292,
+                "latency": 85
+            },
+            {
+                "source": 47,
+                "destination": 44,
+                "bandwidth": 292,
+                "latency": 85
+            },
+            {
+                "source": 44,
+                "destination": 49,
+                "bandwidth": 288,
+                "latency": 66
+            },
+            {
+                "source": 49,
+                "destination": 44,
+                "bandwidth": 288,
+                "latency": 66
+            },
+            {
+                "source": 45,
+                "destination": 46,
+                "bandwidth": 234,
+                "latency": 86
+            },
+            {
+                "source": 46,
+                "destination": 45,
+                "bandwidth": 234,
+                "latency": 86
+            },
+            {
+                "source": 46,
+                "destination": 47,
+                "bandwidth": 293,
+                "latency": 82
+            },
+            {
+                "source": 47,
+                "destination": 46,
+                "bandwidth": 293,
+                "latency": 82
+            },
+            {
+                "source": 46,
+                "destination": 48,
+                "bandwidth": 221,
+                "latency": 64
+            },
+            {
+                "source": 48,
+                "destination": 46,
+                "bandwidth": 221,
+                "latency": 64
+            },
+            {
+                "source": 46,
+                "destination": 49,
+                "bandwidth": 295,
+                "latency": 66
+            },
+            {
+                "source": 49,
+                "destination": 46,
+                "bandwidth": 295,
+                "latency": 66
+            },
+            {
+                "source": 47,
+                "destination": 48,
+                "bandwidth": 255,
+                "latency": 61
+            },
+            {
+                "source": 48,
+                "destination": 47,
+                "bandwidth": 255,
+                "latency": 61
+            },
+            {
+                "source": 47,
+                "destination": 49,
+                "bandwidth": 253,
+                "latency": 64
+            },
+            {
+                "source": 49,
+                "destination": 47,
+                "bandwidth": 253,
+                "latency": 64
+            }
+        ]
+    }
+}
