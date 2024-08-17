@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 --- Running inference on topology DRL/data/scaled_infrastructure_H100_L3606.json ---
 
 Running inference with 10 applications using GNN agent...
@@ -138,3 +139,56 @@ Avg Total Reward per Episode: -91.7499
 Std Total Reward per Episode: 59.5645
 Min Total Reward per Episode: -226.9732
 Max Total Reward per Episode: 15.9586
+=======
+--- Running inference on topology DRL/data/scaled_infrastructure_H100_L3625.json ---
+
+Running inference with 1 applications...
+Avg Time per Episode: 0.2299 seconds
+Avg Reward: 98.1200 per application
+Std Reward: 0.0000
+Min Reward: 98.1200
+Max Reward: 98.1200
+Avg Latency Penalty: -15.3333 per application
+Std Latency Penalty: 0.0000
+Min Latency Penalty: -15.3333
+Max Latency Penalty: -15.3333
+
+--- Running inference on topology DRL/data/scaled_infrastructure_H100_L1551.json ---
+
+Running inference with 1 applications...
+Avg Time per Episode: 0.0768 seconds
+Avg Reward: 64.2200 per application
+Std Reward: 0.0000
+Min Reward: 64.2200
+Max Reward: 64.2200
+Avg Latency Penalty: -11.0000 per application
+Std Latency Penalty: 0.0000
+Min Latency Penalty: -11.0000
+Max Latency Penalty: -11.0000
+
+--- Running inference on topology DRL/data/scaled_infrastructure_H50_L885.json ---
+
+Running inference with 1 applications...
+Avg Time per Episode: 0.0633 seconds
+Avg Reward: 48.3800 per application
+Std Reward: 0.0000
+Min Reward: 48.3800
+Max Reward: 48.3800
+Avg Latency Penalty: -14.6667 per application
+Std Latency Penalty: 0.0000
+Min Latency Penalty: -14.6667
+Max Latency Penalty: -14.6667
+
+--- Running inference on topology DRL/data/scaled_infrastructure_H50_L542.json ---
+
+Running inference with 1 applications...
+Avg Time per Episode: 0.0554 seconds
+Avg Reward: 54.1600 per application
+Std Reward: 0.0000
+Min Reward: 54.1600
+Max Reward: 54.1600
+Avg Latency Penalty: -10.3333 per application
+Std Latency Penalty: 0.0000
+Min Latency Penalty: -10.3333
+Max Latency Penalty: -10.3333
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090

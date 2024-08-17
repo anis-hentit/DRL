@@ -3,9 +3,15 @@ import random
 import os
 
 def generate_hosts(num_hosts):
+<<<<<<< HEAD
     iot_percentage = 0.50
     edge_percentage = 0.40
     cloud_percentage = 0.1
+=======
+    iot_percentage = 0.4
+    edge_percentage = 0.4
+    cloud_percentage = 0.2
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
     num_iot = int(num_hosts * iot_percentage)
     num_edge = int(num_hosts * edge_percentage)
@@ -15,11 +21,19 @@ def generate_hosts(num_hosts):
     
     # IoT Devices
     for i in range(num_iot):
+<<<<<<< HEAD
         hosts_config.append({"CPU": random.randint(1, 15), "BW": random.randint(1, 15)})
 
     # Edge Servers
     for i in range(num_edge):
         hosts_config.append({"CPU": random.randint(20, 50), "BW": random.randint(20, 40)})
+=======
+        hosts_config.append({"CPU": random.randint(1, 5), "BW": random.randint(1, 3)})
+
+    # Edge Servers
+    for i in range(num_edge):
+        hosts_config.append({"CPU": random.randint(40, 60), "BW": random.randint(20, 40)})
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
     # Cloud Servers
     for i in range(num_cloud):
@@ -40,34 +54,56 @@ def generate_links(num_hosts, density_factor):
     # IoT to IoT Links
     for i in range(num_iot):
         for j in range(i + 1, num_iot):
+<<<<<<< HEAD
             if should_create_link(0.1 * density_factor):
                 bandwidth = random.randint(30, 40)
                 latency = random.randint(5, 10)
+=======
+            if should_create_link(0.2 * density_factor):
+                bandwidth = random.randint(30, 50)
+                latency = random.randint(1, 10)
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})
                 network_topology.append({"source": j, "destination": i, "bandwidth": bandwidth, "latency": latency})
 
     # IoT to Edge Links
     for i in range(num_iot):
         for j in range(num_iot, num_iot + num_edge):
+<<<<<<< HEAD
             if should_create_link(0.8 * density_factor):
                 bandwidth = random.randint(45, 80)
                 latency = random.randint(10, 20)
+=======
+            if should_create_link(0.95 * density_factor):
+                bandwidth = random.randint(50, 70)
+                latency = random.randint(5, 15)
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})
                 network_topology.append({"source": j, "destination": i, "bandwidth": bandwidth, "latency": latency})
 
     # Edge to Edge Links
     for i in range(num_iot, num_iot + num_edge):
         for j in range(i + 1, num_iot + num_edge):
+<<<<<<< HEAD
             if should_create_link(0.5 * density_factor):
                 bandwidth = random.randint(80, 100)
                 latency = random.randint(15, 30)
+=======
+            if should_create_link(0.8 * density_factor):
+                bandwidth = random.randint(80, 100)
+                latency = random.randint(16, 25)
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})
                 network_topology.append({"source": j, "destination": i, "bandwidth": bandwidth, "latency": latency})
 
     # Edge to Cloud Links
     for i in range(num_iot, num_iot + num_edge):
         for j in range(num_iot + num_edge, num_hosts):
+<<<<<<< HEAD
             if should_create_link(0.9 * density_factor):
+=======
+            if should_create_link(0.8 * density_factor):
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
                 bandwidth = random.randint(150, 200)
                 latency = random.randint(30, 60)
                 network_topology.append({"source": i, "destination": j, "bandwidth": bandwidth, "latency": latency})

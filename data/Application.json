@@ -1,10 +1,15 @@
 {
   "applications": [
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     {
       "nb": 1,
       "components": 4,
       "requirements": [
         {"CPU": 1, "RAM": 1},
+<<<<<<< HEAD
         {"CPU": 8, "RAM": 5},
         {"CPU": 5, "RAM": 7},
         {"CPU": 7, "RAM": 5}
@@ -15,12 +20,27 @@
         {"id": 2, "source": 1, "destination": 3, "bandwidth": 20, "latency": 7}
       ],
       "DZ": [{"component_id": 0, "host_id": 2}]
+=======
+        {"CPU": 4, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 6, "RAM": 5}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 25},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 30},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
+      ],
+      "DZ": [{"component_id":0,"host_id":1}
+        
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 2,
       "components": 6,
       "requirements": [
         {"CPU": 1, "RAM": 1},
+<<<<<<< HEAD
         {"CPU": 7, "RAM": 7},
         {"CPU": 15, "RAM": 10},
         {"CPU": 8, "RAM": 3},
@@ -35,11 +55,30 @@
         {"id": 4, "source": 3, "destination": 5, "bandwidth": 30, "latency": 15}
       ],
       "DZ": [{"component_id": 0, "host_id": 6}]
+=======
+        {"CPU": 2, "RAM": 1},
+        {"CPU": 20, "RAM": 15},
+        {"CPU": 12, "RAM": 4},
+        {"CPU": 1, "RAM": 2},
+        {"CPU": 1, "RAM": 3}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 50, "latency": 25},
+        {"id": 2, "source": 1, "destination": 3, "bandwidth": 60, "latency": 20},
+        {"id": 3, "source": 2, "destination": 4, "bandwidth": 50, "latency": 25},
+        {"id": 4, "source": 3, "destination": 5, "bandwidth": 50, "latency": 30}
+      ],
+      "DZ": [
+        {"component_id":0,"host_id":10}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 3,
       "components": 5,
       "requirements": [
+<<<<<<< HEAD
         {"CPU": 5, "RAM": 25},
         {"CPU": 2, "RAM": 4},
         {"CPU": 5, "RAM": 3},
@@ -53,11 +92,29 @@
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 7}
       ],
       "DZ": [{"component_id": 3, "host_id":9}]
+=======
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 3, "RAM": 1},
+        {"CPU": 5, "RAM": 4},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 4, "RAM": 3}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 30},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25}
+      ],
+      "DZ": [
+        {"component_id":3,"host_id":11}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 4,
       "components": 4,
       "requirements": [
+<<<<<<< HEAD
         {"CPU": 25, "RAM": 4},
         {"CPU": 8, "RAM": 7},
         {"CPU": 1, "RAM": 1},
@@ -69,12 +126,28 @@
         {"id": 2, "source": 1, "destination": 3, "bandwidth": 40, "latency": 10}
       ],
       "DZ": [{"component_id": 2, "host_id": 1}]
+=======
+        {"CPU": 1, "RAM": 2},
+        {"CPU": 4, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 3, "RAM": 2}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 25}
+      ],
+      "DZ": [
+        {"component_id":2,"host_id":26}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 5,
       "components": 6,
       "requirements": [
         {"CPU": 2, "RAM": 2},
+<<<<<<< HEAD
         {"CPU": 3, "RAM": 5},
         {"CPU": 5, "RAM": 8},
         {"CPU": 3, "RAM": 4},
@@ -89,11 +162,30 @@
         {"id": 4, "source": 4, "destination": 5, "bandwidth": 35, "latency": 8}
       ],
       "DZ": [{"component_id": 4, "host_id": 3}]
+=======
+        {"CPU": 4, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 6, "RAM": 5},
+        {"CPU": 3, "RAM": 2},
+        {"CPU": 5, "RAM": 4}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 20},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25},
+        {"id": 4, "source": 4, "destination": 5, "bandwidth": 40, "latency": 30}
+      ],
+      "DZ": [
+        {"component_id":2,"host_id":19}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 6,
       "components": 3,
       "requirements": [
+<<<<<<< HEAD
         {"CPU": 8, "RAM": 6},
         {"CPU": 20, "RAM": 10},
         {"CPU": 1, "RAM": 1}
@@ -103,12 +195,26 @@
         {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 20}
       ],
       "DZ": [{"component_id": 2, "host_id": 4}]
+=======
+        {"CPU": 3, "RAM": 2},
+        {"CPU": 5, "RAM": 4},
+        {"CPU": 1, "RAM": 1}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 20},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15}
+      ],
+      "DZ": [
+        {"component_id":2,"host_id":28}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 7,
       "components": 5,
       "requirements": [
         {"CPU": 1, "RAM": 1},
+<<<<<<< HEAD
         {"CPU": 4, "RAM": 4},
         {"CPU": 10, "RAM": 5},
         {"CPU": 7, "RAM": 5},
@@ -121,12 +227,29 @@
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 40, "latency": 20}
       ],
       "DZ": [{"component_id": 0, "host_id": 7}]
+=======
+        {"CPU": 4, "RAM": 2},
+        {"CPU": 1, "RAM": 2},
+        {"CPU": 3, "RAM": 3},
+        {"CPU": 5, "RAM": 1}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 25, "latency": 25},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 35, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 40, "latency": 25}
+      ],
+      "DZ": [
+        {"component_id":0,"host_id":20}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 8,
       "components": 4,
       "requirements": [
         {"CPU": 1, "RAM": 1},
+<<<<<<< HEAD
         {"CPU": 7, "RAM": 9},
         {"CPU": 8, "RAM": 3},
         {"CPU": 8, "RAM": 5}
@@ -137,11 +260,26 @@
         {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 7}
       ],
       "DZ": [{"component_id": 0, "host_id": 8}]
+=======
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 3, "RAM": 3},
+        {"CPU": 4, "RAM": 4}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 30},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20}
+      ],
+      "DZ": [
+        {"component_id":0,"host_id":16}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 9,
       "components": 6,
       "requirements": [
+<<<<<<< HEAD
         {"CPU": 1, "RAM": 1},
         {"CPU": 15, "RAM": 20},
         {"CPU": 4, "RAM": 2},
@@ -157,12 +295,32 @@
         {"id": 4, "source": 4, "destination": 5, "bandwidth": 40, "latency": 10}
       ],
       "DZ": [{"component_id": 0, "host_id": 5}]
+=======
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 4, "RAM": 3},
+        {"CPU": 1, "RAM": 1},
+        {"CPU": 6, "RAM": 5},
+        {"CPU": 3, "RAM": 2},
+        {"CPU": 5, "RAM": 4}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 20, "latency": 25},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 30, "latency": 20},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 35, "latency": 25},
+        {"id": 4, "source": 4, "destination": 5, "bandwidth": 40, "latency": 30}
+      ],
+      "DZ": [
+        {"component_id":2,"host_id":22}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     },
     {
       "nb": 10,
       "components": 5,
       "requirements": [
         {"CPU": 1, "RAM": 1},
+<<<<<<< HEAD
         {"CPU": 7, "RAM": 5},
         {"CPU": 5, "RAM": 6},
         {"CPU": 5, "RAM": 4},
@@ -175,6 +333,22 @@
         {"id": 3, "source": 3, "destination": 4, "bandwidth": 30, "latency": 10}
       ],
       "DZ": [{"component_id": 0, "host_id": 0}]
+=======
+        {"CPU": 2, "RAM": 2},
+        {"CPU": 3, "RAM": 3},
+        {"CPU": 4, "RAM": 4},
+        {"CPU": 5, "RAM": 5}
+      ],
+      "links": [
+        {"id": 0, "source": 0, "destination": 1, "bandwidth": 15, "latency": 20},
+        {"id": 1, "source": 1, "destination": 2, "bandwidth": 20, "latency": 15},
+        {"id": 2, "source": 2, "destination": 3, "bandwidth": 25, "latency": 20},
+        {"id": 3, "source": 3, "destination": 4, "bandwidth": 30, "latency": 25}
+      ],
+      "DZ": [
+        {"component_id":0,"host_id":24}
+      ]
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     }
   ]
 }

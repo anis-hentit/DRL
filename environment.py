@@ -4,7 +4,10 @@ from gym import spaces
 from utils import load_json_config
 from agent import flatten_state, generate_graph_data, compute_action_mask
 import heapq
+<<<<<<< HEAD
 import random
+=======
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
 def calculate_state_size(state):
     flattened_state = flatten_state(state)
@@ -46,6 +49,7 @@ class FogEnvironment(gym.Env):
 
     def initialize_state(self):
         state = {
+<<<<<<< HEAD
         'hosts': {i: {'CPU': host['CPU'], 'RAM': host['BW'], 'total_CPU': host['CPU'], 'total_RAM': host['BW']} for i, host in enumerate(self.infra_config['hosts']['configuration'])},
         'infra_links': {i: dict(link) for i, link in enumerate(self.infra_config['network']['topology'])},
         'applications': []
@@ -64,6 +68,22 @@ class FogEnvironment(gym.Env):
             'links': {i: link for i, link in enumerate(app_config['links'])},
             'paths': {i: None for i in range(len(app_config['links']))},
             'latency_penalties': {i: 0 for i in range(len(app_config['links']))}
+=======
+            'hosts': {i: {'CPU': host['CPU'], 'RAM': host['BW']} for i, host in enumerate(self.infra_config['hosts']['configuration'])},
+            'infra_links': {i: dict(link) for i, link in enumerate(self.infra_config['network']['topology'])},
+            'applications': []
+        }
+
+        global_comp_idx = 0
+        for app_id, app_config in enumerate(self.app_configs['applications']):
+            app_state = {
+                'components': {i: {'CPU': comp['CPU'], 'RAM': comp['RAM'], 'deployed': False, 'app_id': app_id} for i, comp in enumerate(app_config['requirements'])},
+                'components_start_idx': global_comp_idx,
+                'fixed_positions': {comp['component_id']: comp['host_id'] for comp in app_config.get('DZ', [])},
+                'links': {i: link for i, link in enumerate(app_config['links'])},
+                'paths': {i: None for i in range(len(app_config['links']))},
+                'latency_penalties': {i: 0 for i in range(len(app_config['links']))}
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
             }
 
             global_comp_idx += len(app_state['components'])
@@ -78,11 +98,16 @@ class FogEnvironment(gym.Env):
                         comp['deployed'] = True
                         comp['host'] = host_id
                     else:
+<<<<<<< HEAD
                         raise ValueError(f"Host {host_id} does not have enough resources to deploy component {comp_id} of application {app_index} at initialization.")
+=======
+                        raise ValueError(f"Host {host_id} does not have enough resources to deploy component {comp_id} of application {app_id} at initialization.")
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
             state['applications'].append(app_state)
 
         return state
 
+<<<<<<< HEAD
 
     def infer_host_type(self, host):
         if host['total_CPU'] <= 15:
@@ -116,16 +141,48 @@ class FogEnvironment(gym.Env):
                 print(f"Failed to deploy component {component_id} to host {host_id} due to insufficient resources.")
                 return self.state, -20, self.current_step >= self.max_steps_per_episode, {}
 
+=======
+    def step(self, action, app_index):
+        self.current_step += 1
+        component_id, host_id = action
+        print(f"\nStep {self.current_step}: Trying to deploy component {component_id} to host {host_id}")
+
+        app_state = self.state['applications'][app_index]
+        num_components = len(app_state['components'])
+
+        mask = compute_action_mask(self.state, app_index, self.max_components, max_hosts=self.num_hosts)
+        action_index = component_id * self.num_hosts + host_id
+        if component_id == -1 or host_id == -1 or mask[action_index] == 0:
+            print(f"Invalid action received: component_id={component_id}, host_id={host_id}")
+            return self.state, -50, self.current_step >= self.max_steps_per_episode, {}
+
+        if not app_state['components'][component_id]['deployed']:
+            component = app_state['components'][component_id]
+            host = self.state['hosts'][host_id]
+            if component['CPU'] <= host['CPU'] and component['RAM'] <= host['RAM']:
+                self.deploy_component(app_state, component_id, host_id)
+                print(f"Deployed component {component_id} to host {host_id}")
+            else:
+                print(f"Failed to deploy component {component_id} to host {host_id} due to insufficient resources.")
+                return self.state, -20, self.current_step >= self.max_steps_per_episode, {}
+
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
         for link_id, link in app_state['links'].items():
             if app_state['components'][link['source']]['deployed'] and app_state['components'][link['destination']]['deployed']:
                 if app_state['paths'][link_id] is None:
                     path = self.find_path(link_id, link, app_index)
                     app_state['paths'][link_id] = path
+<<<<<<< HEAD
                     if len(path) != 0:
                         self.reduce_bandwidth(path, link['bandwidth'])
                         self.calculate_latency_penalty(app_index, link_id, path)
                     else :
                         self.calculate_latency_penalty(app_index, link_id, path)
+=======
+                    if path:
+                        self.reduce_bandwidth(path, link['bandwidth'])
+                        self.calculate_latency_penalty(app_index, link_id, path)
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
         done = self.check_all_deployed()
         reward = self.calculate_reward(action, app_index)
@@ -202,6 +259,7 @@ class FogEnvironment(gym.Env):
             return best_path
 
         return None
+<<<<<<< HEAD
 
 
     def reduce_bandwidth(self, path, required_bandwidth):
@@ -259,15 +317,47 @@ class FogEnvironment(gym.Env):
 
         return total_latency_penalty
 
+=======
+
+    def validate_path_with_constraints(self, path, max_latency, min_bandwidth):
+        if not path:
+            return True
+        total_latency = 0
+        for i in range(len(path) - 1):
+            link_data = next((item for item in self.state['infra_links'].values()
+                              if item['source'] == path[i] and item['destination'] == path[i+1]), None)
+            if not link_data:
+                return False
+            total_latency += link_data['latency']
+            if link_data['bandwidth'] < min_bandwidth:
+                return False
+        if total_latency > max_latency:
+            return False
+        return True
+
+    def reduce_bandwidth(self, path, required_bandwidth):
+        if path is None or not path:
+            return
+        for link in path:
+            link_data = next((item for item in self.state['infra_links'].values()
+                              if item['source'] == link[0] and item['destination'] == link[1]), None)
+            if link_data and 'bandwidth' in link_data and link_data['bandwidth'] > 0:
+                link_data['bandwidth'] -= required_bandwidth
+
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     def calculate_reward(self, action, app_index):
         app_state = self.state['applications'][app_index]
         num_components = len(app_state['components'])
 
+<<<<<<< HEAD
         # Calculate energy cost
+=======
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
         if action is not None:
             component_id, host_id = action
             component = app_state['components'][component_id]
             host = self.state['hosts'][host_id]
+<<<<<<< HEAD
             energy_cost = self.calculate_energy_cost(host)
              # Normalize energy cost for single action
             normalized_energy_cost = energy_cost / (num_components or 1)
@@ -302,23 +392,43 @@ class FogEnvironment(gym.Env):
        
 
         # Additional penalty for failed paths after all components are deployed
+=======
+            energy_cost = host['CPU'] * 0.04 + host['RAM'] * 0.02
+        else:
+            energy_cost = 0
+
+        latency_penalty = sum(app_state['latency_penalties'].values())
+        total_reward = -energy_cost - latency_penalty
+
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
         if all(comp['deployed'] for comp in app_state['components'].values()):
             num_links = len(app_state['links'])
             failed_paths = sum(1 for path in app_state['paths'].values() if path is None)
             failed_paths_percentage = failed_paths / num_links
             total_reward -= 10 * failed_paths_percentage
 
+<<<<<<< HEAD
         # Large penalty for invalid actions
+=======
+        if not all(comp['deployed'] for comp in app_state['components'].values()):
+            total_reward += 5 / num_components
+
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
         if action == (-1, -1):
             total_reward -= 50
 
         print(f"App {app_index} Reward Calculation Debug:")
+<<<<<<< HEAD
         print(f"  Energy efficiency: {10 / (1 + normalized_energy_cost)  }")
+=======
+        print(f"  Energy cost: {energy_cost}")
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
         print(f"  Latency penalty: {latency_penalty}")
         print(f"  Total calculated reward for the action: {total_reward}")
 
         return total_reward
 
+<<<<<<< HEAD
 
     def calculate_latency_penalty(self, app_index, link_id, path):
         app = self.state['applications'][app_index]
@@ -349,15 +459,50 @@ class FogEnvironment(gym.Env):
     def calculate_final_reward(self):
         final_reward = 0
 
+=======
+    def calculate_latency_penalty(self, app_index, link_id, path):
+        app = self.state['applications'][app_index]
+        total_latency = sum(next(link_data['latency'] for link_data in self.state['infra_links'].values()
+                                 if link_data['source'] == link[0] and link_data['destination'] == link[1])
+                            for link in path)
+        if link_id in app['links']:
+            latency_req = app['links'][link_id]['latency']
+        else:
+            raise ValueError("Link id not in app")
+        penalty = 0
+        if total_latency > latency_req:
+            penalty += (total_latency - latency_req)
+        else:
+            penalty -= (latency_req - total_latency)
+        app['latency_penalties'][link_id] = penalty
+
+    def calculate_final_reward(self):
+        final_reward = 0
+        total_energy_cost = 0
+
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
         for app_index in range(len(self.state['applications'])):
             app_reward = self.calculate_reward(None, app_index)
             final_reward += app_reward
 
+<<<<<<< HEAD
         #final_reward /= len(self.state['applications'])
 
         return final_reward
 
 
+=======
+        active_hosts = set(comp['host'] for app in self.state['applications'] for comp in app['components'].values() if comp['deployed'])
+        for host_id in active_hosts:
+            host = self.state['hosts'][host_id]
+            total_energy_cost += host['CPU'] * 0.04 + host['RAM'] * 0.02
+        
+        final_reward -= total_energy_cost
+        final_reward /= len(self.state['applications'])
+
+        return final_reward
+
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
     def reset(self, topology_file=None):
         if topology_file:
             self.app_configs, self.infra_config = load_json_config("DRL/data/Application.json", topology_file)
@@ -421,9 +566,12 @@ class FogEnvironment(gym.Env):
                 print(f"  Link {link_id}: Path={path}, Latency Penalty (negative means positive reward)={penalty}")
 
         print("----------------------")
+<<<<<<< HEAD
     
     def get_num_hosts(self):
         return len(self.state['hosts'])
+=======
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
     def close(self):
         pass

@@ -1,4 +1,5 @@
 ## DRL - Deep Reinforcement Learning for Fog Computing
+<<<<<<< HEAD
 
 This project involves deploying multiple application components in a fog computing environment using a reinforcement learning (RL) agent enhanced with a Graph Neural Network (GNN). The RL agent learns optimal deployment strategies to maximize resource utilization and minimize latency, bandwidth, and energy consumption penalties. The project supports multiple applications and dynamic infrastructure generation, enhancing its versatility and scalability.
 
@@ -9,19 +10,41 @@ This project involves deploying multiple application components in a fog computi
 - `main.py`: The main script to initialize the environment, train the agent, and evaluate the deployment strategies.
 - `utils.py`: Utility functions for loading configuration files and supporting functions.
 - `InfrastructureGenerator.py`: Script for generating scalable and dynamic infrastructure configurations.
+=======
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
+This project involves deploying multiple application components in a fog computing environment using a reinforcement learning (RL) agent enhanced with a Graph Neural Network (GNN). The RL agent learns optimal deployment strategies to maximize resource utilization and minimize latency, bandwidth, and energy consumption penalties. The project supports multiple applications and dynamic infrastructure generation, enhancing its versatility and scalability.
 
+<<<<<<< HEAD
 ### Agent
 
 #### Overview
 
 The agent is implemented using TensorFlow and TensorFlow GNN. It employs a Graph Neural Network to predict the best actions based on the current state of the environment. The agent's decision-making is guided by a policy learned through interaction with the environment, using a Boltzmann exploration policy that gradually shifts from exploration to exploitation as training progresses.
 
+=======
+### File Structure
+
+- `agent.py`: Contains the implementation of the RL agent using GNN, including the decision-making process and the learning mechanism.
+- `environment.py`: Defines the fog computing environment where the agent operates, including state initialization and reward calculation.
+- `main.py`: The main script to initialize the environment, train the agent, and evaluate the deployment strategies.
+- `utils.py`: Utility functions for loading configuration files and supporting functions.
+- `InfrastructureGenerator.py`: Script for generating scalable and dynamic infrastructure configurations.
+- `benchmark.py`: Script to benchmark the execution time of different configurations on multiple topologies.
+
+### Agent
+
+#### Overview
+
+The agent is implemented using TensorFlow and TensorFlow GNN. It employs a Graph Neural Network to predict the best actions based on the current state of the environment. The agent's decision-making is guided by a policy learned through interaction with the environment, using policy gradient methods.
+
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 #### Hyperparameters
 
 | Hyperparameter   | Description                                               | Value  |
 |------------------|-----------------------------------------------------------|--------|
 | `learning_rate`  | Learning rate for the neural network optimizer            | 0.002  |
+<<<<<<< HEAD
 | `gamma`          | Discount factor for future rewards                        | 0.80   |
 | `temperature`    | Initial temperature for the Boltzmann exploration policy  | 1.0    |
 | `temperature_decay` | Decay rate for temperature after each episode           | 0.996  |
@@ -31,11 +54,26 @@ The agent is implemented using TensorFlow and TensorFlow GNN. It employs a Graph
 
 - **`__init__(self, input_dim, hidden_dim, max_components, num_hosts, learning_rate=0.002)`**: Initializes the agent with the given parameters.
 - **`choose_action(self, state, app_index, mode='train', num_hosts=None)`**: Chooses an action based on the current state using a Boltzmann exploration policy.
+=======
+| `gamma`          | Discount factor for future rewards                        | 0.96   |
+| `epsilon`        | Initial exploration rate for the epsilon-greedy policy    | 1.0    |
+| `epsilon_decay`  | Decay rate for epsilon after each episode                 | 0.998  |
+| `epsilon_min`    | Minimum value for epsilon to ensure exploration           | 0.01   |
+
+#### Methods
+
+- **`__init__(self, input_dim, hidden_dim, output_dim, max_components, num_hosts, learning_rate=0.002)`**: Initializes the agent with the given parameters.
+- **`choose_action(self, state, app_index, mode='train', num_hosts=None)`**: Chooses an action based on the current state using an epsilon-greedy policy.
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 - **`store_experience(self, state, action, reward, next_state, done, app_index, explore)`**: Stores the experience in the replay buffer.
 - **`learn(self, batch_size=64)`**: Updates the neural network based on the experiences.
 - **`GNNAgent`**: Defines the Graph Neural Network architecture used by the agent.
 - **`discount_rewards(self, rewards)`**: Computes discounted rewards to provide feedback on actions over time.
+<<<<<<< HEAD
 - **`sample_experiences(self, batch_size)`**: Samples experiences from both model and random replay buffers, adjusting the ratio based on the current temperature value.
+=======
+- **`sample_experiences(self, batch_size)`**: Samples experiences from both model and random replay buffers, adjusting the ratio based on the current epsilon value.
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
 #### Replay Buffer
 
@@ -64,7 +102,11 @@ The state is converted into a graph data structure for input into the neural net
 
 #### Overview
 
+<<<<<<< HEAD
 The `FogEnvironment` class represents the fog computing environment where components are deployed to hosts. It simulates the interaction between the agent and the environment, providing rewards based on the deployment's efficiency and the satisfaction of constraints like latency, bandwidth, and energy consumption.
+=======
+The `FogEnvironment` class represents the fog computing environment where components are deployed to hosts. It simulates the interaction between the agent and the environment, providing rewards based on the deployment's efficiency and the satisfaction of constraints like latency and bandwidth.
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
 #### Methods
 
@@ -76,12 +118,18 @@ The `FogEnvironment` class represents the fog computing environment where compon
 - **`deploy_component(self, app_state, component_id, host_id)`**: Deploys a component to a specified host.
 - **`find_path(self, link_id, link, app_index)`**: Finds a path for a logical link between two deployed components.
 - **`constrained_dijkstra(self, source, target, max_latency, min_bandwidth)`**: Finds a path with latency and bandwidth constraints using a constrained Dijkstra's algorithm.
+<<<<<<< HEAD
 - **`reduce_bandwidth(self, path, required_bandwidth)`**: Reduces the bandwidth on the path after deploying a component.
 - **`calculate_energy_cost(self, host)`**: Calculates the energy cost based on the host's type and resources used.
 - **`calculate_total_energy_cost(self)`**: Calculates the total energy cost for the entire deployment.
 - **`calculate_reward(self, action, app_index)`**: Calculates the reward for the current state and action.
 - **`reset(self)`**: Resets the environment to the initial state.
 - **`check_all_deployed(self)`**: Checks if all components have been deployed.
+=======
+- **`validate_path_with_constraints(self, path, max_latency, min_bandwidth)`**: Validates a path based on latency and bandwidth requirements.
+- **`calculate_reward(self, action, app_index)`**: Calculates the reward for the current state and action.
+- **`reset(self)`**: Resets the environment to the initial state.
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 - **`save_deployment_strategy(self, reward)`**: Saves the current deployment strategy to a text file.
 - **`render(self, mode='console')`**: Renders the current state of the environment.
 
@@ -97,16 +145,28 @@ The `InfrastructureGenerator.py` script dynamically generates scalable infrastru
 - **`generate_links(num_hosts, density_factor)`**: Generates network topology with specified density.
 - **`main(num_hosts, density_factor)`**: Main function to generate and save the infrastructure configuration.
 
+<<<<<<< HEAD
 ### Inference
 
 #### Overview
 
 The `Inference.py` script measures the execution time and performance of different configurations to evaluate the deployment strategies across multiple topologies. It runs the environment for a specified number of episodes and records various metrics.
+=======
+### Benchmark
+
+#### Overview
+
+The `benchmark.py` script measures the execution time and performance of different configurations to evaluate the deployment strategies across multiple topologies. It runs the environment for a specified number of episodes and records various metrics.
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
 #### Methods
 
 - **`run_inference(agent, env, num_episodes, num_applications)`**: Runs inference and collects metrics for the given number of episodes and applications.
+<<<<<<< HEAD
 - **`main()`**: Main function to run the inference with different configurations and topologies.
+=======
+- **`main()`**: Main function to run the benchmark with different configurations and topologies.
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
 ### Main Script
 
@@ -121,7 +181,11 @@ The `main.py` script initializes the environment and agent, and runs training ep
 
 #### Execution
 
+<<<<<<< HEAD
 The script runs for a specified number of episodes (default is 7000). In each episode, the agent interacts with the environment, choosing actions and learning from the rewards received. The total reward for each episode is printed to monitor the agent's performance.
+=======
+The script runs for a specified number of episodes (default is 3000). In each episode, the agent interacts with the environment, choosing actions and learning from the rewards received. The total reward for each episode is printed to monitor the agent's performance.
+>>>>>>> 1678550bf925cc138a94f5f33500cc4e4e487090
 
 ### Dependencies
 
