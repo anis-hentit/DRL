@@ -9,7 +9,7 @@ This project involves deploying multiple application components in a fog computi
 - `main.py`: The main script to initialize the environment, train the agent, and evaluate the deployment strategies.
 - `utils.py`: Utility functions for loading configuration files and supporting functions.
 - `InfrastructureGenerator.py`: Script for generating scalable and dynamic infrastructure configurations.
-- `benchmark.py`: Script to benchmark the execution time of different configurations on multiple topologies.
+- `Inference.py`: Script to Inference the execution time of different configurations on multiple topologies.
 
 ### Agent
 
@@ -97,16 +97,16 @@ The `InfrastructureGenerator.py` script dynamically generates scalable infrastru
 - **`generate_links(num_hosts, density_factor)`**: Generates network topology with specified density.
 - **`main(num_hosts, density_factor)`**: Main function to generate and save the infrastructure configuration.
 
-### Benchmark
+### Inference
 
 #### Overview
 
-The `benchmark.py` script measures the execution time and performance of different configurations to evaluate the deployment strategies across multiple topologies. It runs the environment for a specified number of episodes and records various metrics.
+The `Inference.py` script measures the execution time and performance of different configurations to evaluate the deployment strategies across multiple topologies. It runs the environment for a specified number of episodes and records various metrics.
 
 #### Methods
 
 - **`run_inference(agent, env, num_episodes, num_applications)`**: Runs inference and collects metrics for the given number of episodes and applications.
-- **`main()`**: Main function to run the benchmark with different configurations and topologies.
+- **`main()`**: Main function to run the Inference with different configurations and topologies.
 
 ### Main Script
 
